@@ -123,14 +123,14 @@ Esta función automatiza fórmulas de negocio sin necesidad de escribir la opera
 Ejemplo de uso:
 
 ```
-# Ejemplo: Generando Precio Final con Descuento
-# Requerimiento: sub_total y monto_descuento
+# Ejemplo: Generando sub-total
+# Requerimiento: precio y cantidad
 
 db.CalculadoraPlus({
-    "tipo": "precio_final"   # tipo de operacion
-    "col1": "Sub_Total",     # Monto base
-    "col2": "Monto_Dcto",    # Valor a restar
-    "res": "Precio_Neto"     # Columna nueva
+    "tipo": "sub-total"    # tipo de operacion
+    "col1": "Precio",      # Monto base
+    "col2": "Cantidad",    # Valor a restar
+    "res": "Sub-total"     # Columna nueva
 })
 ```
 
@@ -162,10 +162,9 @@ db.TimePlus({
     "date1": "Fecha_Pedido",
     "date2": "Fecha_Entrega"
 })
-```
 
-# Invocación: El primer argumento es el caso, el segundo desempaqueta el dict
 db.TimePlus("lead_time", **config_logistica)
+```
 
 🔗 Módulo de Unión de Datos (Merge & MergePlus)
 Este módulo permite consolidar múltiples archivos o fuentes de datos en un único DataFrame maestro, ya sea de forma incremental o masiva.
