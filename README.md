@@ -55,13 +55,13 @@ db.ExtractInfo("email", patron=r"[\w\.-]+@[\w\.-]+\.\w+")
 
 # 7. CÁLCULOS (CalculadoraPlus)
 # Vamos a inventar una columna de 'Puntos' basada en el ID
-metrica = {
+
+db.Calculadora({
     "op": "+",           # Sumamos
     "res": "ID_Mas_Diez", # Nueva columna
     "col1": "ID_Cliente",
     "col2": "ID_Cliente"  # Tu código actual requiere que sea otra columna
-}
-db.Calculadora(metrica)
+})
 
 # 5. Exportación final
 db.Export("dataset_limpio.csv")
@@ -126,16 +126,13 @@ Ejemplo de uso:
 # Ejemplo: Generando Precio Final con Descuento
 # Requerimiento: sub_total y monto_descuento
 
-config_ventas = {
+db.CalculadoraPlus({
     "tipo": "precio_final"   # tipo de operacion
     "col1": "Sub_Total",     # Monto base
     "col2": "Monto_Dcto",    # Valor a restar
     "res": "Precio_Neto"     # Columna nueva
-}
+})
 ```
-
-# Invocación del preset 'precio_final'
-db.CalculadoraPlus("precio_final", **config_ventas)
 
 ⏱️ Time & TimePlus: Inteligencia Temporal
 Módulo especializado en la extracción y análisis de series de tiempo.
@@ -160,11 +157,11 @@ Ejemplo para TimePlus:
 # Ejemplo: Calculando el Lead Time (Tiempo de entrega)
 # Basado en el submenú de base.py (opción 2)
 
-config_logistica = {
+db.TimePlus({
     "tipo": "lead_time"
     "date1": "Fecha_Pedido",
     "date2": "Fecha_Entrega"
-}
+})
 ```
 
 # Invocación: El primer argumento es el caso, el segundo desempaqueta el dict
@@ -191,8 +188,8 @@ lista_B = DataToolBox("ventas_febrero.csv")
 
 # Une las ventas de febrero debajo de las de enero
 lista_A.Merge(lista_B, lado="v")
-2. MergePlus (Unión Masiva Automática)
-Es la herramienta de "paracaídas" para procesar múltiples archivos a la vez. Incluye filtros de seguridad y gestión de errores (archivos corruptos o inexistentes).
+
+NOTA: tanto lista_A como Lista_B deben de ser un objeto
 ```
 
 2. MergePlus (Unión Masiva Automática)
