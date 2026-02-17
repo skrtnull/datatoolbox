@@ -310,8 +310,8 @@ Python 3.x
 
 # 🚧 Roadmap (Próximas Mejoras)
 
-[ ] Implementación de logs automáticos de errores en archivos externos.
-[ ] Optimización del motor de duplicados para manejo selectivo de registros.
-[ ] Soporte para archivos Excel (.xlsx) con múltiples pestañas.
+- Implementación de logs automáticos de errores en archivos externos.
+- Optimización del motor de duplicados para manejo selectivo de registros.
+- Soporte para archivos Excel (.xlsx) con múltiples pestañas.
 
 Desarrollado por [Jonaiker Millan/SkrtNull] - Data Engineer en formación
