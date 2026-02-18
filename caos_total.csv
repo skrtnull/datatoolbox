@@ -1,0 +1,1001 @@
+id,nombre_cliente,email,producto,precio,cantidad,fecha_compra
+NULL,Elena123!!,---,Laptop Pro,BBDD_ERR, ,2026-15-99
+  ,Pedro123!!,---,Laptop Pro,0.00$, ,MAÑANA
+TXN-1366,Maria,juan74@gmail.com,Headset Gamer,426.35,3,2026-01-12 00:00:00
+  ,Marta123!!,12345,Monitor 4K,N/A,N/A,MAÑANA
+TXN-1477,Juan,luis81@gmail.com,Monitor 4K,68.05,4,2026-01-03 00:00:00
+TXN-1213,Luis,elena35@gmail.com,Teclado Mecánico,694.28,1,2026-01-08 00:00:00
+TXN-1416,Carlos,marta43@gmail.com,Laptop Pro,995.33,4,2026-01-21 00:00:00
+TXN-1464,Maria,marta43@gmail.com,Headset Gamer,448.23,2,2026-01-27 00:00:00
+  ,Luis123!!,12345,Monitor 4K,GRATIS,N/A,00/00/0000
+  ,Elena123!!,12345,Laptop Pro,N/A,None,2026-15-99
+TXN-1383,Ana,juan73@gmail.com,Mouse Wireless,453.98,4,2026-01-07 00:00:00
+ERR-#53,Luis123!!,usuario@sinpunto,Headset Gamer,"999,99€",-1,2026-15-99
+TXN-1182,Marta,maria72@gmail.com,Teclado Mecánico,848.23,4,2026-01-10 00:00:00
+ERR-#26,Elena123!!,---,Headset Gamer,"999,99€",-1,Ayer
+ERR-#96,Maria123!!,error_mail,Monitor 4K,GRATIS, ,MAÑANA
+ERR-#61,Luis123!!,error_mail,Cable HDMI,GRATIS,999999,MAÑANA
+!!!,Juan123!!,---,Monitor 4K,GRATIS,-1,MAÑANA
+NULL,Elena123!!,12345,Laptop Pro,BBDD_ERR, ,ERROR
+  ,Juan123!!,---,Mouse Wireless,"999,99€",N/A,00/00/0000
+NULL,Luis123!!,NaN,Monitor 4K,BBDD_ERR,999999,ERROR
+NULL,Marta123!!,NaN,Mouse Wireless,BBDD_ERR,None,Ayer
+  ,Juan123!!,NaN,Headset Gamer,BBDD_ERR,-1,00/00/0000
+TXN-1090,Ana,marta98@gmail.com,Cable HDMI,507.17,1,2026-01-29 00:00:00
+ERR-#15,Luis123!!,error_mail,Monitor 4K,0.00$,999999,ERROR
+TXN-1154,Pedro,marta75@gmail.com,Mouse Wireless,589.31,1,2026-01-07 00:00:00
+!!!,Pedro123!!,---,Cable HDMI,GRATIS,999999,00/00/0000
+  ,Maria123!!,error_mail,Cable HDMI,BBDD_ERR,-1,MAÑANA
+TXN-1137,Marta,pedro19@gmail.com,Laptop Pro,558.27,4,2026-01-24 00:00:00
+NULL,Marta123!!,usuario@sinpunto,Monitor 4K,GRATIS,999999,2026-15-99
+!!!,Elena123!!,usuario@sinpunto,Teclado Mecánico,GRATIS, ,ERROR
+ERR-#96,Luis123!!,error_mail,Cable HDMI,GRATIS, ,ERROR
+TXN-1023,Pedro,marta76@gmail.com,Mouse Wireless,821.21,3,2026-01-17 00:00:00
+  ,Marta123!!,NaN,Cable HDMI,"999,99€",N/A,MAÑANA
+TXN-1056,Ana,pedro12@gmail.com,Headset Gamer,202.26,2,2026-01-31 00:00:00
+TXN-1050,Carlos,maria77@gmail.com,Cable HDMI,140.1,2,2026-01-08 00:00:00
+ERR-#85,Pedro123!!,error_mail,Laptop Pro,"999,99€",-1,Ayer
+!!!,Juan123!!,---,Teclado Mecánico,N/A,None,Ayer
+TXN-1448,Juan,juan36@gmail.com,Headset Gamer,255.76,5,2026-01-03 00:00:00
+TXN-1170,Juan,maria68@gmail.com,Mouse Wireless,571.74,4,2026-01-06 00:00:00
+  ,Carlos123!!,12345,Laptop Pro,GRATIS,999999,MAÑANA
+TXN-1112,Carlos,pedro75@gmail.com,Monitor 4K,712.77,2,2026-01-26 00:00:00
+ERR-#17,Marta123!!,12345,Laptop Pro,N/A,-1,MAÑANA
+TXN-1217,Marta,elena26@gmail.com,Headset Gamer,538.88,2,2026-01-06 00:00:00
+TXN-1433,Ana,elena43@gmail.com,Mouse Wireless,111.16,1,2026-01-21 00:00:00
+  ,Juan123!!,NaN,Monitor 4K,0.00$,999999,ERROR
+TXN-1106,Marta,carlos88@gmail.com,Mouse Wireless,427.0,4,2026-01-17 00:00:00
+ERR-#55,Juan123!!,error_mail,Cable HDMI,"999,99€", ,ERROR
+TXN-1486,Juan,pedro18@gmail.com,Mouse Wireless,132.89,4,2026-01-16 00:00:00
+TXN-1197,Marta,carlos56@gmail.com,Headset Gamer,788.5,4,2026-01-29 00:00:00
+TXN-1339,Pedro,pedro63@gmail.com,Headset Gamer,179.6,1,2026-01-05 00:00:00
+!!!,Pedro123!!,error_mail,Laptop Pro,GRATIS,-1,MAÑANA
+TXN-1291,Elena,ana72@gmail.com,Headset Gamer,906.34,5,2026-01-27 00:00:00
+ERR-#92,Carlos123!!,12345,Teclado Mecánico,N/A,N/A,2026-15-99
+TXN-1119,Luis,elena27@gmail.com,Mouse Wireless,795.93,3,2026-01-08 00:00:00
+!!!,Pedro123!!,12345,Cable HDMI,GRATIS,None,Ayer
+  ,Carlos123!!,usuario@sinpunto,Teclado Mecánico,BBDD_ERR,None,MAÑANA
+  ,Pedro123!!,---,Mouse Wireless,N/A,999999,MAÑANA
+TXN-1492,Ana,carlos99@gmail.com,Laptop Pro,916.58,1,2026-01-25 00:00:00
+NULL,Pedro123!!,12345,Teclado Mecánico,BBDD_ERR,-1,MAÑANA
+NULL,Marta123!!,---,Laptop Pro,GRATIS,None,2026-15-99
+TXN-1020,Carlos,maria52@gmail.com,Monitor 4K,420.05,5,2026-01-20 00:00:00
+TXN-1488,Maria,juan48@gmail.com,Cable HDMI,588.99,1,2026-01-28 00:00:00
+!!!,Maria123!!,usuario@sinpunto,Monitor 4K,"999,99€",999999,MAÑANA
+TXN-1311,Carlos,luis58@gmail.com,Monitor 4K,786.65,3,2026-01-18 00:00:00
+!!!,Maria123!!,error_mail,Teclado Mecánico,BBDD_ERR, ,ERROR
+TXN-1482,Maria,luis70@gmail.com,Monitor 4K,461.41,3,2026-01-10 00:00:00
+TXN-1224,Pedro,marta73@gmail.com,Laptop Pro,372.24,5,2026-01-10 00:00:00
+  ,Maria123!!,error_mail,Mouse Wireless,GRATIS, ,2026-15-99
+TXN-1382,Maria,marta98@gmail.com,Teclado Mecánico,319.34,3,2026-01-11 00:00:00
+!!!,Ana123!!,usuario@sinpunto,Teclado Mecánico,N/A,N/A,Ayer
+NULL,Juan123!!,12345,Laptop Pro,BBDD_ERR,999999,2026-15-99
+!!!,Ana123!!,usuario@sinpunto,Headset Gamer,"999,99€", ,00/00/0000
+TXN-1130,Ana,elena90@gmail.com,Mouse Wireless,726.88,2,2026-01-07 00:00:00
+TXN-1037,Carlos,marta73@gmail.com,Laptop Pro,598.23,2,2026-01-31 00:00:00
+,,,,,,
+TXN-1396,Pedro,marta64@gmail.com,Teclado Mecánico,248.88,5,2026-01-19 00:00:00
+TXN-1086,Luis,marta95@gmail.com,Laptop Pro,471.06,1,2026-01-13 00:00:00
+NULL,Pedro123!!,12345,Teclado Mecánico,GRATIS, ,MAÑANA
+NULL,Juan123!!,error_mail,Monitor 4K,"999,99€",999999,MAÑANA
+TXN-1231,Juan,carlos92@gmail.com,Headset Gamer,445.61,2,2026-01-07 00:00:00
+TXN-1321,Luis,juan17@gmail.com,Cable HDMI,442.72,2,2026-01-17 00:00:00
+!!!,Marta123!!,12345,Monitor 4K,N/A,999999,2026-15-99
+TXN-1361,Luis,pedro73@gmail.com,Monitor 4K,60.76,5,2026-01-15 00:00:00
+  ,Carlos123!!,12345,Mouse Wireless,GRATIS,-1,00/00/0000
+NULL,Maria123!!,NaN,Cable HDMI,"999,99€",999999,MAÑANA
+TXN-1203,Carlos,juan95@gmail.com,Cable HDMI,219.2,1,2026-01-26 00:00:00
+TXN-1168,Juan,marta46@gmail.com,Teclado Mecánico,89.77,4,2026-01-24 00:00:00
+TXN-1062,Ana,maria38@gmail.com,Laptop Pro,368.39,2,2026-01-04 00:00:00
+NULL,Juan123!!,usuario@sinpunto,Mouse Wireless,N/A,N/A,Ayer
+  ,Juan123!!,usuario@sinpunto,Mouse Wireless,N/A, ,2026-15-99
+TXN-1480,Maria,juan85@gmail.com,Teclado Mecánico,553.75,2,2026-01-22 00:00:00
+  ,Marta123!!,usuario@sinpunto,Monitor 4K,BBDD_ERR, ,ERROR
+TXN-1269,Elena,luis77@gmail.com,Cable HDMI,332.52,3,2026-01-22 00:00:00
+TXN-1429,Marta,ana57@gmail.com,Teclado Mecánico,91.25,4,2026-01-31 00:00:00
+TXN-1135,Luis,pedro70@gmail.com,Headset Gamer,293.73,3,2026-01-17 00:00:00
+ERR-#71,Carlos123!!,usuario@sinpunto,Teclado Mecánico,BBDD_ERR, ,00/00/0000
+ERR-#67,Luis123!!,usuario@sinpunto,Monitor 4K,0.00$, ,Ayer
+TXN-1047,Luis,marta62@gmail.com,Mouse Wireless,701.74,1,2026-01-04 00:00:00
+TXN-1325,Juan,ana68@gmail.com,Teclado Mecánico,900.24,5,2026-01-25 00:00:00
+  ,Carlos123!!,12345,Mouse Wireless,BBDD_ERR,N/A,MAÑANA
+TXN-1136,Ana,carlos76@gmail.com,Teclado Mecánico,215.86,4,2026-01-05 00:00:00
+NULL,Carlos123!!,12345,Teclado Mecánico,N/A, ,Ayer
+TXN-1412,Ana,marta43@gmail.com,Teclado Mecánico,772.87,3,2026-01-29 00:00:00
+TXN-1402,Luis,pedro29@gmail.com,Teclado Mecánico,988.82,2,2026-01-20 00:00:00
+ERR-#41,Maria123!!,usuario@sinpunto,Laptop Pro,N/A,-1,MAÑANA
+TXN-1129,Carlos,ana50@gmail.com,Teclado Mecánico,168.97,3,2026-01-21 00:00:00
+TXN-1200,Juan,luis90@gmail.com,Cable HDMI,669.36,3,2026-01-21 00:00:00
+ERR-#71,Juan123!!,NaN,Mouse Wireless,N/A,N/A,ERROR
+!!!,Elena123!!,NaN,Cable HDMI,"999,99€",999999,ERROR
+NULL,Luis123!!,usuario@sinpunto,Laptop Pro,N/A,N/A,MAÑANA
+,,,,,,
+ERR-#96,Ana123!!,error_mail,Laptop Pro,N/A,-1,Ayer
+  ,Luis123!!,error_mail,Mouse Wireless,BBDD_ERR,999999,ERROR
+!!!,Maria123!!,---,Mouse Wireless,BBDD_ERR,-1,Ayer
+TXN-1163,Juan,ana20@gmail.com,Mouse Wireless,319.49,3,2026-01-05 00:00:00
+NULL,Juan123!!,12345,Laptop Pro,N/A,999999,ERROR
+TXN-1320,Carlos,marta86@gmail.com,Monitor 4K,816.59,5,2026-01-02 00:00:00
+TXN-1284,Carlos,luis30@gmail.com,Teclado Mecánico,707.27,5,2026-01-01 00:00:00
+TXN-1003,Ana,elena95@gmail.com,Headset Gamer,480.4,2,2026-01-26 00:00:00
+NULL,Carlos123!!,12345,Cable HDMI,N/A, ,Ayer
+NULL,Luis123!!,error_mail,Mouse Wireless,"999,99€",999999,ERROR
+!!!,Maria123!!,---,Teclado Mecánico,N/A,999999,00/00/0000
+TXN-1121,Pedro,maria37@gmail.com,Mouse Wireless,906.08,3,2026-01-12 00:00:00
+  ,Marta123!!,usuario@sinpunto,Laptop Pro,"999,99€",999999,00/00/0000
+  ,Ana123!!,---,Headset Gamer,"999,99€",N/A,Ayer
+NULL,Luis123!!,error_mail,Mouse Wireless,"999,99€",-1,MAÑANA
+TXN-1177,Pedro,juan70@gmail.com,Monitor 4K,353.12,2,2026-01-21 00:00:00
+TXN-1043,Marta,elena35@gmail.com,Mouse Wireless,775.18,1,2026-01-13 00:00:00
+NULL,Ana123!!,usuario@sinpunto,Monitor 4K,0.00$,None,ERROR
+TXN-1417,Pedro,carlos95@gmail.com,Teclado Mecánico,309.59,4,2026-01-30 00:00:00
+ERR-#92,Ana123!!,error_mail,Monitor 4K,0.00$,999999,00/00/0000
+ERR-#55,Luis123!!,NaN,Headset Gamer,BBDD_ERR, ,MAÑANA
+TXN-1445,Luis,juan40@gmail.com,Mouse Wireless,945.26,4,2026-01-28 00:00:00
+TXN-1018,Carlos,maria78@gmail.com,Headset Gamer,531.8,1,2026-01-02 00:00:00
+TXN-1246,Carlos,marta43@gmail.com,Teclado Mecánico,812.93,4,2026-01-11 00:00:00
+!!!,Luis123!!,12345,Monitor 4K,GRATIS, ,ERROR
+TXN-1465,Luis,pedro17@gmail.com,Mouse Wireless,361.37,3,2026-01-27 00:00:00
+,,,,,,
+TXN-1466,Luis,luis41@gmail.com,Teclado Mecánico,179.59,5,2026-01-15 00:00:00
+TXN-1281,Carlos,carlos84@gmail.com,Cable HDMI,276.14,5,2026-01-02 00:00:00
+!!!,Luis123!!,usuario@sinpunto,Mouse Wireless,GRATIS,-1,ERROR
+TXN-1204,Pedro,ana80@gmail.com,Laptop Pro,411.79,1,2026-01-15 00:00:00
+TXN-1218,Ana,ana24@gmail.com,Mouse Wireless,638.81,2,2026-01-24 00:00:00
+TXN-1083,Carlos,marta88@gmail.com,Mouse Wireless,63.18,5,2026-01-12 00:00:00
+ERR-#18,Elena123!!,---,Laptop Pro,N/A,N/A,ERROR
+TXN-1340,Marta,pedro15@gmail.com,Monitor 4K,599.69,4,2026-01-12 00:00:00
+NULL,Luis123!!,usuario@sinpunto,Teclado Mecánico,0.00$, ,Ayer
+NULL,Marta123!!,error_mail,Cable HDMI,BBDD_ERR,999999,MAÑANA
+TXN-1315,Marta,carlos32@gmail.com,Teclado Mecánico,453.36,4,2026-01-28 00:00:00
+TXN-1109,Ana,elena59@gmail.com,Headset Gamer,760.27,3,2026-01-28 00:00:00
+TXN-1327,Maria,pedro75@gmail.com,Monitor 4K,746.08,2,2026-01-14 00:00:00
+ERR-#89,Maria123!!,error_mail,Headset Gamer,GRATIS,N/A,MAÑANA
+TXN-1437,Luis,elena57@gmail.com,Cable HDMI,81.57,5,2026-01-03 00:00:00
+TXN-1305,Carlos,marta74@gmail.com,Cable HDMI,637.26,3,2026-01-16 00:00:00
+ERR-#64,Carlos123!!,usuario@sinpunto,Cable HDMI,BBDD_ERR, ,2026-15-99
+TXN-1118,Marta,carlos53@gmail.com,Cable HDMI,56.27,3,2026-01-03 00:00:00
+TXN-1338,Marta,pedro73@gmail.com,Teclado Mecánico,672.21,2,2026-01-06 00:00:00
+NULL,Pedro123!!,NaN,Teclado Mecánico,"999,99€",None,2026-15-99
+TXN-1255,Juan,maria11@gmail.com,Teclado Mecánico,72.2,3,2026-01-18 00:00:00
+TXN-1312,Carlos,juan34@gmail.com,Headset Gamer,734.64,2,2026-01-06 00:00:00
+TXN-1075,Maria,carlos62@gmail.com,Monitor 4K,880.59,5,2026-01-10 00:00:00
+TXN-1298,Juan,luis62@gmail.com,Headset Gamer,935.96,1,2026-01-04 00:00:00
+ERR-#12,Elena123!!,12345,Laptop Pro,BBDD_ERR, ,Ayer
+TXN-1259,Elena,pedro20@gmail.com,Headset Gamer,526.39,4,2026-01-22 00:00:00
+NULL,Carlos123!!,---,Monitor 4K,0.00$,None,ERROR
+!!!,Luis123!!,12345,Cable HDMI,"999,99€",N/A,2026-15-99
+NULL,Pedro123!!,usuario@sinpunto,Cable HDMI,BBDD_ERR, ,ERROR
+  ,Juan123!!,NaN,Monitor 4K,GRATIS,None,MAÑANA
+  ,Ana123!!,NaN,Headset Gamer,BBDD_ERR,None,Ayer
+ERR-#29,Elena123!!,NaN,Laptop Pro,0.00$, ,ERROR
+TXN-1178,Elena,maria91@gmail.com,Cable HDMI,472.36,5,2026-01-10 00:00:00
+TXN-1247,Juan,carlos39@gmail.com,Monitor 4K,275.28,2,2026-01-18 00:00:00
+TXN-1275,Carlos,elena57@gmail.com,Cable HDMI,470.66,2,2026-01-19 00:00:00
+TXN-1273,Ana,maria79@gmail.com,Monitor 4K,266.73,3,2026-01-31 00:00:00
+NULL,Maria123!!,usuario@sinpunto,Headset Gamer,GRATIS,None,Ayer
+TXN-1358,Maria,carlos86@gmail.com,Headset Gamer,971.63,1,2026-01-29 00:00:00
+TXN-1031,Marta,marta62@gmail.com,Teclado Mecánico,500.3,3,2026-01-17 00:00:00
+!!!,Juan123!!,usuario@sinpunto,Teclado Mecánico,GRATIS,N/A,ERROR
+TXN-1473,Maria,carlos55@gmail.com,Headset Gamer,709.09,1,2026-01-13 00:00:00
+!!!,Carlos123!!,usuario@sinpunto,Mouse Wireless,0.00$,N/A,2026-15-99
+TXN-1441,Marta,luis95@gmail.com,Teclado Mecánico,732.84,3,2026-01-11 00:00:00
+TXN-1092,Pedro,elena53@gmail.com,Mouse Wireless,80.68,4,2026-01-22 00:00:00
+ERR-#7,Elena123!!,NaN,Cable HDMI,GRATIS, ,Ayer
+  ,Pedro123!!,usuario@sinpunto,Teclado Mecánico,BBDD_ERR,-1,MAÑANA
+NULL,Luis123!!,error_mail,Headset Gamer,N/A, ,ERROR
+TXN-1145,Carlos,carlos95@gmail.com,Laptop Pro,755.99,5,2026-01-29 00:00:00
+!!!,Juan123!!,usuario@sinpunto,Monitor 4K,GRATIS, ,00/00/0000
+ERR-#37,Luis123!!,---,Laptop Pro,N/A,N/A,MAÑANA
+ERR-#80,Carlos123!!,error_mail,Laptop Pro,GRATIS,None,00/00/0000
+NULL,Ana123!!,usuario@sinpunto,Cable HDMI,GRATIS,N/A,ERROR
+TXN-1223,Marta,juan57@gmail.com,Headset Gamer,632.55,2,2026-01-27 00:00:00
+  ,Maria123!!,usuario@sinpunto,Cable HDMI,GRATIS, ,ERROR
+  ,Pedro123!!,NaN,Mouse Wireless,N/A,None,2026-15-99
+  ,Elena123!!,usuario@sinpunto,Teclado Mecánico,BBDD_ERR, ,MAÑANA
+  ,Elena123!!,usuario@sinpunto,Monitor 4K,N/A, ,ERROR
+!!!,Maria123!!,usuario@sinpunto,Cable HDMI,"999,99€",N/A,00/00/0000
+TXN-1376,Ana,marta45@gmail.com,Laptop Pro,161.11,4,2026-01-25 00:00:00
+TXN-1423,Luis,elena71@gmail.com,Headset Gamer,363.81,5,2026-01-29 00:00:00
+TXN-1076,Maria,pedro49@gmail.com,Cable HDMI,463.33,3,2026-01-13 00:00:00
+TXN-1300,Elena,elena97@gmail.com,Teclado Mecánico,276.48,4,2026-01-19 00:00:00
+TXN-1011,Juan,marta14@gmail.com,Laptop Pro,367.08,3,2026-01-31 00:00:00
+TXN-1045,Maria,juan87@gmail.com,Headset Gamer,189.59,4,2026-01-01 00:00:00
+TXN-1304,Juan,maria55@gmail.com,Cable HDMI,313.05,3,2026-01-20 00:00:00
+!!!,Ana123!!,usuario@sinpunto,Laptop Pro,"999,99€",999999,Ayer
+  ,Elena123!!,NaN,Laptop Pro,0.00$,-1,2026-15-99
+TXN-1454,Carlos,carlos80@gmail.com,Laptop Pro,746.67,1,2026-01-26 00:00:00
+  ,Maria123!!,12345,Mouse Wireless,"999,99€",999999,2026-15-99
+TXN-1377,Carlos,juan98@gmail.com,Monitor 4K,157.98,5,2026-01-01 00:00:00
+ERR-#32,Luis123!!,---,Teclado Mecánico,BBDD_ERR,999999,2026-15-99
+TXN-1024,Juan,pedro54@gmail.com,Teclado Mecánico,750.71,4,2026-01-20 00:00:00
+!!!,Carlos123!!,usuario@sinpunto,Mouse Wireless,"999,99€",None,Ayer
+!!!,Juan123!!,error_mail,Mouse Wireless,0.00$,N/A,MAÑANA
+  ,Carlos123!!,12345,Teclado Mecánico,0.00$,999999,ERROR
+ERR-#30,Luis123!!,error_mail,Mouse Wireless,"999,99€",999999,2026-15-99
+TXN-1357,Juan,pedro80@gmail.com,Cable HDMI,226.84,1,2026-01-17 00:00:00
+TXN-1046,Luis,ana38@gmail.com,Monitor 4K,803.2,4,2026-01-24 00:00:00
+TXN-1159,Carlos,elena94@gmail.com,Mouse Wireless,395.85,5,2026-01-15 00:00:00
+ERR-#49,Carlos123!!,---,Monitor 4K,0.00$,N/A,MAÑANA
+TXN-1167,Ana,elena76@gmail.com,Mouse Wireless,999.22,2,2026-01-14 00:00:00
+ERR-#10,Ana123!!,---,Mouse Wireless,N/A,999999,00/00/0000
+TXN-1326,Maria,juan92@gmail.com,Laptop Pro,769.06,2,2026-01-06 00:00:00
+  ,Carlos123!!,usuario@sinpunto,Mouse Wireless,"999,99€", ,ERROR
+TXN-1001,Juan,luis41@gmail.com,Headset Gamer,220.15,4,2026-01-24 00:00:00
+TXN-1032,Ana,marta21@gmail.com,Mouse Wireless,367.1,4,2026-01-09 00:00:00
+TXN-1235,Maria,maria72@gmail.com,Cable HDMI,689.21,4,2026-01-26 00:00:00
+TXN-1234,Marta,luis23@gmail.com,Monitor 4K,641.55,5,2026-01-20 00:00:00
+!!!,Ana123!!,12345,Monitor 4K,0.00$,999999,00/00/0000
+TXN-1071,Marta,pedro29@gmail.com,Cable HDMI,81.36,3,2026-01-15 00:00:00
+,,,,,,
+NULL,Ana123!!,12345,Headset Gamer,GRATIS,None,MAÑANA
+TXN-1380,Maria,maria53@gmail.com,Cable HDMI,716.46,5,2026-01-20 00:00:00
+TXN-1036,Maria,elena87@gmail.com,Mouse Wireless,317.22,4,2026-01-13 00:00:00
+TXN-1061,Maria,juan16@gmail.com,Mouse Wireless,427.72,4,2026-01-14 00:00:00
+TXN-1399,Ana,maria38@gmail.com,Mouse Wireless,217.76,4,2026-01-12 00:00:00
+NULL,Elena123!!,usuario@sinpunto,Cable HDMI,N/A, ,MAÑANA
+TXN-1329,Ana,juan66@gmail.com,Laptop Pro,575.04,1,2026-01-31 00:00:00
+!!!,Ana123!!,---,Teclado Mecánico,0.00$,N/A,MAÑANA
+TXN-1387,Maria,marta49@gmail.com,Teclado Mecánico,257.36,1,2026-01-09 00:00:00
+  ,Carlos123!!,usuario@sinpunto,Laptop Pro,0.00$, ,MAÑANA
+ERR-#96,Ana123!!,---,Cable HDMI,"999,99€",None,MAÑANA
+NULL,Luis123!!,error_mail,Teclado Mecánico,BBDD_ERR,999999,ERROR
+TXN-1457,Carlos,carlos11@gmail.com,Laptop Pro,931.41,1,2026-01-12 00:00:00
+!!!,Juan123!!,12345,Teclado Mecánico,BBDD_ERR,999999,2026-15-99
+TXN-1436,Ana,luis45@gmail.com,Monitor 4K,357.61,2,2026-01-03 00:00:00
+TXN-1251,Juan,maria72@gmail.com,Monitor 4K,471.12,4,2026-01-05 00:00:00
+TXN-1060,Marta,juan78@gmail.com,Laptop Pro,209.33,2,2026-01-08 00:00:00
+TXN-1149,Pedro,maria36@gmail.com,Laptop Pro,488.3,1,2026-01-18 00:00:00
+TXN-1201,Carlos,pedro88@gmail.com,Teclado Mecánico,85.29,5,2026-01-12 00:00:00
+TXN-1395,Juan,marta94@gmail.com,Mouse Wireless,538.14,1,2026-01-03 00:00:00
+,,,,,,
+  ,Marta123!!,NaN,Teclado Mecánico,0.00$,-1,MAÑANA
+TXN-1282,Elena,marta38@gmail.com,Headset Gamer,548.02,1,2026-01-29 00:00:00
+TXN-1222,Ana,luis84@gmail.com,Mouse Wireless,68.87,4,2026-01-22 00:00:00
+,,,,,,
+,,,,,,
+TXN-1468,Marta,maria95@gmail.com,Laptop Pro,515.43,1,2026-01-31 00:00:00
+  ,Pedro123!!,usuario@sinpunto,Headset Gamer,"999,99€", ,MAÑANA
+TXN-1392,Maria,luis75@gmail.com,Teclado Mecánico,989.08,5,2026-01-10 00:00:00
+NULL,Elena123!!,usuario@sinpunto,Monitor 4K,BBDD_ERR,N/A,Ayer
+  ,Pedro123!!,NaN,Cable HDMI,"999,99€", ,00/00/0000
+NULL,Carlos123!!,12345,Teclado Mecánico,GRATIS,N/A,2026-15-99
+NULL,Ana123!!,NaN,Mouse Wireless,BBDD_ERR,N/A,MAÑANA
+,,,,,,
+TXN-1028,Elena,maria71@gmail.com,Mouse Wireless,932.79,4,2026-01-04 00:00:00
+TXN-1394,Juan,ana96@gmail.com,Mouse Wireless,605.86,2,2026-01-01 00:00:00
+TXN-1174,Carlos,pedro21@gmail.com,Headset Gamer,551.52,1,2026-01-31 00:00:00
+TXN-1144,Pedro,ana53@gmail.com,Cable HDMI,889.9,4,2026-01-23 00:00:00
+ERR-#70,Marta123!!,12345,Monitor 4K,0.00$,N/A,MAÑANA
+TXN-1205,Luis,elena40@gmail.com,Teclado Mecánico,753.45,5,2026-01-17 00:00:00
+TXN-1094,Elena,marta68@gmail.com,Laptop Pro,722.8,2,2026-01-11 00:00:00
+  ,Juan123!!,---,Cable HDMI,"999,99€",-1,00/00/0000
+TXN-1435,Marta,pedro66@gmail.com,Laptop Pro,58.39,2,2026-01-08 00:00:00
+,,,,,,
+TXN-1292,Ana,ana89@gmail.com,Teclado Mecánico,389.47,4,2026-01-13 00:00:00
+,,,,,,
+NULL,Marta123!!,---,Monitor 4K,N/A,N/A,Ayer
+!!!,Marta123!!,NaN,Laptop Pro,BBDD_ERR, ,Ayer
+TXN-1186,Maria,juan97@gmail.com,Laptop Pro,55.83,3,2026-01-18 00:00:00
+TXN-1400,Elena,pedro43@gmail.com,Teclado Mecánico,203.42,2,2026-01-17 00:00:00
+TXN-1202,Marta,elena93@gmail.com,Laptop Pro,133.07,1,2026-01-20 00:00:00
+ERR-#22,Elena123!!,error_mail,Mouse Wireless,GRATIS,-1,2026-15-99
+ERR-#29,Juan123!!,usuario@sinpunto,Laptop Pro,BBDD_ERR,N/A,MAÑANA
+  ,Juan123!!,usuario@sinpunto,Teclado Mecánico,GRATIS,N/A,00/00/0000
+TXN-1025,Ana,maria46@gmail.com,Cable HDMI,935.54,3,2026-01-06 00:00:00
+TXN-1388,Luis,marta87@gmail.com,Laptop Pro,319.66,1,2026-01-05 00:00:00
+  ,Maria123!!,NaN,Cable HDMI,GRATIS,None,ERROR
+TXN-1410,Luis,pedro98@gmail.com,Laptop Pro,338.03,5,2026-01-19 00:00:00
+TXN-1084,Juan,luis14@gmail.com,Mouse Wireless,389.42,2,2026-01-21 00:00:00
+  ,Ana123!!,usuario@sinpunto,Laptop Pro,GRATIS, ,ERROR
+TXN-1176,Elena,pedro52@gmail.com,Teclado Mecánico,617.99,2,2026-01-06 00:00:00
+TXN-1097,Luis,marta10@gmail.com,Monitor 4K,756.91,5,2026-01-01 00:00:00
+!!!,Luis123!!,NaN,Mouse Wireless,"999,99€",999999,Ayer
+TXN-1467,Pedro,maria22@gmail.com,Cable HDMI,818.28,2,2026-01-26 00:00:00
+TXN-1322,Juan,ana49@gmail.com,Cable HDMI,720.71,2,2026-01-12 00:00:00
+ERR-#70,Juan123!!,error_mail,Mouse Wireless,GRATIS,None,Ayer
+TXN-1133,Marta,elena37@gmail.com,Headset Gamer,510.64,1,2026-01-24 00:00:00
+TXN-1260,Pedro,ana45@gmail.com,Laptop Pro,102.08,3,2026-01-16 00:00:00
+  ,Carlos123!!,usuario@sinpunto,Cable HDMI,BBDD_ERR,-1,2026-15-99
+  ,Ana123!!,error_mail,Teclado Mecánico,GRATIS,None,MAÑANA
+TXN-1113,Marta,carlos67@gmail.com,Mouse Wireless,942.1,5,2026-01-11 00:00:00
+TXN-1453,Juan,ana81@gmail.com,Laptop Pro,698.86,3,2026-01-28 00:00:00
+ERR-#15,Luis123!!,error_mail,Teclado Mecánico,BBDD_ERR, ,MAÑANA
+TXN-1108,Ana,elena10@gmail.com,Teclado Mecánico,611.32,5,2026-01-20 00:00:00
+NULL,Juan123!!,---,Cable HDMI,"999,99€", ,ERROR
+TXN-1195,Luis,luis59@gmail.com,Monitor 4K,745.16,3,2026-01-09 00:00:00
+TXN-1257,Ana,luis36@gmail.com,Teclado Mecánico,713.84,4,2026-01-15 00:00:00
+  ,Ana123!!,usuario@sinpunto,Laptop Pro,"999,99€",-1,Ayer
+TXN-1082,Luis,elena41@gmail.com,Laptop Pro,803.7,2,2026-01-17 00:00:00
+TXN-1165,Carlos,pedro95@gmail.com,Teclado Mecánico,785.72,1,2026-01-26 00:00:00
+TXN-1107,Pedro,carlos80@gmail.com,Mouse Wireless,135.9,5,2026-01-14 00:00:00
+NULL,Marta123!!,NaN,Laptop Pro,0.00$,-1,Ayer
+  ,Juan123!!,NaN,Headset Gamer,BBDD_ERR, ,2026-15-99
+!!!,Pedro123!!,12345,Laptop Pro,0.00$,N/A,MAÑANA
+!!!,Juan123!!,usuario@sinpunto,Cable HDMI,0.00$,N/A,00/00/0000
+TXN-1475,Maria,maria43@gmail.com,Mouse Wireless,541.72,1,2026-01-24 00:00:00
+TXN-1365,Maria,luis98@gmail.com,Cable HDMI,595.03,2,2026-01-06 00:00:00
+TXN-1042,Marta,pedro45@gmail.com,Cable HDMI,460.16,1,2026-01-29 00:00:00
+TXN-1198,Elena,elena94@gmail.com,Headset Gamer,496.96,2,2026-01-10 00:00:00
+!!!,Marta123!!,12345,Mouse Wireless,BBDD_ERR,999999,ERROR
+,,,,,,
+ERR-#9,Pedro123!!,---,Teclado Mecánico,N/A,N/A,ERROR
+!!!,Carlos123!!,NaN,Mouse Wireless,N/A, ,00/00/0000
+TXN-1238,Juan,juan85@gmail.com,Mouse Wireless,666.01,1,2026-01-22 00:00:00
+TXN-1162,Juan,ana13@gmail.com,Laptop Pro,971.1,3,2026-01-24 00:00:00
+TXN-1258,Elena,ana65@gmail.com,Monitor 4K,371.19,5,2026-01-26 00:00:00
+NULL,Ana123!!,---,Teclado Mecánico,"999,99€",N/A,Ayer
+!!!,Marta123!!,---,Monitor 4K,N/A,None,ERROR
+!!!,Carlos123!!,12345,Mouse Wireless,N/A, ,ERROR
+TXN-1481,Luis,ana48@gmail.com,Cable HDMI,355.59,3,2026-01-22 00:00:00
+TXN-1278,Carlos,pedro89@gmail.com,Monitor 4K,339.43,5,2026-01-19 00:00:00
+TXN-1262,Maria,marta85@gmail.com,Laptop Pro,426.59,1,2026-01-11 00:00:00
+  ,Pedro123!!,---,Monitor 4K,"999,99€", ,ERROR
+TXN-1470,Marta,elena44@gmail.com,Monitor 4K,435.87,5,2026-01-24 00:00:00
+!!!,Marta123!!,usuario@sinpunto,Teclado Mecánico,GRATIS,None,Ayer
+!!!,Marta123!!,error_mail,Laptop Pro,"999,99€",-1,2026-15-99
+  ,Carlos123!!,12345,Mouse Wireless,"999,99€",N/A,00/00/0000
+NULL,Carlos123!!,12345,Teclado Mecánico,0.00$,-1,ERROR
+ERR-#28,Luis123!!,usuario@sinpunto,Mouse Wireless,GRATIS, ,MAÑANA
+TXN-1368,Elena,carlos62@gmail.com,Monitor 4K,623.39,4,2026-01-31 00:00:00
+ERR-#53,Juan123!!,12345,Laptop Pro,N/A,None,Ayer
+NULL,Marta123!!,NaN,Headset Gamer,GRATIS, ,ERROR
+!!!,Luis123!!,usuario@sinpunto,Laptop Pro,BBDD_ERR,N/A,ERROR
+TXN-1268,Maria,maria83@gmail.com,Cable HDMI,646.5,2,2026-01-10 00:00:00
+TXN-1288,Luis,pedro62@gmail.com,Mouse Wireless,891.99,4,2026-01-10 00:00:00
+TXN-1337,Pedro,maria26@gmail.com,Laptop Pro,943.86,2,2026-01-05 00:00:00
+!!!,Luis123!!,error_mail,Teclado Mecánico,N/A, ,MAÑANA
+ERR-#81,Carlos123!!,usuario@sinpunto,Headset Gamer,GRATIS,999999,ERROR
+TXN-1131,Elena,elena39@gmail.com,Headset Gamer,345.76,1,2026-01-28 00:00:00
+!!!,Elena123!!,error_mail,Teclado Mecánico,BBDD_ERR, ,MAÑANA
+TXN-1323,Marta,juan92@gmail.com,Teclado Mecánico,470.07,2,2026-01-07 00:00:00
+  ,Ana123!!,NaN,Laptop Pro,N/A,999999,00/00/0000
+ERR-#70,Maria123!!,---,Monitor 4K,BBDD_ERR,N/A,ERROR
+TXN-1280,Juan,juan31@gmail.com,Mouse Wireless,576.61,1,2026-01-21 00:00:00
+!!!,Elena123!!,usuario@sinpunto,Monitor 4K,"999,99€",999999,ERROR
+TXN-1403,Elena,marta66@gmail.com,Cable HDMI,860.5,4,2026-01-02 00:00:00
+TXN-1236,Maria,maria82@gmail.com,Cable HDMI,750.45,1,2026-01-14 00:00:00
+  ,Juan123!!,NaN,Cable HDMI,N/A,999999,00/00/0000
+  ,Ana123!!,---,Headset Gamer,"999,99€",-1,MAÑANA
+  ,Elena123!!,error_mail,Mouse Wireless,0.00$,-1,00/00/0000
+  ,Marta123!!,---,Headset Gamer,0.00$,None,00/00/0000
+TXN-1172,Luis,marta69@gmail.com,Headset Gamer,212.47,5,2026-01-19 00:00:00
+TXN-1081,Carlos,pedro24@gmail.com,Cable HDMI,304.48,2,2026-01-27 00:00:00
+  ,Luis123!!,error_mail,Cable HDMI,BBDD_ERR,999999,2026-15-99
+TXN-1264,Carlos,elena99@gmail.com,Cable HDMI,373.55,3,2026-01-29 00:00:00
+TXN-1276,Marta,marta54@gmail.com,Teclado Mecánico,365.9,5,2026-01-22 00:00:00
+  ,Maria123!!,12345,Teclado Mecánico,0.00$, ,2026-15-99
+NULL,Elena123!!,12345,Headset Gamer,"999,99€", ,00/00/0000
+TXN-1414,Juan,carlos52@gmail.com,Mouse Wireless,330.64,4,2026-01-28 00:00:00
+TXN-1196,Ana,juan84@gmail.com,Cable HDMI,623.22,2,2026-01-24 00:00:00
+TXN-1173,Maria,ana23@gmail.com,Teclado Mecánico,630.9,4,2026-01-31 00:00:00
+  ,Juan123!!,12345,Monitor 4K,N/A,999999,00/00/0000
+TXN-1455,Luis,maria67@gmail.com,Monitor 4K,826.81,4,2026-01-30 00:00:00
+!!!,Marta123!!,error_mail,Headset Gamer,"999,99€", ,Ayer
+NULL,Ana123!!,12345,Monitor 4K,BBDD_ERR,N/A,00/00/0000
+  ,Marta123!!,error_mail,Monitor 4K,N/A,999999,00/00/0000
+TXN-1243,Pedro,luis40@gmail.com,Laptop Pro,951.87,2,2026-01-31 00:00:00
+TXN-1452,Pedro,juan83@gmail.com,Teclado Mecánico,735.37,2,2026-01-30 00:00:00
+TXN-1142,Luis,carlos91@gmail.com,Laptop Pro,772.23,5,2026-01-22 00:00:00
+NULL,Maria123!!,12345,Cable HDMI,0.00$,999999,Ayer
+TXN-1208,Marta,carlos93@gmail.com,Headset Gamer,993.79,3,2026-01-29 00:00:00
+!!!,Juan123!!,NaN,Monitor 4K,0.00$, ,ERROR
+  ,Luis123!!,usuario@sinpunto,Mouse Wireless,GRATIS,999999,MAÑANA
+TXN-1005,Juan,elena14@gmail.com,Monitor 4K,663.15,2,2026-01-04 00:00:00
+  ,Luis123!!,---,Laptop Pro,"999,99€",-1,MAÑANA
+TXN-1346,Ana,maria77@gmail.com,Headset Gamer,893.75,5,2026-01-07 00:00:00
+TXN-1044,Elena,juan86@gmail.com,Teclado Mecánico,730.9,4,2026-01-23 00:00:00
+TXN-1446,Luis,juan24@gmail.com,Teclado Mecánico,291.73,5,2026-01-28 00:00:00
+TXN-1194,Elena,maria85@gmail.com,Monitor 4K,253.6,4,2026-01-05 00:00:00
+TXN-1331,Pedro,pedro64@gmail.com,Teclado Mecánico,538.56,2,2026-01-03 00:00:00
+  ,Luis123!!,error_mail,Cable HDMI,0.00$,-1,Ayer
+NULL,Marta123!!,NaN,Mouse Wireless,0.00$,None,2026-15-99
+ERR-#65,Ana123!!,12345,Laptop Pro,GRATIS, ,ERROR
+  ,Juan123!!,NaN,Teclado Mecánico,0.00$,N/A,Ayer
+TXN-1095,Juan,ana10@gmail.com,Headset Gamer,598.58,5,2026-01-08 00:00:00
+!!!,Pedro123!!,---,Laptop Pro,0.00$,999999,2026-15-99
+NULL,Ana123!!,error_mail,Laptop Pro,0.00$, ,MAÑANA
+TXN-1125,Carlos,elena18@gmail.com,Teclado Mecánico,800.45,4,2026-01-05 00:00:00
+TXN-1183,Elena,ana68@gmail.com,Monitor 4K,263.58,4,2026-01-07 00:00:00
+!!!,Juan123!!,---,Cable HDMI,N/A,999999,MAÑANA
+TXN-1418,Elena,maria13@gmail.com,Laptop Pro,594.12,2,2026-01-10 00:00:00
+TXN-1059,Ana,juan29@gmail.com,Laptop Pro,293.95,4,2026-01-31 00:00:00
+TXN-1263,Carlos,maria57@gmail.com,Monitor 4K,619.63,2,2026-01-17 00:00:00
+  ,Elena123!!,---,Monitor 4K,"999,99€",999999,Ayer
+TXN-1438,Maria,maria56@gmail.com,Headset Gamer,879.89,1,2026-01-27 00:00:00
+!!!,Ana123!!,error_mail,Headset Gamer,BBDD_ERR,N/A,MAÑANA
+TXN-1401,Elena,carlos92@gmail.com,Teclado Mecánico,453.16,1,2026-01-09 00:00:00
+TXN-1110,Marta,marta63@gmail.com,Laptop Pro,329.88,2,2026-01-01 00:00:00
+TXN-1430,Luis,elena39@gmail.com,Laptop Pro,166.31,1,2026-01-22 00:00:00
+  ,Luis123!!,error_mail,Mouse Wireless,GRATIS,None,00/00/0000
+!!!,Maria123!!,NaN,Monitor 4K,BBDD_ERR,999999,ERROR
+TXN-1348,Luis,juan92@gmail.com,Headset Gamer,581.2,3,2026-01-12 00:00:00
+NULL,Marta123!!,usuario@sinpunto,Monitor 4K,"999,99€",None,ERROR
+TXN-1476,Carlos,elena75@gmail.com,Cable HDMI,366.33,4,2026-01-28 00:00:00
+TXN-1006,Luis,juan52@gmail.com,Mouse Wireless,114.22,5,2026-01-20 00:00:00
+TXN-1484,Maria,marta28@gmail.com,Laptop Pro,671.89,1,2026-01-19 00:00:00
+  ,Luis123!!,NaN,Laptop Pro,BBDD_ERR,None,2026-15-99
+ERR-#46,Pedro123!!,---,Laptop Pro,"999,99€",N/A,Ayer
+ERR-#36,Elena123!!,usuario@sinpunto,Monitor 4K,0.00$,999999,ERROR
+  ,Elena123!!,---,Cable HDMI,0.00$, ,MAÑANA
+NULL,Pedro123!!,NaN,Headset Gamer,GRATIS,999999,ERROR
+NULL,Juan123!!,usuario@sinpunto,Headset Gamer,N/A,None,MAÑANA
+TXN-1442,Ana,marta39@gmail.com,Laptop Pro,250.93,3,2026-01-14 00:00:00
+TXN-1336,Maria,carlos28@gmail.com,Cable HDMI,643.4,1,2026-01-30 00:00:00
+TXN-1156,Maria,luis25@gmail.com,Mouse Wireless,399.0,3,2026-01-06 00:00:00
+ERR-#13,Luis123!!,---,Headset Gamer,GRATIS,-1,ERROR
+TXN-1007,Carlos,ana44@gmail.com,Monitor 4K,774.03,5,2026-01-04 00:00:00
+!!!,Luis123!!,12345,Monitor 4K,"999,99€",None,MAÑANA
+NULL,Carlos123!!,error_mail,Teclado Mecánico,0.00$,-1,00/00/0000
+  ,Maria123!!,error_mail,Cable HDMI,BBDD_ERR,None,ERROR
+TXN-1241,Juan,elena79@gmail.com,Cable HDMI,544.53,5,2026-01-28 00:00:00
+!!!,Ana123!!,error_mail,Laptop Pro,N/A,999999,MAÑANA
+NULL,Marta123!!,12345,Monitor 4K,N/A,999999,Ayer
+TXN-1078,Juan,maria96@gmail.com,Teclado Mecánico,116.51,2,2026-01-03 00:00:00
+ERR-#76,Marta123!!,NaN,Headset Gamer,BBDD_ERR,None,00/00/0000
+ERR-#52,Pedro123!!,---,Monitor 4K,0.00$, ,Ayer
+TXN-1444,Carlos,luis78@gmail.com,Headset Gamer,695.55,2,2026-01-28 00:00:00
+!!!,Pedro123!!,NaN,Headset Gamer,GRATIS, ,00/00/0000
+TXN-1158,Marta,marta39@gmail.com,Headset Gamer,214.14,2,2026-01-22 00:00:00
+NULL,Maria123!!,12345,Monitor 4K,GRATIS,N/A,00/00/0000
+TXN-1099,Carlos,maria31@gmail.com,Cable HDMI,714.88,3,2026-01-26 00:00:00
+NULL,Pedro123!!,NaN,Laptop Pro,BBDD_ERR,999999,00/00/0000
+!!!,Maria123!!,error_mail,Teclado Mecánico,0.00$, ,2026-15-99
+  ,Marta123!!,---,Headset Gamer,"999,99€",999999,Ayer
+TXN-1140,Maria,ana37@gmail.com,Headset Gamer,542.37,4,2026-01-20 00:00:00
+TXN-1462,Carlos,elena59@gmail.com,Mouse Wireless,79.22,1,2026-01-27 00:00:00
+TXN-1352,Ana,marta48@gmail.com,Headset Gamer,494.7,1,2026-01-23 00:00:00
+ERR-#16,Maria123!!,NaN,Teclado Mecánico,"999,99€",-1,Ayer
+TXN-1378,Marta,ana34@gmail.com,Teclado Mecánico,151.42,1,2026-01-14 00:00:00
+ERR-#6,Carlos123!!,12345,Mouse Wireless,BBDD_ERR,999999,ERROR
+  ,Maria123!!,error_mail,Teclado Mecánico,BBDD_ERR,-1,Ayer
+TXN-1316,Carlos,juan41@gmail.com,Cable HDMI,416.86,2,2026-01-27 00:00:00
+!!!,Marta123!!,NaN,Headset Gamer,GRATIS, ,ERROR
+ERR-#89,Elena123!!,usuario@sinpunto,Mouse Wireless,GRATIS, ,2026-15-99
+  ,Pedro123!!,12345,Teclado Mecánico,BBDD_ERR,-1,00/00/0000
+NULL,Marta123!!,---,Mouse Wireless,0.00$,N/A,ERROR
+TXN-1330,Maria,elena47@gmail.com,Headset Gamer,787.63,5,2026-01-20 00:00:00
+  ,Elena123!!,error_mail,Mouse Wireless,N/A, ,Ayer
+  ,Ana123!!,---,Headset Gamer,0.00$, ,Ayer
+TXN-1390,Maria,elena57@gmail.com,Headset Gamer,233.31,1,2026-01-21 00:00:00
+TXN-1351,Luis,juan50@gmail.com,Cable HDMI,155.39,4,2026-01-12 00:00:00
+NULL,Elena123!!,12345,Headset Gamer,N/A,N/A,ERROR
+TXN-1132,Carlos,ana77@gmail.com,Monitor 4K,112.0,2,2026-01-15 00:00:00
+TXN-1359,Elena,marta97@gmail.com,Cable HDMI,541.82,1,2026-01-16 00:00:00
+TXN-1397,Juan,carlos21@gmail.com,Headset Gamer,558.98,5,2026-01-02 00:00:00
+!!!,Carlos123!!,NaN,Headset Gamer,0.00$,999999,ERROR
+!!!,Maria123!!,---,Teclado Mecánico,0.00$,999999,2026-15-99
+NULL,Marta123!!,error_mail,Cable HDMI,"999,99€", ,ERROR
+TXN-1245,Elena,marta82@gmail.com,Headset Gamer,901.53,2,2026-01-08 00:00:00
+NULL,Maria123!!,---,Mouse Wireless,N/A,N/A,Ayer
+ERR-#47,Pedro123!!,12345,Mouse Wireless,N/A,None,00/00/0000
+NULL,Marta123!!,error_mail,Mouse Wireless,N/A, ,00/00/0000
+TXN-1422,Carlos,pedro83@gmail.com,Laptop Pro,574.41,4,2026-01-07 00:00:00
+TXN-1334,Pedro,elena84@gmail.com,Teclado Mecánico,916.49,5,2026-01-01 00:00:00
+TXN-1124,Maria,maria86@gmail.com,Teclado Mecánico,460.02,4,2026-01-31 00:00:00
+!!!,Ana123!!,12345,Monitor 4K,N/A,N/A,00/00/0000
+TXN-1308,Elena,pedro22@gmail.com,Monitor 4K,258.18,2,2026-01-28 00:00:00
+TXN-1354,Ana,carlos22@gmail.com,Teclado Mecánico,729.22,2,2026-01-20 00:00:00
+!!!,Marta123!!,NaN,Laptop Pro,"999,99€", ,ERROR
+TXN-1019,Elena,luis69@gmail.com,Cable HDMI,244.93,3,2026-01-13 00:00:00
+TXN-1013,Pedro,elena14@gmail.com,Headset Gamer,824.56,1,2026-01-11 00:00:00
+TXN-1103,Pedro,elena68@gmail.com,Monitor 4K,352.73,4,2026-01-30 00:00:00
+  ,Marta123!!,error_mail,Cable HDMI,"999,99€",N/A,2026-15-99
+TXN-1164,Carlos,juan83@gmail.com,Teclado Mecánico,51.04,4,2026-01-17 00:00:00
+TXN-1212,Marta,luis90@gmail.com,Monitor 4K,792.25,3,2026-01-16 00:00:00
+TXN-1317,Luis,pedro34@gmail.com,Monitor 4K,169.22,4,2026-01-09 00:00:00
+ERR-#18,Carlos123!!,NaN,Mouse Wireless,N/A,None,2026-15-99
+TXN-1277,Ana,juan18@gmail.com,Cable HDMI,988.17,3,2026-01-04 00:00:00
+TXN-1439,Juan,elena46@gmail.com,Mouse Wireless,570.55,1,2026-01-31 00:00:00
+TXN-1431,Luis,ana35@gmail.com,Mouse Wireless,196.49,5,2026-01-12 00:00:00
+TXN-1306,Pedro,luis14@gmail.com,Cable HDMI,457.25,1,2026-01-25 00:00:00
+TXN-1498,Maria,ana30@gmail.com,Cable HDMI,300.09,2,2026-01-18 00:00:00
+ERR-#28,Marta123!!,usuario@sinpunto,Teclado Mecánico,N/A,999999,ERROR
+TXN-1016,Pedro,maria30@gmail.com,Teclado Mecánico,189.64,2,2026-01-24 00:00:00
+TXN-1088,Carlos,marta88@gmail.com,Teclado Mecánico,376.36,4,2026-01-17 00:00:00
+TXN-1428,Pedro,luis55@gmail.com,Mouse Wireless,858.51,5,2026-01-01 00:00:00
+TXN-1244,Maria,maria84@gmail.com,Monitor 4K,656.33,2,2026-01-10 00:00:00
+TXN-1138,Pedro,maria56@gmail.com,Monitor 4K,312.11,3,2026-01-25 00:00:00
+TXN-1485,Luis,maria97@gmail.com,Cable HDMI,163.35,5,2026-01-27 00:00:00
+!!!,Elena123!!,error_mail,Teclado Mecánico,GRATIS,None,MAÑANA
+  ,Ana123!!,usuario@sinpunto,Headset Gamer,GRATIS, ,2026-15-99
+TXN-1151,Ana,elena22@gmail.com,Monitor 4K,66.01,4,2026-01-08 00:00:00
+  ,Juan123!!,usuario@sinpunto,Cable HDMI,BBDD_ERR,-1,MAÑANA
+NULL,Luis123!!,12345,Laptop Pro,"999,99€",999999,2026-15-99
+TXN-1385,Ana,juan32@gmail.com,Monitor 4K,752.28,2,2026-01-28 00:00:00
+TXN-1250,Marta,elena22@gmail.com,Teclado Mecánico,920.2,2,2026-01-20 00:00:00
+  ,Luis123!!,12345,Teclado Mecánico,N/A, ,00/00/0000
+TXN-1307,Elena,marta10@gmail.com,Cable HDMI,933.95,2,2026-01-16 00:00:00
+,,,,,,
+ERR-#25,Ana123!!,12345,Monitor 4K,BBDD_ERR, ,Ayer
+ERR-#34,Ana123!!,12345,Monitor 4K,0.00$,999999,2026-15-99
+TXN-1240,Juan,luis60@gmail.com,Teclado Mecánico,556.52,3,2026-01-05 00:00:00
+  ,Ana123!!,usuario@sinpunto,Mouse Wireless,BBDD_ERR,-1,ERROR
+  ,Juan123!!,NaN,Headset Gamer,N/A,-1,ERROR
+NULL,Elena123!!,12345,Mouse Wireless,N/A,None,MAÑANA
+TXN-1296,Pedro,elena28@gmail.com,Mouse Wireless,993.35,1,2026-01-08 00:00:00
+,,,,,,
+ERR-#23,Elena123!!,---,Teclado Mecánico,GRATIS,999999,00/00/0000
+NULL,Luis123!!,---,Mouse Wireless,N/A,None,Ayer
+TXN-1314,Carlos,marta14@gmail.com,Headset Gamer,232.57,4,2026-01-15 00:00:00
+NULL,Marta123!!,error_mail,Cable HDMI,N/A,N/A,Ayer
+TXN-1335,Luis,pedro51@gmail.com,Teclado Mecánico,136.82,4,2026-01-20 00:00:00
+!!!,Luis123!!,---,Monitor 4K,BBDD_ERR,N/A,00/00/0000
+TXN-1104,Luis,luis75@gmail.com,Headset Gamer,375.55,3,2026-01-03 00:00:00
+TXN-1450,Ana,ana39@gmail.com,Headset Gamer,764.75,5,2026-01-09 00:00:00
+!!!,Carlos123!!,error_mail,Headset Gamer,0.00$,999999,MAÑANA
+NULL,Carlos123!!,---,Laptop Pro,"999,99€",999999,2026-15-99
+NULL,Carlos123!!,12345,Mouse Wireless,GRATIS,None,00/00/0000
+ERR-#69,Luis123!!,error_mail,Headset Gamer,BBDD_ERR, ,ERROR
+TXN-1169,Juan,ana89@gmail.com,Laptop Pro,932.96,1,2026-01-20 00:00:00
+TXN-1150,Marta,elena18@gmail.com,Cable HDMI,254.18,3,2026-01-05 00:00:00
+TXN-1187,Elena,juan23@gmail.com,Mouse Wireless,662.24,3,2026-01-04 00:00:00
+TXN-1459,Luis,elena49@gmail.com,Laptop Pro,825.5,4,2026-01-28 00:00:00
+TXN-1386,Elena,marta87@gmail.com,Monitor 4K,889.24,5,2026-01-07 00:00:00
+!!!,Pedro123!!,usuario@sinpunto,Teclado Mecánico,BBDD_ERR,-1,00/00/0000
+NULL,Juan123!!,12345,Headset Gamer,N/A,N/A,00/00/0000
+!!!,Carlos123!!,---,Cable HDMI,0.00$,-1,Ayer
+!!!,Ana123!!,usuario@sinpunto,Cable HDMI,GRATIS,None,MAÑANA
+TXN-1027,Maria,ana74@gmail.com,Teclado Mecánico,680.98,1,2026-01-11 00:00:00
+!!!,Elena123!!,12345,Laptop Pro,GRATIS, ,2026-15-99
+TXN-1474,Pedro,elena49@gmail.com,Headset Gamer,558.81,1,2026-01-31 00:00:00
+!!!,Marta123!!,---,Headset Gamer,BBDD_ERR, ,Ayer
+TXN-1497,Maria,juan16@gmail.com,Mouse Wireless,205.87,1,2026-01-08 00:00:00
+ERR-#73,Marta123!!,---,Teclado Mecánico,GRATIS,-1,Ayer
+  ,Ana123!!,error_mail,Laptop Pro,BBDD_ERR,N/A,Ayer
+NULL,Carlos123!!,12345,Headset Gamer,BBDD_ERR,999999,Ayer
+!!!,Juan123!!,12345,Laptop Pro,0.00$,-1,ERROR
+NULL,Carlos123!!,NaN,Cable HDMI,"999,99€",-1,Ayer
+TXN-1381,Ana,ana34@gmail.com,Mouse Wireless,176.25,1,2026-01-09 00:00:00
+TXN-1228,Pedro,carlos87@gmail.com,Laptop Pro,308.4,5,2026-01-10 00:00:00
+TXN-1415,Juan,juan13@gmail.com,Monitor 4K,439.23,3,2026-01-23 00:00:00
+!!!,Marta123!!,usuario@sinpunto,Cable HDMI,BBDD_ERR,-1,2026-15-99
+  ,Juan123!!,error_mail,Teclado Mecánico,0.00$, ,2026-15-99
+NULL,Marta123!!,12345,Mouse Wireless,GRATIS, ,MAÑANA
+TXN-1461,Juan,carlos91@gmail.com,Cable HDMI,554.45,5,2026-01-17 00:00:00
+,,,,,,
+NULL,Pedro123!!,NaN,Cable HDMI,GRATIS,N/A,2026-15-99
+NULL,Carlos123!!,---,Mouse Wireless,GRATIS,N/A,MAÑANA
+,,,,,,
+,,,,,,
+  ,Pedro123!!,12345,Teclado Mecánico,GRATIS,N/A,Ayer
+ERR-#21,Marta123!!,NaN,Laptop Pro,"999,99€",N/A,MAÑANA
+TXN-1370,Elena,pedro43@gmail.com,Monitor 4K,623.89,4,2026-01-25 00:00:00
+TXN-1490,Pedro,carlos24@gmail.com,Teclado Mecánico,940.94,3,2026-01-22 00:00:00
+TXN-1161,Ana,carlos51@gmail.com,Headset Gamer,697.46,4,2026-01-19 00:00:00
+TXN-1065,Carlos,carlos51@gmail.com,Monitor 4K,953.66,4,2026-01-05 00:00:00
+NULL,Carlos123!!,12345,Laptop Pro,"999,99€",N/A,MAÑANA
+TXN-1123,Pedro,pedro52@gmail.com,Mouse Wireless,829.42,4,2026-01-03 00:00:00
+TXN-1000,Marta,ana59@gmail.com,Monitor 4K,298.93,4,2026-01-03 00:00:00
+TXN-1230,Pedro,pedro60@gmail.com,Mouse Wireless,666.34,2,2026-01-21 00:00:00
+TXN-1064,Maria,marta34@gmail.com,Cable HDMI,441.26,3,2026-01-21 00:00:00
+TXN-1207,Marta,marta53@gmail.com,Monitor 4K,559.66,4,2026-01-16 00:00:00
+  ,Ana123!!,usuario@sinpunto,Laptop Pro,GRATIS,None,2026-15-99
+TXN-1297,Elena,ana17@gmail.com,Cable HDMI,917.58,3,2026-01-17 00:00:00
+NULL,Carlos123!!,NaN,Mouse Wireless,"999,99€",999999,Ayer
+TXN-1372,Luis,ana65@gmail.com,Mouse Wireless,602.8,3,2026-01-18 00:00:00
+  ,Maria123!!,NaN,Monitor 4K,GRATIS,-1,Ayer
+  ,Marta123!!,error_mail,Headset Gamer,BBDD_ERR, ,2026-15-99
+TXN-1458,Maria,carlos55@gmail.com,Teclado Mecánico,817.16,5,2026-01-31 00:00:00
+  ,Maria123!!,NaN,Headset Gamer,"999,99€",-1,MAÑANA
+  ,Carlos123!!,error_mail,Monitor 4K,0.00$,999999,2026-15-99
+TXN-1139,Carlos,elena42@gmail.com,Cable HDMI,668.26,5,2026-01-12 00:00:00
+TXN-1287,Elena,ana39@gmail.com,Headset Gamer,810.62,4,2026-01-26 00:00:00
+!!!,Juan123!!,usuario@sinpunto,Teclado Mecánico,N/A,999999,Ayer
+TXN-1225,Luis,juan76@gmail.com,Monitor 4K,64.84,1,2026-01-21 00:00:00
+TXN-1389,Ana,luis67@gmail.com,Headset Gamer,900.09,4,2026-01-25 00:00:00
+ERR-#79,Luis123!!,NaN,Headset Gamer,0.00$,999999,ERROR
+NULL,Elena123!!,error_mail,Headset Gamer,"999,99€",None,00/00/0000
+TXN-1171,Carlos,carlos57@gmail.com,Cable HDMI,138.08,5,2026-01-05 00:00:00
+!!!,Juan123!!,NaN,Cable HDMI,0.00$, ,2026-15-99
+TXN-1052,Pedro,luis75@gmail.com,Headset Gamer,583.21,2,2026-01-10 00:00:00
+ERR-#75,Elena123!!,NaN,Headset Gamer,0.00$, ,00/00/0000
+!!!,Elena123!!,---,Mouse Wireless,0.00$,999999,ERROR
+  ,Pedro123!!,usuario@sinpunto,Cable HDMI,GRATIS,None,MAÑANA
+NULL,Luis123!!,NaN,Cable HDMI,BBDD_ERR, ,Ayer
+TXN-1249,Pedro,carlos21@gmail.com,Mouse Wireless,227.05,5,2026-01-17 00:00:00
+  ,Marta123!!,12345,Cable HDMI,0.00$,N/A,MAÑANA
+  ,Maria123!!,error_mail,Monitor 4K,GRATIS,None,Ayer
+TXN-1391,Juan,luis55@gmail.com,Laptop Pro,63.92,3,2026-01-23 00:00:00
+ERR-#63,Juan123!!,usuario@sinpunto,Mouse Wireless,GRATIS,-1,MAÑANA
+TXN-1055,Ana,marta93@gmail.com,Teclado Mecánico,546.98,4,2026-01-26 00:00:00
+NULL,Ana123!!,usuario@sinpunto,Monitor 4K,GRATIS, ,00/00/0000
+  ,Pedro123!!,NaN,Teclado Mecánico,0.00$,None,ERROR
+!!!,Maria123!!,12345,Laptop Pro,GRATIS,999999,2026-15-99
+  ,Carlos123!!,---,Monitor 4K,BBDD_ERR,N/A,00/00/0000
+!!!,Elena123!!,12345,Cable HDMI,BBDD_ERR, ,MAÑANA
+TXN-1039,Marta,pedro34@gmail.com,Headset Gamer,530.21,2,2026-01-13 00:00:00
+TXN-1193,Juan,maria25@gmail.com,Headset Gamer,852.99,2,2026-01-09 00:00:00
+ERR-#55,Ana123!!,usuario@sinpunto,Cable HDMI,N/A,N/A,MAÑANA
+TXN-1143,Luis,pedro56@gmail.com,Monitor 4K,722.89,3,2026-01-27 00:00:00
+  ,Juan123!!,12345,Teclado Mecánico,"999,99€", ,00/00/0000
+  ,Elena123!!,NaN,Cable HDMI,N/A,N/A,MAÑANA
+TXN-1302,Maria,carlos53@gmail.com,Monitor 4K,491.85,5,2026-01-21 00:00:00
+NULL,Pedro123!!,error_mail,Teclado Mecánico,0.00$,999999,00/00/0000
+TXN-1295,Pedro,elena34@gmail.com,Teclado Mecánico,200.0,5,2026-01-10 00:00:00
+ERR-#97,Marta123!!,error_mail,Mouse Wireless,GRATIS,None,00/00/0000
+!!!,Maria123!!,usuario@sinpunto,Mouse Wireless,0.00$, ,MAÑANA
+  ,Maria123!!,usuario@sinpunto,Monitor 4K,"999,99€", ,00/00/0000
+NULL,Juan123!!,usuario@sinpunto,Headset Gamer,BBDD_ERR, ,2026-15-99
+ERR-#42,Carlos123!!,---,Monitor 4K,GRATIS,999999,Ayer
+NULL,Elena123!!,usuario@sinpunto,Headset Gamer,BBDD_ERR,N/A,ERROR
+ERR-#36,Elena123!!,---,Laptop Pro,GRATIS,999999,Ayer
+TXN-1034,Juan,carlos98@gmail.com,Cable HDMI,633.68,4,2026-01-04 00:00:00
+!!!,Carlos123!!,usuario@sinpunto,Monitor 4K,N/A, ,MAÑANA
+  ,Elena123!!,usuario@sinpunto,Monitor 4K,BBDD_ERR,999999,2026-15-99
+  ,Juan123!!,error_mail,Headset Gamer,0.00$,None,Ayer
+  ,Luis123!!,error_mail,Mouse Wireless,0.00$, ,ERROR
+TXN-1409,Marta,marta67@gmail.com,Headset Gamer,677.98,2,2026-01-27 00:00:00
+TXN-1272,Marta,elena42@gmail.com,Teclado Mecánico,556.71,4,2026-01-05 00:00:00
+TXN-1026,Luis,carlos52@gmail.com,Cable HDMI,811.61,5,2026-01-25 00:00:00
+TXN-1350,Luis,pedro34@gmail.com,Laptop Pro,554.92,3,2026-01-19 00:00:00
+  ,Carlos123!!,---,Laptop Pro,GRATIS,N/A,MAÑANA
+!!!,Carlos123!!,NaN,Laptop Pro,"999,99€",999999,MAÑANA
+TXN-1199,Pedro,elena17@gmail.com,Teclado Mecánico,349.57,5,2026-01-29 00:00:00
+TXN-1362,Pedro,juan77@gmail.com,Monitor 4K,968.76,1,2026-01-01 00:00:00
+TXN-1152,Luis,carlos92@gmail.com,Headset Gamer,569.31,4,2026-01-02 00:00:00
+NULL,Juan123!!,---,Cable HDMI,BBDD_ERR,-1,ERROR
+!!!,Marta123!!,NaN,Headset Gamer,GRATIS,N/A,ERROR
+  ,Juan123!!,usuario@sinpunto,Cable HDMI,GRATIS, ,2026-15-99
+ERR-#67,Elena123!!,12345,Monitor 4K,"999,99€",None,00/00/0000
+ERR-#95,Carlos123!!,error_mail,Cable HDMI,GRATIS,None,2026-15-99
+TXN-1009,Carlos,juan60@gmail.com,Mouse Wireless,567.12,5,2026-01-19 00:00:00
+ERR-#69,Maria123!!,NaN,Monitor 4K,BBDD_ERR,None,Ayer
+  ,Ana123!!,error_mail,Monitor 4K,0.00$,999999,2026-15-99
+TXN-1494,Juan,maria98@gmail.com,Teclado Mecánico,840.97,3,2026-01-31 00:00:00
+!!!,Marta123!!,---,Monitor 4K,"999,99€", ,ERROR
+  ,Ana123!!,---,Monitor 4K,N/A,N/A,MAÑANA
+  ,Juan123!!,12345,Laptop Pro,GRATIS,-1,Ayer
+TXN-1369,Ana,carlos22@gmail.com,Laptop Pro,261.28,3,2026-01-28 00:00:00
+TXN-1192,Juan,carlos99@gmail.com,Cable HDMI,92.94,1,2026-01-05 00:00:00
+ERR-#23,Pedro123!!,usuario@sinpunto,Cable HDMI,"999,99€",N/A,Ayer
+TXN-1185,Maria,pedro55@gmail.com,Monitor 4K,318.05,5,2026-01-08 00:00:00
+!!!,Maria123!!,---,Monitor 4K,0.00$, ,MAÑANA
+ERR-#68,Marta123!!,NaN,Headset Gamer,0.00$, ,Ayer
+!!!,Carlos123!!,12345,Teclado Mecánico,"999,99€",N/A,ERROR
+ERR-#63,Ana123!!,usuario@sinpunto,Mouse Wireless,BBDD_ERR, ,Ayer
+!!!,Ana123!!,12345,Headset Gamer,GRATIS,999999,00/00/0000
+TXN-1313,Luis,carlos88@gmail.com,Cable HDMI,933.64,3,2026-01-17 00:00:00
+NULL,Luis123!!,error_mail,Headset Gamer,N/A,999999,2026-15-99
+TXN-1155,Luis,juan97@gmail.com,Headset Gamer,451.76,2,2026-01-16 00:00:00
+ERR-#89,Juan123!!,error_mail,Headset Gamer,GRATIS,999999,Ayer
+NULL,Ana123!!,usuario@sinpunto,Monitor 4K,BBDD_ERR,None,MAÑANA
+NULL,Marta123!!,usuario@sinpunto,Teclado Mecánico,0.00$,N/A,Ayer
+  ,Juan123!!,---,Teclado Mecánico,N/A,999999,2026-15-99
+TXN-1041,Elena,juan70@gmail.com,Laptop Pro,988.95,2,2026-01-09 00:00:00
+TXN-1310,Luis,maria18@gmail.com,Mouse Wireless,736.81,5,2026-01-02 00:00:00
+TXN-1057,Elena,ana49@gmail.com,Headset Gamer,743.32,3,2026-01-26 00:00:00
+  ,Marta123!!,usuario@sinpunto,Mouse Wireless,N/A,-1,2026-15-99
+TXN-1237,Juan,juan17@gmail.com,Teclado Mecánico,136.34,2,2026-01-22 00:00:00
+NULL,Juan123!!,12345,Cable HDMI,"999,99€",-1,ERROR
+TXN-1179,Elena,marta20@gmail.com,Teclado Mecánico,843.56,5,2026-01-23 00:00:00
+!!!,Marta123!!,NaN,Headset Gamer,GRATIS,N/A,MAÑANA
+TXN-1029,Carlos,luis46@gmail.com,Mouse Wireless,508.02,1,2026-01-15 00:00:00
+TXN-1341,Carlos,ana90@gmail.com,Teclado Mecánico,119.89,5,2026-01-26 00:00:00
+!!!,Luis123!!,---,Laptop Pro,N/A,None,ERROR
+TXN-1283,Ana,marta60@gmail.com,Laptop Pro,485.76,5,2026-01-20 00:00:00
+ERR-#10,Carlos123!!,error_mail,Monitor 4K,"999,99€",999999,00/00/0000
+TXN-1463,Luis,marta65@gmail.com,Headset Gamer,252.63,3,2026-01-22 00:00:00
+TXN-1134,Carlos,carlos74@gmail.com,Mouse Wireless,222.35,1,2026-01-10 00:00:00
+  ,Maria123!!,NaN,Mouse Wireless,"999,99€",N/A,MAÑANA
+NULL,Luis123!!,usuario@sinpunto,Teclado Mecánico,0.00$,N/A,MAÑANA
+TXN-1166,Marta,maria75@gmail.com,Mouse Wireless,532.14,4,2026-01-30 00:00:00
+!!!,Pedro123!!,---,Cable HDMI,BBDD_ERR,N/A,MAÑANA
+TXN-1407,Pedro,marta64@gmail.com,Monitor 4K,672.39,3,2026-01-16 00:00:00
+,,,,,,
+NULL,Maria123!!,NaN,Laptop Pro,"999,99€",999999,MAÑANA
+NULL,Ana123!!,usuario@sinpunto,Cable HDMI,GRATIS,999999,ERROR
+!!!,Juan123!!,12345,Cable HDMI,0.00$,999999,Ayer
+NULL,Ana123!!,error_mail,Headset Gamer,N/A,-1,ERROR
+TXN-1483,Marta,juan12@gmail.com,Monitor 4K,512.49,1,2026-01-02 00:00:00
+TXN-1093,Marta,carlos32@gmail.com,Laptop Pro,956.23,4,2026-01-17 00:00:00
+TXN-1221,Maria,luis13@gmail.com,Laptop Pro,331.45,3,2026-01-05 00:00:00
+ERR-#27,Carlos123!!,usuario@sinpunto,Headset Gamer,GRATIS,None,2026-15-99
+TXN-1393,Elena,carlos54@gmail.com,Mouse Wireless,655.81,2,2026-01-21 00:00:00
+NULL,Elena123!!,12345,Teclado Mecánico,"999,99€", ,2026-15-99
+TXN-1398,Carlos,maria88@gmail.com,Laptop Pro,843.91,4,2026-01-25 00:00:00
+!!!,Marta123!!,error_mail,Teclado Mecánico,BBDD_ERR,999999,MAÑANA
+NULL,Pedro123!!,usuario@sinpunto,Teclado Mecánico,"999,99€",-1,2026-15-99
+TXN-1048,Elena,juan93@gmail.com,Cable HDMI,531.15,3,2026-01-28 00:00:00
+  ,Maria123!!,NaN,Laptop Pro,"999,99€",999999,00/00/0000
+TXN-1214,Marta,ana27@gmail.com,Mouse Wireless,887.98,4,2026-01-18 00:00:00
+TXN-1379,Elena,marta80@gmail.com,Headset Gamer,381.47,1,2026-01-27 00:00:00
+,,,,,,
+TXN-1471,Elena,ana72@gmail.com,Monitor 4K,283.68,3,2026-01-19 00:00:00
+TXN-1270,Elena,maria29@gmail.com,Headset Gamer,590.42,4,2026-01-21 00:00:00
+NULL,Elena123!!,usuario@sinpunto,Headset Gamer,BBDD_ERR, ,ERROR
+  ,Juan123!!,error_mail,Headset Gamer,N/A, ,MAÑANA
+TXN-1160,Luis,pedro35@gmail.com,Monitor 4K,241.95,4,2026-01-24 00:00:00
+ERR-#32,Elena123!!,---,Laptop Pro,N/A,999999,Ayer
+!!!,Elena123!!,12345,Mouse Wireless,GRATIS,-1,2026-15-99
+  ,Ana123!!,12345,Teclado Mecánico,N/A,999999,ERROR
+NULL,Marta123!!,12345,Mouse Wireless,0.00$,N/A,ERROR
+NULL,Marta123!!,NaN,Laptop Pro,0.00$,N/A,Ayer
+TXN-1242,Elena,elena58@gmail.com,Laptop Pro,484.05,2,2026-01-26 00:00:00
+!!!,Carlos123!!,usuario@sinpunto,Laptop Pro,0.00$,-1,MAÑANA
+TXN-1271,Ana,marta98@gmail.com,Cable HDMI,538.02,5,2026-01-05 00:00:00
+TXN-1126,Maria,carlos69@gmail.com,Mouse Wireless,289.91,3,2026-01-08 00:00:00
+TXN-1420,Ana,pedro76@gmail.com,Teclado Mecánico,681.55,5,2026-01-14 00:00:00
+ERR-#17,Maria123!!,error_mail,Teclado Mecánico,BBDD_ERR,None,2026-15-99
+TXN-1066,Marta,pedro70@gmail.com,Headset Gamer,801.47,3,2026-01-02 00:00:00
+ERR-#81,Carlos123!!,---,Mouse Wireless,N/A, ,ERROR
+TXN-1293,Pedro,elena12@gmail.com,Headset Gamer,936.16,5,2026-01-25 00:00:00
+  ,Pedro123!!,---,Teclado Mecánico,"999,99€",999999,MAÑANA
+NULL,Maria123!!,12345,Monitor 4K,BBDD_ERR,-1,MAÑANA
+ERR-#68,Pedro123!!,usuario@sinpunto,Laptop Pro,GRATIS, ,00/00/0000
+  ,Luis123!!,usuario@sinpunto,Headset Gamer,0.00$,None,MAÑANA
+ERR-#15,Carlos123!!,usuario@sinpunto,Mouse Wireless,"999,99€",-1,2026-15-99
+  ,Elena123!!,---,Laptop Pro,GRATIS,999999,MAÑANA
+!!!,Maria123!!,usuario@sinpunto,Headset Gamer,N/A,-1,Ayer
+TXN-1098,Ana,pedro24@gmail.com,Teclado Mecánico,921.93,3,2026-01-29 00:00:00
+TXN-1333,Maria,marta74@gmail.com,Mouse Wireless,463.88,4,2026-01-22 00:00:00
+!!!,Ana123!!,---,Laptop Pro,GRATIS, ,MAÑANA
+NULL,Maria123!!,---,Cable HDMI,"999,99€", ,MAÑANA
+TXN-1355,Maria,luis31@gmail.com,Mouse Wireless,875.98,3,2026-01-28 00:00:00
+  ,Maria123!!,---,Teclado Mecánico,0.00$, ,2026-15-99
+TXN-1239,Elena,carlos84@gmail.com,Laptop Pro,883.57,2,2026-01-17 00:00:00
+NULL,Pedro123!!,12345,Mouse Wireless,N/A, ,Ayer
+  ,Ana123!!,---,Teclado Mecánico,GRATIS,N/A,MAÑANA
+  ,Maria123!!,error_mail,Monitor 4K,N/A, ,Ayer
+TXN-1447,Juan,carlos89@gmail.com,Headset Gamer,357.5,4,2026-01-25 00:00:00
+TXN-1318,Carlos,luis35@gmail.com,Headset Gamer,72.62,2,2026-01-16 00:00:00
+NULL,Maria123!!,NaN,Mouse Wireless,"999,99€",999999,ERROR
+TXN-1215,Carlos,maria81@gmail.com,Teclado Mecánico,465.27,1,2026-01-15 00:00:00
+  ,Luis123!!,usuario@sinpunto,Cable HDMI,BBDD_ERR,None,Ayer
+,,,,,,
+TXN-1342,Carlos,carlos64@gmail.com,Teclado Mecánico,106.17,5,2026-01-21 00:00:00
+  ,Ana123!!,NaN,Mouse Wireless,"999,99€",-1,Ayer
+NULL,Juan123!!,usuario@sinpunto,Cable HDMI,N/A,999999,Ayer
+  ,Pedro123!!,12345,Headset Gamer,N/A,999999,00/00/0000
+,,,,,,
+NULL,Elena123!!,---,Headset Gamer,BBDD_ERR,None,Ayer
+TXN-1030,Pedro,pedro47@gmail.com,Teclado Mecánico,360.78,1,2026-01-21 00:00:00
+TXN-1063,Marta,marta11@gmail.com,Laptop Pro,739.82,5,2026-01-18 00:00:00
+TXN-1491,Marta,juan17@gmail.com,Teclado Mecánico,252.74,1,2026-01-03 00:00:00
+TXN-1079,Juan,carlos77@gmail.com,Headset Gamer,417.61,4,2026-01-18 00:00:00
+ERR-#59,Ana123!!,---,Laptop Pro,BBDD_ERR, ,Ayer
+TXN-1408,Marta,marta77@gmail.com,Headset Gamer,309.71,3,2026-01-05 00:00:00
+TXN-1148,Marta,luis84@gmail.com,Mouse Wireless,455.27,1,2026-01-04 00:00:00
+!!!,Carlos123!!,error_mail,Teclado Mecánico,BBDD_ERR,999999,Ayer
+TXN-1229,Maria,maria10@gmail.com,Teclado Mecánico,530.12,3,2026-01-20 00:00:00
+,,,,,,
+TXN-1367,Ana,maria60@gmail.com,Laptop Pro,355.79,3,2026-01-23 00:00:00
+TXN-1421,Pedro,juan11@gmail.com,Mouse Wireless,442.32,1,2026-01-25 00:00:00
+TXN-1261,Luis,maria19@gmail.com,Mouse Wireless,860.21,2,2026-01-28 00:00:00
+TXN-1496,Juan,carlos87@gmail.com,Mouse Wireless,735.56,2,2026-01-14 00:00:00
+!!!,Carlos123!!,NaN,Cable HDMI,BBDD_ERR,N/A,MAÑANA
+  ,Juan123!!,12345,Monitor 4K,BBDD_ERR,None,Ayer
+ERR-#22,Pedro123!!,error_mail,Headset Gamer,0.00$,999999,00/00/0000
+ERR-#81,Marta123!!,12345,Headset Gamer,N/A,N/A,00/00/0000
+,,,,,,
+!!!,Carlos123!!,usuario@sinpunto,Headset Gamer,GRATIS, ,00/00/0000
+TXN-1054,Marta,luis68@gmail.com,Laptop Pro,807.87,3,2026-01-13 00:00:00
+  ,Maria123!!,error_mail,Laptop Pro,0.00$,None,MAÑANA
+TXN-1181,Ana,ana29@gmail.com,Headset Gamer,906.01,4,2026-01-21 00:00:00
+TXN-1069,Elena,elena83@gmail.com,Monitor 4K,389.19,2,2026-01-29 00:00:00
+  ,Luis123!!,NaN,Teclado Mecánico,0.00$,-1,00/00/0000
+TXN-1493,Luis,elena39@gmail.com,Monitor 4K,558.81,2,2026-01-05 00:00:00
+!!!,Elena123!!,---,Cable HDMI,GRATIS,None,ERROR
+TXN-1067,Ana,pedro40@gmail.com,Laptop Pro,462.05,2,2026-01-05 00:00:00
+!!!,Elena123!!,error_mail,Cable HDMI,"999,99€", ,Ayer
+TXN-1427,Juan,marta89@gmail.com,Headset Gamer,309.48,2,2026-01-11 00:00:00
+TXN-1440,Marta,marta22@gmail.com,Cable HDMI,954.45,2,2026-01-30 00:00:00
+TXN-1216,Juan,elena51@gmail.com,Monitor 4K,110.85,3,2026-01-27 00:00:00
+TXN-1210,Ana,marta95@gmail.com,Laptop Pro,778.47,5,2026-01-10 00:00:00
+TXN-1004,Pedro,carlos32@gmail.com,Headset Gamer,433.75,5,2026-01-05 00:00:00
+TXN-1015,Carlos,carlos13@gmail.com,Teclado Mecánico,920.34,1,2026-01-24 00:00:00
+  ,Luis123!!,---,Cable HDMI,N/A,N/A,MAÑANA
+!!!,Pedro123!!,error_mail,Teclado Mecánico,0.00$,999999,MAÑANA
+  ,Marta123!!,error_mail,Laptop Pro,"999,99€",None,2026-15-99
+TXN-1175,Pedro,juan32@gmail.com,Monitor 4K,851.33,2,2026-01-27 00:00:00
+TXN-1252,Carlos,maria23@gmail.com,Teclado Mecánico,302.93,3,2026-01-11 00:00:00
+  ,Carlos123!!,12345,Mouse Wireless,"999,99€",-1,00/00/0000
+TXN-1432,Maria,carlos95@gmail.com,Teclado Mecánico,159.11,4,2026-01-14 00:00:00
+TXN-1265,Carlos,luis26@gmail.com,Laptop Pro,543.76,4,2026-01-30 00:00:00
+ERR-#10,Ana123!!,error_mail,Teclado Mecánico,N/A,-1,2026-15-99
+TXN-1254,Luis,marta20@gmail.com,Cable HDMI,486.46,1,2026-01-21 00:00:00
+TXN-1309,Ana,marta32@gmail.com,Teclado Mecánico,339.62,2,2026-01-06 00:00:00
+  ,Carlos123!!,12345,Laptop Pro,"999,99€",999999,2026-15-99
+TXN-1209,Elena,marta61@gmail.com,Laptop Pro,970.02,4,2026-01-11 00:00:00
+TXN-1319,Luis,luis64@gmail.com,Teclado Mecánico,908.91,4,2026-01-02 00:00:00
+NULL,Juan123!!,usuario@sinpunto,Monitor 4K,N/A,999999,MAÑANA
+  ,Pedro123!!,12345,Laptop Pro,GRATIS,999999,MAÑANA
+  ,Pedro123!!,usuario@sinpunto,Headset Gamer,GRATIS,None,ERROR
+  ,Carlos123!!,error_mail,Teclado Mecánico,N/A,None,00/00/0000
+!!!,Juan123!!,NaN,Laptop Pro,"999,99€",999999,MAÑANA
+TXN-1303,Maria,luis22@gmail.com,Laptop Pro,863.34,2,2026-01-10 00:00:00
+  ,Carlos123!!,usuario@sinpunto,Headset Gamer,GRATIS,-1,MAÑANA
+TXN-1068,Juan,pedro91@gmail.com,Mouse Wireless,99.36,4,2026-01-09 00:00:00
+TXN-1049,Ana,maria50@gmail.com,Cable HDMI,640.91,2,2026-01-29 00:00:00
+!!!,Marta123!!,12345,Laptop Pro,0.00$,N/A,Ayer
+TXN-1286,Marta,carlos16@gmail.com,Headset Gamer,502.58,4,2026-01-19 00:00:00
+TXN-1425,Luis,elena80@gmail.com,Teclado Mecánico,451.95,4,2026-01-16 00:00:00
+NULL,Juan123!!,usuario@sinpunto,Teclado Mecánico,"999,99€",None,ERROR
+TXN-1035,Pedro,carlos12@gmail.com,Teclado Mecánico,187.06,3,2026-01-23 00:00:00
+  ,Luis123!!,error_mail,Headset Gamer,"999,99€",None,MAÑANA
+TXN-1188,Marta,luis49@gmail.com,Cable HDMI,649.34,2,2026-01-16 00:00:00
+NULL,Elena123!!,---,Headset Gamer,"999,99€",N/A,00/00/0000
+TXN-1469,Pedro,maria96@gmail.com,Laptop Pro,104.58,5,2026-01-10 00:00:00
+TXN-1371,Ana,carlos78@gmail.com,Teclado Mecánico,144.67,5,2026-01-07 00:00:00
+ERR-#12,Maria123!!,usuario@sinpunto,Teclado Mecánico,0.00$,None,MAÑANA
+NULL,Ana123!!,12345,Mouse Wireless,N/A,N/A,ERROR
+TXN-1289,Luis,ana54@gmail.com,Monitor 4K,680.56,1,2026-01-05 00:00:00
+ERR-#2,Maria123!!,12345,Monitor 4K,N/A,None,Ayer
+NULL,Elena123!!,12345,Cable HDMI,GRATIS, ,ERROR
+NULL,Marta123!!,error_mail,Laptop Pro,N/A,-1,MAÑANA
+ERR-#26,Ana123!!,---,Laptop Pro,"999,99€",None,MAÑANA
+TXN-1227,Juan,marta31@gmail.com,Monitor 4K,988.77,2,2026-01-05 00:00:00
+TXN-1022,Elena,pedro37@gmail.com,Laptop Pro,447.55,5,2026-01-27 00:00:00
+ERR-#81,Maria123!!,error_mail,Cable HDMI,GRATIS,N/A,Ayer
+TXN-1332,Marta,ana44@gmail.com,Headset Gamer,258.64,4,2026-01-13 00:00:00
+TXN-1479,Carlos,luis72@gmail.com,Laptop Pro,364.28,3,2026-01-14 00:00:00
+!!!,Ana123!!,NaN,Monitor 4K,GRATIS,None,MAÑANA
+ERR-#32,Elena123!!,usuario@sinpunto,Headset Gamer,GRATIS, ,Ayer
+TXN-1021,Ana,marta48@gmail.com,Monitor 4K,889.3,4,2026-01-23 00:00:00
+  ,Luis123!!,usuario@sinpunto,Teclado Mecánico,0.00$,-1,2026-15-99
+NULL,Juan123!!,---,Monitor 4K,"999,99€",N/A,Ayer
+TXN-1404,Juan,juan59@gmail.com,Teclado Mecánico,419.98,3,2026-01-04 00:00:00
+TXN-1096,Marta,juan31@gmail.com,Mouse Wireless,890.8,5,2026-01-11 00:00:00
+ERR-#5,Elena123!!,NaN,Monitor 4K,"999,99€", ,2026-15-99
+ERR-#72,Juan123!!,---,Cable HDMI,N/A,999999,2026-15-99
+TXN-1443,Luis,ana86@gmail.com,Mouse Wireless,412.13,3,2026-01-26 00:00:00
+NULL,Juan123!!,error_mail,Teclado Mecánico,GRATIS,None,2026-15-99
+TXN-1253,Elena,marta53@gmail.com,Teclado Mecánico,988.64,2,2026-01-16 00:00:00
+ERR-#72,Maria123!!,---,Mouse Wireless,GRATIS,-1,Ayer
+!!!,Marta123!!,12345,Mouse Wireless,GRATIS,999999,Ayer
+!!!,Luis123!!,12345,Headset Gamer,N/A,None,Ayer
+TXN-1232,Marta,pedro76@gmail.com,Mouse Wireless,295.19,1,2026-01-31 00:00:00
+!!!,Luis123!!,12345,Monitor 4K,"999,99€",-1,Ayer
+!!!,Luis123!!,12345,Cable HDMI,"999,99€",-1,00/00/0000
+TXN-1248,Ana,maria85@gmail.com,Laptop Pro,381.12,4,2026-01-20 00:00:00
+TXN-1114,Pedro,juan30@gmail.com,Monitor 4K,900.9,1,2026-01-07 00:00:00
+NULL,Ana123!!,---,Monitor 4K,"999,99€",N/A,ERROR
+TXN-1157,Luis,maria49@gmail.com,Mouse Wireless,624.51,5,2026-01-17 00:00:00
+TXN-1089,Elena,ana37@gmail.com,Laptop Pro,533.41,5,2026-01-14 00:00:00
+TXN-1294,Ana,pedro14@gmail.com,Cable HDMI,310.83,4,2026-01-01 00:00:00
+ERR-#29,Luis123!!,---,Laptop Pro,GRATIS,N/A,MAÑANA
+TXN-1147,Pedro,maria26@gmail.com,Teclado Mecánico,407.11,3,2026-01-03 00:00:00
+TXN-1080,Juan,carlos68@gmail.com,Laptop Pro,757.32,5,2026-01-23 00:00:00
+NULL,Carlos123!!,error_mail,Mouse Wireless,N/A,-1,00/00/0000
+!!!,Pedro123!!,NaN,Monitor 4K,BBDD_ERR,-1,2026-15-99
+NULL,Elena123!!,---,Cable HDMI,N/A,None,2026-15-99
+  ,Carlos123!!,12345,Teclado Mecánico,BBDD_ERR,N/A,Ayer
+NULL,Maria123!!,12345,Cable HDMI,BBDD_ERR,None,ERROR
+  ,Luis123!!,error_mail,Laptop Pro,GRATIS,None,2026-15-99
+TXN-1449,Elena,ana80@gmail.com,Mouse Wireless,855.32,2,2026-01-16 00:00:00
+ERR-#50,Marta123!!,usuario@sinpunto,Cable HDMI,GRATIS, ,2026-15-99
+TXN-1053,Ana,luis21@gmail.com,Teclado Mecánico,774.88,1,2026-01-31 00:00:00
+!!!,Ana123!!,NaN,Teclado Mecánico,GRATIS,N/A,00/00/0000
+NULL,Ana123!!,usuario@sinpunto,Teclado Mecánico,GRATIS,999999,Ayer
+!!!,Juan123!!,usuario@sinpunto,Monitor 4K,0.00$,-1,ERROR
+ERR-#63,Maria123!!,error_mail,Cable HDMI,GRATIS,-1,2026-15-99
+TXN-1413,Carlos,luis17@gmail.com,Cable HDMI,95.84,4,2026-01-22 00:00:00
+  ,Juan123!!,12345,Cable HDMI,GRATIS,999999,Ayer
+!!!,Maria123!!,error_mail,Mouse Wireless,BBDD_ERR,None,ERROR
+TXN-1190,Ana,carlos31@gmail.com,Headset Gamer,888.35,5,2026-01-11 00:00:00
+TXN-1072,Carlos,juan32@gmail.com,Teclado Mecánico,127.28,2,2026-01-22 00:00:00
+ERR-#42,Marta123!!,---,Mouse Wireless,GRATIS,None,2026-15-99
+TXN-1344,Ana,ana71@gmail.com,Mouse Wireless,811.03,4,2026-01-20 00:00:00
+  ,Elena123!!,---,Laptop Pro,0.00$,N/A,ERROR
+TXN-1406,Juan,juan37@gmail.com,Teclado Mecánico,785.74,3,2026-01-27 00:00:00
+NULL,Pedro123!!,error_mail,Headset Gamer,BBDD_ERR,-1,Ayer
+TXN-1349,Elena,maria17@gmail.com,Teclado Mecánico,253.85,5,2026-01-13 00:00:00
+TXN-1141,Marta,maria63@gmail.com,Headset Gamer,194.57,4,2026-01-06 00:00:00
+TXN-1111,Elena,carlos56@gmail.com,Teclado Mecánico,818.4,4,2026-01-19 00:00:00
+TXN-1220,Carlos,elena25@gmail.com,Teclado Mecánico,176.58,2,2026-01-11 00:00:00
+  ,Ana123!!,error_mail,Monitor 4K,0.00$,999999,2026-15-99
+  ,Ana123!!,error_mail,Teclado Mecánico,0.00$, ,2026-15-99
+  ,Carlos123!!,---,Headset Gamer,0.00$, ,Ayer
+TXN-1274,Ana,ana75@gmail.com,Headset Gamer,665.37,1,2026-01-28 00:00:00
+  ,Marta123!!,error_mail,Headset Gamer,N/A, ,00/00/0000
+ERR-#64,Elena123!!,---,Laptop Pro,N/A,None,2026-15-99
+TXN-1010,Luis,carlos33@gmail.com,Cable HDMI,152.06,1,2026-01-21 00:00:00
+ERR-#21,Ana123!!,NaN,Teclado Mecánico,0.00$,N/A,MAÑANA
+ERR-#10,Marta123!!,error_mail,Teclado Mecánico,"999,99€", ,2026-15-99
+TXN-1301,Maria,elena67@gmail.com,Teclado Mecánico,872.31,2,2026-01-21 00:00:00
+  ,Ana123!!,---,Teclado Mecánico,0.00$,N/A,2026-15-99
+NULL,Ana123!!,---,Teclado Mecánico,0.00$,999999,00/00/0000
+NULL,Elena123!!,usuario@sinpunto,Teclado Mecánico,GRATIS,-1,MAÑANA
+TXN-1127,Pedro,luis60@gmail.com,Monitor 4K,705.7,4,2026-01-26 00:00:00
+TXN-1184,Elena,juan59@gmail.com,Monitor 4K,505.72,2,2026-01-05 00:00:00
+TXN-1211,Maria,luis50@gmail.com,Teclado Mecánico,248.51,4,2026-01-25 00:00:00
+TXN-1073,Carlos,juan27@gmail.com,Laptop Pro,882.67,1,2026-01-20 00:00:00
+  ,Juan123!!,12345,Cable HDMI,BBDD_ERR,-1,ERROR
+!!!,Maria123!!,error_mail,Teclado Mecánico,N/A,999999,ERROR
+TXN-1101,Carlos,luis34@gmail.com,Laptop Pro,513.8,2,2026-01-13 00:00:00
+ERR-#6,Ana123!!,error_mail,Cable HDMI,N/A,N/A,Ayer
+TXN-1328,Juan,juan90@gmail.com,Laptop Pro,591.39,2,2026-01-30 00:00:00
+TXN-1153,Luis,carlos12@gmail.com,Teclado Mecánico,849.31,3,2026-01-27 00:00:00
+TXN-1120,Maria,luis86@gmail.com,Teclado Mecánico,223.8,1,2026-01-01 00:00:00
+TXN-1373,Elena,marta96@gmail.com,Monitor 4K,557.87,5,2026-01-26 00:00:00
+TXN-1285,Juan,juan97@gmail.com,Headset Gamer,979.48,1,2026-01-23 00:00:00
+TXN-1128,Carlos,luis66@gmail.com,Headset Gamer,159.12,2,2026-01-19 00:00:00
+ERR-#9,Maria123!!,---,Mouse Wireless,0.00$,999999,ERROR
+TXN-1499,Ana,pedro27@gmail.com,Headset Gamer,509.79,2,2026-01-03 00:00:00
+TXN-1180,Maria,pedro59@gmail.com,Cable HDMI,697.03,3,2026-01-30 00:00:00
+TXN-1091,Pedro,maria61@gmail.com,Laptop Pro,493.19,3,2026-01-10 00:00:00
+TXN-1405,Luis,elena18@gmail.com,Laptop Pro,332.44,3,2026-01-02 00:00:00
+NULL,Marta123!!,NaN,Laptop Pro,GRATIS,999999,Ayer
+TXN-1040,Juan,maria26@gmail.com,Mouse Wireless,976.83,5,2026-01-30 00:00:00
+NULL,Juan123!!,12345,Mouse Wireless,0.00$,999999,00/00/0000
+!!!,Juan123!!,---,Teclado Mecánico,N/A,-1,00/00/0000
+TXN-1419,Maria,luis34@gmail.com,Headset Gamer,400.12,5,2026-01-22 00:00:00
+!!!,Juan123!!,---,Headset Gamer,GRATIS,None,Ayer
+NULL,Elena123!!,NaN,Teclado Mecánico,GRATIS,999999,Ayer
+ERR-#33,Pedro123!!,usuario@sinpunto,Laptop Pro,GRATIS, ,2026-15-99
+TXN-1012,Carlos,elena91@gmail.com,Mouse Wireless,566.07,4,2026-01-28 00:00:00
+NULL,Elena123!!,---,Teclado Mecánico,N/A,999999,00/00/0000
+ERR-#94,Pedro123!!,error_mail,Laptop Pro,N/A, ,2026-15-99
+TXN-1451,Juan,carlos61@gmail.com,Headset Gamer,320.09,1,2026-01-22 00:00:00
+!!!,Carlos123!!,NaN,Monitor 4K,N/A,N/A,ERROR
+TXN-1375,Ana,marta48@gmail.com,Laptop Pro,360.25,2,2026-01-23 00:00:00
+TXN-1191,Luis,carlos59@gmail.com,Laptop Pro,521.72,1,2026-01-01 00:00:00
+  ,Carlos123!!,error_mail,Mouse Wireless,"999,99€", ,00/00/0000
+TXN-1116,Marta,ana99@gmail.com,Cable HDMI,668.3,4,2026-01-27 00:00:00
+TXN-1290,Juan,carlos31@gmail.com,Cable HDMI,769.42,3,2026-01-11 00:00:00
+  ,Pedro123!!,error_mail,Cable HDMI,GRATIS,-1,00/00/0000
+ERR-#52,Luis123!!,12345,Monitor 4K,0.00$,-1,00/00/0000
+TXN-1347,Maria,marta37@gmail.com,Cable HDMI,353.55,5,2026-01-13 00:00:00
+TXN-1100,Carlos,luis79@gmail.com,Cable HDMI,865.07,4,2026-01-12 00:00:00
+ERR-#82,Maria123!!,NaN,Headset Gamer,GRATIS,999999,Ayer
+TXN-1495,Ana,juan14@gmail.com,Cable HDMI,919.84,1,2026-01-28 00:00:00
+TXN-1266,Carlos,carlos62@gmail.com,Monitor 4K,881.17,3,2026-01-11 00:00:00
+  ,Marta123!!,usuario@sinpunto,Teclado Mecánico,GRATIS,N/A,00/00/0000
+  ,Ana123!!,error_mail,Mouse Wireless,0.00$, ,00/00/0000
+!!!,Marta123!!,12345,Cable HDMI,0.00$, ,Ayer
+TXN-1434,Luis,pedro20@gmail.com,Headset Gamer,862.4,2,2026-01-03 00:00:00
+!!!,Juan123!!,error_mail,Headset Gamer,0.00$,None,00/00/0000
+  ,Maria123!!,usuario@sinpunto,Teclado Mecánico,BBDD_ERR,999999,00/00/0000
+TXN-1014,Ana,carlos43@gmail.com,Laptop Pro,874.11,1,2026-01-25 00:00:00
+TXN-1051,Carlos,pedro92@gmail.com,Mouse Wireless,829.29,1,2026-01-30 00:00:00
+  ,Maria123!!,12345,Monitor 4K,GRATIS,None,2026-15-99
+NULL,Elena123!!,---,Mouse Wireless,"999,99€", ,00/00/0000
+TXN-1324,Maria,pedro87@gmail.com,Headset Gamer,96.73,3,2026-01-30 00:00:00
+,,,,,,
+TXN-1074,Juan,pedro64@gmail.com,Cable HDMI,567.94,1,2026-01-07 00:00:00
+TXN-1487,Juan,pedro16@gmail.com,Teclado Mecánico,267.08,3,2026-01-25 00:00:00
+TXN-1426,Elena,elena71@gmail.com,Monitor 4K,327.48,1,2026-01-31 00:00:00
+ERR-#90,Juan123!!,usuario@sinpunto,Laptop Pro,"999,99€",999999,00/00/0000
+TXN-1226,Carlos,carlos25@gmail.com,Teclado Mecánico,292.32,5,2026-01-25 00:00:00
+TXN-1424,Ana,luis16@gmail.com,Teclado Mecánico,997.04,5,2026-01-21 00:00:00
+TXN-1058,Elena,elena68@gmail.com,Headset Gamer,117.77,5,2026-01-13 00:00:00
+TXN-1345,Juan,maria49@gmail.com,Mouse Wireless,756.78,5,2026-01-25 00:00:00
+TXN-1478,Marta,ana18@gmail.com,Monitor 4K,111.92,2,2026-01-27 00:00:00
+TXN-1343,Maria,ana90@gmail.com,Teclado Mecánico,380.82,1,2026-01-25 00:00:00
+!!!,Marta123!!,NaN,Laptop Pro,N/A,None,00/00/0000
+TXN-1038,Marta,luis38@gmail.com,Cable HDMI,537.66,1,2026-01-04 00:00:00
+TXN-1002,Maria,ana59@gmail.com,Monitor 4K,759.81,3,2026-01-28 00:00:00
+ERR-#64,Carlos123!!,NaN,Monitor 4K,0.00$,None,2026-15-99
+TXN-1146,Marta,juan69@gmail.com,Laptop Pro,728.97,4,2026-01-24 00:00:00
+TXN-1472,Maria,ana76@gmail.com,Laptop Pro,926.29,2,2026-01-16 00:00:00
+NULL,Maria123!!,usuario@sinpunto,Headset Gamer,"999,99€",999999,2026-15-99
+!!!,Carlos123!!,---,Mouse Wireless,N/A,N/A,00/00/0000
+TXN-1102,Elena,elena40@gmail.com,Mouse Wireless,310.54,3,2026-01-23 00:00:00
+TXN-1353,Marta,carlos96@gmail.com,Headset Gamer,948.2,5,2026-01-03 00:00:00
+,,,,,,
+TXN-1460,Elena,luis37@gmail.com,Monitor 4K,298.54,5,2026-01-23 00:00:00
+TXN-1033,Luis,elena12@gmail.com,Mouse Wireless,532.89,5,2026-01-09 00:00:00
+NULL,Marta123!!,NaN,Mouse Wireless,N/A,N/A,00/00/0000
+TXN-1233,Ana,marta68@gmail.com,Headset Gamer,353.96,3,2026-01-03 00:00:00
+NULL,Juan123!!,12345,Headset Gamer,BBDD_ERR, ,MAÑANA
+,,,,,,
+TXN-1122,Carlos,marta77@gmail.com,Headset Gamer,53.09,3,2026-01-05 00:00:00
+NULL,Luis123!!,NaN,Mouse Wireless,0.00$,N/A,MAÑANA
+!!!,Luis123!!,error_mail,Teclado Mecánico,N/A,N/A,00/00/0000
+TXN-1279,Marta,luis78@gmail.com,Headset Gamer,386.47,1,2026-01-07 00:00:00
+TXN-1206,Maria,carlos11@gmail.com,Laptop Pro,964.16,2,2026-01-14 00:00:00
+ERR-#35,Maria123!!,---,Laptop Pro,GRATIS, ,2026-15-99
+ERR-#28,Carlos123!!,usuario@sinpunto,Teclado Mecánico,0.00$,-1,2026-15-99
+TXN-1017,Ana,maria89@gmail.com,Mouse Wireless,416.64,4,2026-01-09 00:00:00
+!!!,Pedro123!!,12345,Headset Gamer,GRATIS,999999,00/00/0000
+TXN-1077,Marta,carlos59@gmail.com,Laptop Pro,656.62,5,2026-01-18 00:00:00
+ERR-#20,Juan123!!,error_mail,Mouse Wireless,GRATIS, ,2026-15-99
+TXN-1087,Luis,luis68@gmail.com,Cable HDMI,518.54,1,2026-01-19 00:00:00
+TXN-1008,Juan,juan11@gmail.com,Laptop Pro,244.34,2,2026-01-25 00:00:00
+TXN-1374,Elena,pedro90@gmail.com,Laptop Pro,339.32,5,2026-01-04 00:00:00
+TXN-1189,Juan,carlos51@gmail.com,Laptop Pro,621.94,3,2026-01-06 00:00:00
+TXN-1360,Ana,elena47@gmail.com,Monitor 4K,886.06,1,2026-01-23 00:00:00
+ERR-#38,Juan123!!,usuario@sinpunto,Headset Gamer,GRATIS,999999,ERROR
+ERR-#6,Marta123!!,error_mail,Laptop Pro,GRATIS,999999,2026-15-99
+TXN-1299,Carlos,maria45@gmail.com,Teclado Mecánico,966.9,4,2026-01-02 00:00:00
+TXN-1456,Pedro,elena28@gmail.com,Mouse Wireless,741.13,2,2026-01-14 00:00:00
