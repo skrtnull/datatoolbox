@@ -3,8 +3,8 @@ import pandas as pd
 
 # 1. EXTRACCIÓN (Constructor)
 print("🚀 Iniciando Pipeline de Pruebas...")
-old_db = DataToolBox("bandeja/caos_total.csv")
-db = DataToolBox("bandeja/caos_total.csv")
+old_db = DataToolBox("caos_total.csv")
+db = DataToolBox("caos_total.csv")
 
 ##----------------LIMPIEZA-----------------
 
@@ -55,4 +55,5 @@ print("\n𝕏 Pipeline finalizado con éxito.")
 #---------------EXPORTACION------------------
 
 #Exportación final
+
 db.Export("dataset_limpio")
