@@ -15,47 +15,55 @@ class DataToolBox:
         self.df = pd.DataFrame()
         self.ruta = "" 
         self.engine = None
+
+        if file is not None:
         
-        if file and file != "":
-    
-            try:
-
-                # Extraemos la extensión (ej: '.parquet', '.csv')
-                _, extension = os.path.splitext(file)
-                extension = extension.lower()
-
-                match extension:
-
-                    case  '.csv':
-                        self.df = pd.read_csv(file)
-                        self.ruta = file  # Solo se actualiza si la carga es real
-                        print(f"✅ Archivo '{file}' cargado con éxito.")
-
-                    case   '.parquet':
-                        self.df = pd.read_parquet(file)
-                        self.ruta = file  # Solo se actualiza si la carga es real
-                        print(f"✅ Archivo '{file}' cargado con éxito.")
-
-                    case   '.json':
-                        self.df = pd.read_json(file)
-                        self.ruta = file  # Solo se actualiza si la carga es real
-                        print(f"✅ Archivo '{file}' cargado con éxito.")
-
-                    case   '.xlsx':
-                        self.df = pd.read_excel(file)
-                        self.ruta = file  # Solo se actualiza si la carga es real
-                        print(f"✅ Archivo '{file}' cargado con éxito.")
-
-                    case   '.xls':
-                        self.df = pd.read_excel(file)
-                        self.ruta = file  # Solo se actualiza si la carga es real
-                        print(f"✅ Archivo '{file}' cargado con éxito.")
-
-                    case _:
-                        raise ValueError(f"Formato {extension} no soportado")
+            # Si nos pasaron un DataFrame directamente
+            if isinstance(file, pd.DataFrame):
+                self.df = file
+                print("✅ Objeto cargado desde DataFrame.")
                 
-            except Exception as e:
-                print(f"⚠️ No se pudo cargar '{file}': {e}")
+            # Si nos pasaron un string (ruta de archivo)
+            elif isinstance(file, str) and file != "":
+    
+                try:
+
+                    # Extraemos la extensión (ej: '.parquet', '.csv')
+                    _, extension = os.path.splitext(file)
+                    extension = extension.lower()
+
+                    match extension:
+
+                        case  '.csv':
+                            self.df = pd.read_csv(file)
+                            self.ruta = file  # Solo se actualiza si la carga es real
+                            print(f"✅ Archivo '{file}' cargado con éxito.")
+
+                        case   '.parquet':
+                            self.df = pd.read_parquet(file)
+                            self.ruta = file  # Solo se actualiza si la carga es real
+                            print(f"✅ Archivo '{file}' cargado con éxito.")
+
+                        case   '.json':
+                            self.df = pd.read_json(file)
+                            self.ruta = file  # Solo se actualiza si la carga es real
+                            print(f"✅ Archivo '{file}' cargado con éxito.")
+
+                        case   '.xlsx':
+                            self.df = pd.read_excel(file)
+                            self.ruta = file  # Solo se actualiza si la carga es real
+                            print(f"✅ Archivo '{file}' cargado con éxito.")
+
+                        case   '.xls':
+                            self.df = pd.read_excel(file)
+                            self.ruta = file  # Solo se actualiza si la carga es real
+                            print(f"✅ Archivo '{file}' cargado con éxito.")
+
+                        case _:
+                            raise ValueError(f"Formato {extension} no soportado")
+                    
+                except Exception as e:
+                    print(f"⚠️ No se pudo cargar '{file}': {e}")
     
     #enlista los archivos que hayan en la ruta escogida
     def List_files(self, ruta_carpeta:str ="./", extension:str =".csv"):
@@ -288,7 +296,17 @@ class DataToolBox:
         #print(self.df.describe())
 
     #Limpiar texto
-    def CleanText(self, columna:str):
+    def CleanText(self, columna:str, drop:bool= True):
+
+        if drop:
+
+            # 2. 🔥 NUEVO: Eliminar símbolos (solo deja letras y espacios)
+            self.df[columna] = self.df[columna].str.replace(r'[^a-zA-Z\s]', '', regex=True)
+        
+        else:
+
+            # 2. 🔥 NUEVO: Eliminar símbolos (solo deja letras, números y espacios)
+            self.df[columna] = self.df[columna].str.replace(r'[^a-zA-Z0-9\s]', '', regex=True)
 
         # A. Limpiar espacios vacíos en los nombres y poner la primera en Mayúscula
         # Quita espacios, pone todo en minúsculas y elimina acentos
@@ -303,7 +321,7 @@ class DataToolBox:
         return self.df
 
     #Limpiar numeros
-    def CleanNumb(self, columna:str ,sib:str=None):
+    def CleanNumb(self, columna:str ,sib:str=None, drop:bool= True):
 
         #limpiamos los numeros de simbolos
         if sib is not None:
@@ -314,8 +332,11 @@ class DataToolBox:
         self.df[columna] = self.df[columna].astype(str).str.extract(r'(\d+)').astype(float)
         #transformamor caracteres en numeros
         self.df[columna] = pd.to_numeric(self.df[columna], errors='coerce')
-        #eliminamos nulos
-        self.df[columna] = self.df[columna].fillna(0)
+
+        if drop:
+            #eliminamos nulos
+            self.df[columna] = self.df[columna].fillna(0)
+        
         #convertir en entero
         self.df[columna] = self.df[columna].round(0).astype(int)
 
@@ -340,17 +361,28 @@ class DataToolBox:
         return self.df
 
     #Acomodar fechas
-    def CleanDate(self, fecha:str):
-
+    def CleanDate(self, fecha:str, drop:str= True):
+        
         ##Eliminamos espacios
         self.df[fecha] = self.df[fecha].astype(str).str.strip() # Quita espacios
         # Convierte a Fecha
         self.df[fecha] = pd.to_datetime(self.df[fecha], errors='coerce')
-        # ahora donde haya NaT El subset asegura que SOLO eliminara solo esas fechas inexistentes
-        self.df = self.df .dropna(subset=[fecha])
+
+        if drop:
+
+            # ahora donde haya NaT El subset asegura que SOLO eliminara solo esas fechas inexistentes
+            self.df = self.df .dropna(subset=[fecha])
+
         print("✅ Fechas acomodadas")
         
         return self.df
+
+    #Limitar o eliminar
+    def CleanDecimal(self, columna, decimales:int = 2):
+        # En kit.py, dentro de un nuevo método o en CalculadoraPlus
+        self.df[columna] = pd.to_numeric(self.df[columna], errors='coerce').round(decimales)
+            
+        print(f"🎯 Columna '{columna}' redondeada a {decimales} decimales.")
 
     # Limpieza estructural: Eliminar filas inservibles o con todo nulos
     def CleanStruct(self):
@@ -367,7 +399,7 @@ class DataToolBox:
     def ExtractInfo(self, columna:str, patron:str=r"[\w\.-]+@[\w\.-]+"): 
 
         # Por defecto busca emails, pero puedes pasarle cualquier patron
-        self.df['info_extraida'] = self.df[columna].str.findall(patron)
+        self.df[columna] = self.df[columna].str.findall(patron).str[0]
         print("📧 Información extraída mediante patrones complejos.")
           
     #cambia el nombre de columnas de acuerdo al orden que tengan
@@ -459,33 +491,27 @@ class DataToolBox:
     #Operaciones y formulas de calculo
     def Calculadora(self, config:Optional[str]):
 
-        """
-        config es un diccionario como: 
-        {'op': '+', 'res': 'Total', 'col1': 'Precio', 'col2': 'IVA'}
-
-        res es la nueva columna a crear para ingresar lo calculado
-        """
         op = config.get('op')
         res = config.get('res')
         c1 = config.get('col1')
         c2 = None
         c2 = config.get('col2')
+        pase = config.get('pass', False)
 
-        ##Molde de llamado para calcular
+        if pase is not True:
+            
+            # 1. Verificamos que las columnas de origen existan en el DataFrame
+            if c1 not in self.df.columns or c2 not in self.df.columns:
+                print(f"⚠️ ERROR: No se puede calcular '{res}'.")
+                print(f"Faltan columnas: {[c for c in [c1, c2] if c not in self.df.columns]}")
+                return # Salimos de la función sin romper el programa
 
-        """
-        metrica = {
-            "op":""
-            "res":""
-            "col1":""
-            "col2":""
-        }
-        """
-        # 1. Verificamos que las columnas de origen existan en el DataFrame
-        if c1 not in self.df.columns or c2 not in self.df.columns:
-            print(f"⚠️ ERROR: No se puede calcular '{res}'.")
-            print(f"Faltan columnas: {[c for c in [c1, c2] if c not in self.df.columns]}")
-            return # Salimos de la función sin romper el programa
+        else:
+
+            if c1 not in self.df.columns:
+                print(f"⚠️ ERROR: No se puede calcular '{res}'.")
+                print(f"Faltan columnas: {[c for c in [c1, c2] if c not in self.df.columns]}")
+                return # Salimos de la función sin romper el programa
 
         # 1. Preparamos los operandos: ¿Son columnas o números?
         # Si c1 está en las columnas, usamos la serie; si no, usamos el valor tal cual
@@ -542,7 +568,7 @@ class DataToolBox:
                 except Exception as e:
                     print(f"❌ Error inesperado al dividir: {e}")
                     resultado_calculado = None
-                
+                                
             case _:
                 print("❌ Operación no válida: no se especifico operacion")
 
@@ -550,53 +576,38 @@ class DataToolBox:
 
             self.df[res] = resultado_calculado
             print(f"✅ Columna '{res}' creada en el DataFrame.")
-            self.Reporte(f"OPERACION REALIZADA: {val1} {op} {val1}={resultado_calculado} || COLUMNA CREADA: {res}")
+            self.Reporte(f"OPERACION REALIZADA: {op} || COLUMNA CREADA: {res}")
             return resultado_calculado # <--- Retorna el resultado para operaciones encadenadas
 
         else:
             print(f"✅ Operacion realizada.")
-            self.Reporte(f"OPERACION  REALIZADA: {val1} {op} {val1}={resultado_calculado}")
+            self.Reporte(f"OPERACION  REALIZADA: {op}")
             return resultado_calculado # <--- Retorna el resultado para operaciones encadenadas
 
     #calculo por formulas
     def CalculadoraPlus(self, **kwargs:Optional[str]):
-        """
-        Engloba cálculos predefinidos de negocio.
-        Uso: kit.CalculateAdvanced("Subtotal", metricas")
-
-        Definimos la configuración para el kward de la siguiente manera:
-
-        configuracion = {
-            'tipo': 'aritmetica',      # Define qué bloque del match-case entrará
-            'col1': 'Precio',          # Primera columna
-            'col2': 'Cantidad',        # Segunda columna
-            'op'  : 'multiplicar',     # La lógica que aplicará
-            'res' : 'Total'            # Cómo se llamará la nueva columna
-        }
-        """
-
-        tipo = kwargs.get('tipo')
 
         try:
             # --- Recorremos los casos ---
+            tipo = kwargs.get('tipo')
                         
             match tipo:
 
                 case "costo_unitario":
-                    #Subtotal: cantidad + precio 
+                    #Subtotal: cantidad vendida + cantidad total 
 
                     self.Calculadora({
-                    "op" : "+",
+                    "op" : "/",
                     "res" : "Costo_unitario",
                     "col1" : kwargs.get('col1'),
                     "col2" : kwargs.get('col2')                
                     })
 
                 case "subtotal":
-                    #Subtotal: cantidad + precio 
+                    #Subtotal: cantidad * precio 
 
                     self.Calculadora({
-                    "op" : "+",
+                    "op" : "*",
                     "res" : "Subtotal",
                     "col1" : kwargs.get('col1'),
                     "col2" : kwargs.get('col2')                
@@ -609,7 +620,8 @@ class DataToolBox:
                     "op" : "*",
                     "res" : "IVA",
                     "col1" : kwargs.get('col1'),
-                    "col2" : kwargs.get('col2', 0.16)                
+                    "col2" : kwargs.get('col2', 0.16),             
+                    "pass" : True                
                     })
                     
                 case "descuento":
@@ -746,8 +758,8 @@ class DataToolBox:
 
     #operaciones con fechas
     def Time(self, config:Optional[str]):
-        #codigo aqui
 
+        #asignamos las variables
         op = config.get('op')
         dt1 = self.df[config.get('dt1')]
         dt2 = None
@@ -858,133 +870,13 @@ class DataToolBox:
 
             self.df[res] = date
             print(f"✅ Columna '{res}' creada en el DataFrame.")
-            self.Reporte(f"OPERACION REALIZADA: {dt1} {op} {dt2}={date} || COLUMNA CREADA: {res}")
+            self.Reporte(f"OPERACION REALIZADA: {op} || COLUMNA CREADA: {res}")
             return date # <--- Retorna el resultado para operaciones encadenadas
 
         else:
             print(f"✅ Operacion realizada.")
-            self.Reporte(f"OPERACION  REALIZADA: {dt1} {op} {dt2}={date}")
+            self.Reporte(f"OPERACION  REALIZADA: {op}")
             return date # <--- Retorna el resultado para operaciones encadenadas
 
     #operaciones con fecha
     def TimePlus(self, **kwargs:Optional[str]):
-
-        try:
-            # --- Recorremos los casos ---
-            
-            tipo = kwargs.get('tipo')
-
-            match tipo:
-                
-                case "lead_time":
-                    #Formula: (Fecha_Entrega - Fecha_Pedido)
-
-                    #realizamos operacion
-                    self.Time({
-                        'op' : '-',
-                        'res' : 'Lead_Time',
-                        'dt1' : kwargs.get('date1'),
-                        'dt2' : kwargs.get('date2')
-                    })
-
-                case "inventario":
-                    #Formula: (Fecha_Hoy - Fecha_archivos)
-
-                    #realizamos operacion
-                    self.Time({
-                        'op' : '-',
-                        'res' : 'Inventario',
-                        'dt1' : kwargs.get('date1'),
-                        'dt2' : kwargs.get('date2')
-                    })
-
-                case "proyecciones":
-                    #Formula: (Fecha_Compra + días)
-
-                    #realizamos operacion
-                    self.Time({
-                        'op' : '+',
-                        'res' : 'Proyecciones',
-                        'dt1' : kwargs.get('date1'),
-                        'dt2' : kwargs.get('date2')
-                    })
-
-                case "estacionalidad":
-                    #Formula: extraccion (.dt.month, .dt.year, .dt.day_name())
-
-                    #realizamos operacion
-                    #------------------por year ----------------------
-
-                    print("\n--- 📊 RESUMEN DE ESTACIONALIDAD ---")
-
-                    year = self.Time({
-                        'op' : 'Y',
-                        'dt1' : kwargs.get('date1')
-                    })
-
-                    # 2. Resumen compacto (sin crear columnas nuevas en el df principal)
-                    conteo_year = self.df[kwargs.get('date1')].dt.year.value_counts().sort_index()
-                    
-                    # 3. Solo imprimimos el resumen
-                    print("--- 📊 ACTIVIDAD ANUAL ---")
-                    for year, total in conteo_year.items():
-                        print(f"Year {int(year)}: {total} ventas")
-
-                    #----------------- por mes --------------------
-
-                    meses = self.Time({
-                        'op' : 'M',
-                        'dt1' : kwargs.get('date1')
-                    })
-
-                    # 2. Resumen compacto (sin crear columnas nuevas en el df principal)
-                    conteo_mes = self.df[kwargs.get('date1')].dt.month.value_counts().sort_index()
-                    
-                    # 3. Solo imprimimos el resumen
-                    print("\n--- 📊 ACTIVIDAD MENSUAL ---")
-                    for mes, total in conteo_mes.items():
-                        print(f"Mes {mes}: {total} ventas")
-
-                    #----------------- por semana -------------------------------
-
-                    dias = self.Time({
-                        'op' : 'D',
-                        'dt1' : kwargs.get('date1')
-                    })
-
-                    # Contadores fiables
-                    c_semana = sum(1 for d in dias if d < 5)
-                    c_finde = sum(1 for d in dias if d >= 5)
-
-                    print("\n--- 📊 ACTIVIDAD SEMANAL ---")
-                    print (f"Ventas en dia de semana: {c_semana} \nVentas los fines de semana: {c_finde}\n")
-                    
-                    #print(dt1.day_name[1])
-
-                case "horarios":
-                    #Formula: Extracción de la hora (.dt.hour) y uso de condicionales  
-
-                    #Realizamos operacion
-                    horas = self.Time({
-                        'op' : 'H',
-                        'dt1' : kwargs.get('date1')
-                    })
-
-                    self.df['Turno'] = [
-                        "Mañana" if 6 <= h < 12 else 
-                        "Tarde" if 12 <= h < 18 else 
-                        "Noche" if 18 <= h < 24 else 
-                        "Madrugada" 
-                        for h in horas
-                    ]
-
-                case _:
-                    print("❌ Operación no válida: no se especifico operacion")
-
-            print(f"✅ Cálculo de {tipo} completado.")
-            self.Reporte(f"OPERACION REALIZADA: {tipo} || PROCESO EXITOSO")
-        
-        except Exception as e:
-            # --- CASO GENERAL: OTROS ERRORES (ej. letras en vez de números) ---
-            print(f"❌ ERROR INESPERADO: {e}")
-            self.Reporte(f"OPERACION REALIZADA: {tipo} || ERROR: {e}")
