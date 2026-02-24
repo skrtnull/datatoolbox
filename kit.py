@@ -6,6 +6,7 @@ import time
 import numpy as np
 from datetime import datetime
 from sqlalchemy import create_engine, MetaData, Table, Column, Integer, String
+from sqlalchemy.orm import declarative_base, sessionmaker
 
 class DataToolBox:
 
@@ -15,6 +16,9 @@ class DataToolBox:
         self.df = pd.DataFrame()
         self.ruta = "" 
         self.engine = None
+
+        #configuraciones de automatisacion
+        self.config = None
 
         if file is not None:
         
@@ -88,12 +92,43 @@ class DataToolBox:
 
     #----------------------------SQL---------------------------------------
 
+    #configuraciones para autoarranque
+    def Configure(self):
+        
+        if self.config is None:
+            # Ejemplo de uso
+            sql = {"red":"false",
+                    "motor":"sqlite", 
+                    "usser":"", 
+                    "password":"", 
+                    "server":"", 
+                    "puerto":"", 
+                    "bd":"config.bd"}
+            
+            self.Conexion(**sql)
+
+        # 2. ASEGURAR TABLA (Si no, read_sql falla siempre)
+        # pd.read_sql NO crea tablas. Necesitas esto:
+        metadata = MetaData()
+        Table('configuracion', metadata,
+            Column('id', Integer, primary_key=True, autoincrement=True),
+            Column('Columna', String),
+            Column('Tipo', String),
+            Column('Digitos', Integer))
+        metadata.create_all(self.engine) 
+
+        # 3. Leer los datos
+        try:
+            self.config = pd.read_sql("SELECT * FROM configuracion", self.engine)
+        except:
+            self.config = pd.DataFrame()
+
     #conectamos con la base de datos
     def Conexion(self, **kwargs:Optional[str]):
 
-        if self.engine is not None:
-            print("⚡ Conexión ya establecida. Saltando configuración...")
-            return
+        # if self.engine is not None:
+        #     print("⚡ Conexión ya establecida. Saltando configuración...")
+        #     return
 
             # Ejemplo de uso
             # sql = {"red":"true o false",
@@ -181,7 +216,7 @@ class DataToolBox:
             print(f"❌ ERROR al exportar a SQL: {e}")
             self.Reporte(f"FALLO EXPORTACIÓN SQL: {e}")
 
-    #---------------------------Utilieria-------------------------------
+    #---------------------------Utilieria------------------------------- 
 
     #Ver lista
     def View(self, filas:int =10, portable:bool =False, list:Optional[list] =None):
@@ -225,16 +260,56 @@ class DataToolBox:
             print(f"❌ Error al renombrar: {e}")
 
     #refrescamos o asignamos una lista al dataframe
-    def Refresh(self, archivo:str):
+    def Refresh(self, file:str):
 
-        try:
+        if file is not None:
+        
+            # Si nos pasaron un DataFrame directamente
+            if isinstance(file, pd.DataFrame):
+                self.df = file
+                print("✅ Objeto cargado desde DataFrame.")
+                
+            # Si nos pasaron un string (ruta de archivo)
+            elif isinstance(file, str) and file != "":
+    
+                try:
 
-            print(f"📂 Cargando CSV: {archivo}.")
-            self.df = pd.read_csv(f"{archivo}")
+                    # Extraemos la extensión (ej: '.parquet', '.csv')
+                    _, extension = os.path.splitext(file)
+                    extension = extension.lower()
 
-        except Exception as e:
-            print(f"❌ Error al al cargar archivo: {e}")
-            return []
+                    match extension:
+
+                        case  '.csv':
+                            self.df = pd.read_csv(file)
+                            self.ruta = file  # Solo se actualiza si la carga es real
+                            print(f"✅ Archivo '{file}' cargado con éxito.")
+
+                        case   '.parquet':
+                            self.df = pd.read_parquet(file)
+                            self.ruta = file  # Solo se actualiza si la carga es real
+                            print(f"✅ Archivo '{file}' cargado con éxito.")
+
+                        case   '.json':
+                            self.df = pd.read_json(file)
+                            self.ruta = file  # Solo se actualiza si la carga es real
+                            print(f"✅ Archivo '{file}' cargado con éxito.")
+
+                        case   '.xlsx':
+                            self.df = pd.read_excel(file)
+                            self.ruta = file  # Solo se actualiza si la carga es real
+                            print(f"✅ Archivo '{file}' cargado con éxito.")
+
+                        case   '.xls':
+                            self.df = pd.read_excel(file)
+                            self.ruta = file  # Solo se actualiza si la carga es real
+                            print(f"✅ Archivo '{file}' cargado con éxito.")
+
+                        case _:
+                            raise ValueError(f"Formato {extension} no soportado")
+                    
+                except Exception as e:
+                    print(f"⚠️ No se pudo cargar '{file}': {e}")
     
     #exportar a los formatos disponibles
     def Export(self, name:str= "archivo", carpeta:str= "./", formato:str = "csv"):
@@ -295,128 +370,6 @@ class DataToolBox:
         #print("\nResumen matemático del Precio:")
         #print(self.df.describe())
 
-    #Limpiar texto
-    def CleanText(self, columna:str, drop:bool= True):
-
-        if drop:
-
-            # 2. 🔥 NUEVO: Eliminar símbolos (solo deja letras y espacios)
-            self.df[columna] = self.df[columna].str.replace(r'[^a-zA-Z\s]', '', regex=True)
-        
-        else:
-
-            # 2. 🔥 NUEVO: Eliminar símbolos (solo deja letras, números y espacios)
-            self.df[columna] = self.df[columna].str.replace(r'[^a-zA-Z0-9\s]', '', regex=True)
-
-        # A. Limpiar espacios vacíos en los nombres y poner la primera en Mayúscula
-        # Quita espacios, pone todo en minúsculas y elimina acentos
-        self.df[columna] = self.df[columna].astype(str).str.strip().str.lower().str.normalize('NFKD').str.encode('ascii', errors='ignore').str.decode('utf-8')
-        
-        # .str.strip() quita espacios, .str.capitalize() pone la primera en mayúscula
-        self.df[columna] = self.df[columna].str.strip().str.capitalize()
-
-        print(f"✅ Columna '{columna}' normalizada al estilo estándar.")
-        print("✅ Texto limpiado")
-
-        return self.df
-
-    #Limpiar numeros
-    def CleanNumb(self, columna:str ,sib:str=None, drop:bool= True):
-
-        #limpiamos los numeros de simbolos
-        if sib is not None:
-            if self.df[columna].dtype == 'object':
-                self.df[columna] = self.df[columna].str.replace(sib, '', regex=False)
-        #eliminamos cualquier presencia de letra
-        # Extrae solo los números (0-9) y los une.
-        self.df[columna] = self.df[columna].astype(str).str.extract(r'(\d+)').astype(float)
-        #transformamor caracteres en numeros
-        self.df[columna] = pd.to_numeric(self.df[columna], errors='coerce')
-
-        if drop:
-            #eliminamos nulos
-            self.df[columna] = self.df[columna].fillna(0)
-        
-        #convertir en entero
-        self.df[columna] = self.df[columna].round(0).astype(int)
-
-        print("✅ Numeros limpiados")
-
-        return self.df
-    
-    #limpiar datos mentirosos o con valores fuera de las metricas
-    def CleanFalse(self, columna:str):
-        
-        #normalizamos en caso que no se haya echo ya
-        self.df[columna] = pd.to_numeric(self.df[columna], errors='coerce')
-
-        #limpieza de lvl2
-        Q1 = self.df[columna].quantile(0.25)
-        Q3 = self.df[columna].quantile(0.75)
-        IQR = Q3 - Q1
-        # Solo deja los datos que están en el rango normal
-        self.df = self.df[~((self.df[columna] < (Q1 - 1.5 * IQR)) | (self.df[columna] > (Q3 + 1.5 * IQR)))]
-        print(f"💀 Outliers eliminados en {columna}. Los datos mentirosos han muerto.")
-
-        return self.df
-
-    #Acomodar fechas
-    def CleanDate(self, fecha:str, drop:str= True):
-        
-        ##Eliminamos espacios
-        self.df[fecha] = self.df[fecha].astype(str).str.strip() # Quita espacios
-        # Convierte a Fecha
-        self.df[fecha] = pd.to_datetime(self.df[fecha], errors='coerce')
-
-        if drop:
-
-            # ahora donde haya NaT El subset asegura que SOLO eliminara solo esas fechas inexistentes
-            self.df = self.df .dropna(subset=[fecha])
-
-        print("✅ Fechas acomodadas")
-        
-        return self.df
-
-    #Limitar o eliminar
-    def CleanDecimal(self, columna, decimales:int = 2):
-        # En kit.py, dentro de un nuevo método o en CalculadoraPlus
-        self.df[columna] = pd.to_numeric(self.df[columna], errors='coerce').round(decimales)
-            
-        print(f"🎯 Columna '{columna}' redondeada a {decimales} decimales.")
-
-    # Limpieza estructural: Eliminar filas inservibles o con todo nulos
-    def CleanStruct(self):
-
-        # 1. Eliminamos filas donde TODOS los valores sean nulos
-        antes = len(self.df)
-        self.df = self.df.dropna(how='all')
-        
-        # 2. Eliminamos filas que tengan nulos en columnas críticas (ej. Producto)
-        despues = len(self.df)
-        print(f"🧹 Estructura limpiada: Se eliminaron {antes - despues} filas vacías.")
-
-    #recuperar correo y numeros cuando la informacion en la columna sea ilegible
-    def ExtractInfo(self, columna:str, patron:str=r"[\w\.-]+@[\w\.-]+"): 
-
-        # Por defecto busca emails, pero puedes pasarle cualquier patron
-        self.df[columna] = self.df[columna].str.findall(patron).str[0]
-        print("📧 Información extraída mediante patrones complejos.")
-          
-    #cambia el nombre de columnas de acuerdo al orden que tengan
-    def StandarCol(self, nuevos_nombres:str):
-        """
-        Fuerza el nombre de las columnas 
-        sin importar cómo se llamen originalmente,
-        funciona en base al orden que se configure.
-        """
-        if (nuevos_nombres != None):
-            nuevos_nombres = {
-                self.df.columns[0]: 'ID',
-                self.df.columns[1]: 'Producto',
-                self.df.columns[2]: 'Precio'
-            }
-            self.Rename(nuevos_nombres)
-
     #Unir verticalmente o horizontalemnte (con lado='h') 2 filas
     def Merge(self, add: DataToolBox, lado="v"):
         
@@ -453,31 +406,48 @@ class DataToolBox:
         if isinstance(rutas, str):
             rutas = [rutas]
         
-        for nombre in rutas:
-            # 1. Filtro rápido: ¿Soy yo mismo? -> Salto
-            if self.ruta == nombre:
-                continue
+            for nombre in rutas:
+                # 1. Filtro rápido: ¿Soy yo mismo? -> Salto
+                if self.ruta == nombre:
+                    continue
+                    
+                # 2. El paracaídas: Si algo falla adentro, no explota el código
+                try:
+                    nuevo_envio = DataToolBox(nombre)
+                    
+                    # 3. Validación de columnas
+                    if list(self.df.columns) == list(nuevo_envio.df.columns):
+                        self.Merge(nuevo_envio, lado)
+                    # Dentro de MergePlus en kit.py
+                    elif list(self.df.columns) != list(nuevo_envio.df.columns):
+                        print("⚠️ ¡Cuidado! Las columnas no coinciden exactamente.")
+                    else:
+                        print ("Error inesperado")
                 
-            # 2. El paracaídas: Si algo falla adentro, no explota el código
-            try:
-                nuevo_envio = DataToolBox(nombre)
+                except Exception as e:
+                    # Si el archivo no existe o está corrupto
+                    print(f"❌ Error con {nombre}: {e}")
+                    rezagados.append(nombre)
+
+            else:
+                # 2. El paracaídas: Si algo falla adentro, no explota el código
+                try:
+                    nuevo_envio = DataToolBox(nombre)
+                    
+                    # 3. Validación de columnas
+                    if list(self.df.columns) == list(nuevo_envio.df.columns):
+                        self.Merge(nuevo_envio, lado)
+                    # Dentro de MergePlus en kit.py
+                    elif list(self.df.columns) != list(nuevo_envio.df.columns):
+                        print("⚠️ ¡Cuidado! Las columnas no coinciden exactamente.")
+                    else:
+                        print ("Error inesperado")
                 
-                # 3. Validación de columnas
-                if list(self.df.columns) == list(nuevo_envio.df.columns):
-                    self.Merge(nuevo_envio, lado)
-                # Dentro de MergePlus en kit.py
-                elif list(self.df.columns) != list(nuevo_envio.df.columns):
-                    print("⚠️ ¡Cuidado! Las columnas no coinciden exactamente.")
-                    input("Pulse cualquier tecla pra continuar: ")
-                else:
-                    print ("Error inesperado")
-                    input("Pulse cualquier tecla pra continuar: ")
-            
-            except Exception as e:
-                # Si el archivo no existe o está corrupto
-                print(f"❌ Error con {nombre}: {e}")
-                rezagados.append(nombre)
-        
+                except Exception as e:
+                    # Si el archivo no existe o está corrupto
+                    print(f"❌ Error con {nombre}: {e}")
+                    rezagados.append(nombre)
+
         # 4. Aqui se imprimen los rezagados por unificar
         if rezagados: # 👈 Esto significa: "Si la lista NO está vacía"
             print("\n⚠️ Los siguientes archivos requieren revisión:")
@@ -485,6 +455,199 @@ class DataToolBox:
                 print(f" - {archivo}")
         else: # 👈 Esto significa: "Si la lista está vacía"
             print("✨ ¡Éxito total! No hubo rezagados.\n")
+
+    #kit de limpieza
+    def Clean(self, tipo:str, columna:str = None, lvl:int= 1, ops:str= None):
+
+        try:
+
+            match tipo:
+
+                #Standart id
+                case "id":
+
+                    if ops is not None:
+                        digits = ops 
+
+                    #hacemos una copia para no afectar los datos originales
+                    dupli = pd.DataFrame(self.df)
+                    comp = pd.DataFrame(self.df)
+
+                    if digits is not None:
+
+                        comp[columna] = self.df[columna].astype(str).str.len()
+
+                        #ids que no cumplen con el largo
+                        malo = self.df[comp[columna] != digits]
+            
+                        #creamos el numero de ids segun el numero de filas de mala
+                        ids = np.random.randint(1000, 10000, size=len(malo))
+                        #reseteamos la indexacion de indices para poder reasginar las ids
+                        malo.loc[:, columna] = ids
+
+                        #digitos que cumplen con el largo
+                        bueno = self.df[comp[columna] == digits]
+
+                        #unificamos
+                        self.df = pd.concat([bueno, malo], ignore_index=True, axis=0)
+                    
+                    ##------------------------------------------------------------
+
+                    #detectamos los duplicados
+                    dupli = dupli.duplicated(subset=[columna], keep=False)
+
+                    #hacemos una copia para no afectar los datos originales
+                    dupli = pd.DataFrame(self.df)
+                    #detectamos los duplicados
+                    dupli = dupli.duplicated(subset=[columna], keep=False)
+                
+                    #mitad mala
+                    mala = self.df[dupli]
+                    #creamos el numero de ids segun el numero de filas de mala
+                    ids = np.random.randint(1000, 10000, size=len(mala))
+                    #reseteamos la indexacion de indices para poder reasginar las ids
+                    mala.loc[:, columna] = ids
+                    #mitad buena
+                    buena = self.df[~dupli]
+                    
+                    #reasignamos ids
+                    self.df = pd.concat([buena, mala], ignore_index=True, axis=0)
+
+                #Normalizar textos
+                case "text":
+
+                    if lvl == 2:
+
+                        # 2. 🔥 NUEVO: Eliminar símbolos (solo deja letras y espacios)
+                        self.df[columna] = self.df[columna].str.replace(r'[^a-zA-Z\s]', '', regex=True)
+                    
+                    elif lvl == 1:
+
+                        # 2. 🔥 NUEVO: Eliminar símbolos (solo deja letras, números y espacios)
+                        self.df[columna] = self.df[columna].str.replace(r'[^a-zA-Z0-9\s]', '', regex=True)
+
+                    # A. Limpiar espacios vacíos en los nombres y poner la primera en Mayúscula
+                    # Quita espacios, pone todo en minúsculas y elimina acentos
+                    self.df[columna] = self.df[columna].astype(str).str.strip().str.lower().str.normalize('NFKD').str.encode('ascii', errors='ignore').str.decode('utf-8')
+                    
+                    # .str.strip() quita espacios, .str.capitalize() pone la primera en mayúscula
+                    self.df[columna] = self.df[columna].str.strip().str.capitalize()
+
+                #Normalizar numeros
+                case "numb":
+
+                    sib = ops 
+
+                    #limpiamos los numeros de simbolos
+                    if sib is not None:
+                        if self.df[columna].dtype == 'object':
+                            self.df[columna] = self.df[columna].str.replace(sib, '', regex=False)
+                    #eliminamos cualquier presencia de letra
+                    
+                    # Extrae solo los números (0-9) y los une.
+                    self.df[columna] = self.df[columna].astype(str).str.extract(r'(\d+)').astype(float)
+                    #transformamor caracteres en numeros
+                    self.df[columna] = pd.to_numeric(self.df[columna], errors='coerce')
+
+                    if lvl == 2:
+                        #eliminamos nulos
+                        self.df[columna] = self.df[columna].fillna(0)
+                    
+                    #convertir en entero
+                    self.df[columna] = self.df[columna].round(0).astype('Int64')
+
+                #Estandarizar fechas
+                case "date":
+
+                    ##Eliminamos espacios
+                    self.df[columna] = self.df[columna].astype(str).str.strip() # Quita espacios
+                    # Convierte a Fecha
+                    self.df[columna] = pd.to_datetime(self.df[columna], errors='coerce', dayfirst=True)
+
+                    if lvl == 2:
+
+                        # ahora donde haya NaT El subset asegura que SOLO eliminara solo esas fechas inexistentes
+                        self.df = self.df .dropna(subset=[columna])
+
+                #Limpiar decimales
+                case "decimal":
+
+                    if ops is not None:
+                        decimales = ops
+
+                    print ("---",ops)
+
+                    # En kit.py, dentro de un nuevo método o en CalculadoraPlus
+                    self.df[columna] = pd.to_numeric(self.df[columna], errors='coerce').round(decimales)
+                        
+                #limpiar datos mentirosos o con valores fuera de las metricas
+                case "outliers":
+
+                    #normalizamos en caso que no se haya echo ya
+                    self.df[columna] = pd.to_numeric(self.df[columna], errors='coerce')
+
+                    #limpieza de lvl2
+                    Q1 = self.df[columna].quantile(0.25)
+                    Q3 = self.df[columna].quantile(0.75)
+                    IQR = Q3 - Q1
+                    # Solo deja los datos que están en el rango normal
+                    self.df = self.df[~((self.df[columna] < (Q1 - 1.5 * IQR)) | (self.df[columna] > (Q3 + 1.5 * IQR)))]
+
+                #Limpieza estructural: Eliminar filas inservibles o con todo nulos
+                case "structure":
+
+                    # 1. Eliminamos filas donde TODOS los valores sean nulos
+                    antes = len(self.df)
+                    self.df = self.df.dropna(how='all')
+                    
+                    # 2. Eliminamos filas que tengan nulos en columnas críticas (ej. Producto)
+                    despues = len(self.df)
+                    print(f"🧹 Estructura limpiada: Se eliminaron {antes - despues} filas vacías.")
+
+                #recuperar correo y numeros cuando la informacion en la columna sea ilegible
+                case "extract":
+
+
+                    default:str=r"[\w\.-]+@[\w\.-]+"
+
+                    if ops is not None:
+                        patron = ops
+                    else:
+                        patron = default
+
+                    # Por defecto busca emails, pero puedes pasarle cualquier patron
+                    self.df[columna] = self.df[columna].str.findall(patron).str[0]
+                    print("📧 Información extraída mediante patrones complejos.")
+
+                #en caso de no estar asignado un caso
+                case _:
+                    
+                    print("❌ Operación no válida: no se especifico operacion")
+
+            print(f"✅ Cálculo de {tipo} completado.")
+            self.Reporte(f"LIMPIEZA REALIZADA: {tipo} || PROCESO EXITOSO")
+        
+            return self.df
+        
+        except Exception as e:
+            # --- CASO GENERAL: OTROS ERRORES (ej. letras en vez de números) ---
+            print(f"❌ ERROR INESPERADO: {e}")
+            self.Reporte(f"LIMPIEZA REALIZADA: {tipo} || ERROR: {e}")
+    
+    #cambia el nombre de columnas de acuerdo al orden que tengan
+    def StandarCol(self, nuevos_nombres:str):
+        """
+        Fuerza el nombre de las columnas 
+        sin importar cómo se llamen originalmente,
+        funciona en base al orden que se configure.
+        """
+        if (nuevos_nombres != None):
+            nuevos_nombres = {
+                self.df.columns[0]: 'ID',
+                self.df.columns[1]: 'Producto',
+                self.df.columns[2]: 'Precio'
+            }
+            self.Rename(nuevos_nombres)
 
     #---------------------------Motor de calculo-------------------------------
 
@@ -880,3 +1043,123 @@ class DataToolBox:
 
     #operaciones con fecha
     def TimePlus(self, **kwargs:Optional[str]):
+
+        try:
+
+            # --- Recorremos los casos ---
+            tipo = kwargs.get('tipo')
+
+            match tipo:
+                
+                case "lead_time":
+                    #Formula: (Fecha_Entrega - Fecha_Pedido)
+
+                    #realizamos operacion
+                    self.Time({
+                        'op' : '-',
+                        'res' : 'Lead_Time',
+                        'dt1' : kwargs.get('date1'),
+                        'dt2' : kwargs.get('date2')
+                    })
+
+                case "inventario":
+                    #Formula: (Fecha_Hoy - Fecha_archivos)
+
+                    #realizamos operacion
+                    self.Time({
+                        'op' : '-',
+                        'res' : 'Inventario',
+                        'dt1' : kwargs.get('date1'),
+                        'dt2' : kwargs.get('date2')
+                    })
+
+                case "proyecciones":
+                    #Formula: (Fecha_Compra + días)
+
+                    #realizamos operacion
+                    self.Time({
+                        'op' : '+',
+                        'res' : 'Proyecciones',
+                        'dt1' : kwargs.get('date1'),
+                        'dt2' : kwargs.get('date2')
+                    })
+
+                case "estacionalidad":
+                    #Formula: extraccion (.dt.month, .dt.year, .dt.day_name())
+
+                    #realizamos operacion
+                    #------------------por year ----------------------
+
+                    print("\n--- 📊 RESUMEN DE ESTACIONALIDAD ---")
+
+                    year = self.Time({
+                        'op' : 'Y',
+                        'dt1' : kwargs.get('date1')
+                    })
+
+                    # 2. Resumen compacto (sin crear columnas nuevas en el df principal)
+                    conteo_year = self.df[kwargs.get('date1')].dt.year.value_counts().sort_index()
+                    
+                    # 3. Solo imprimimos el resumen
+                    print("\n--- 📊 ACTIVIDAD ANUAL ---")
+                    for year, total in conteo_year.items():
+                        print(f"Year {int(year)}: {total} ventas")
+
+                    #----------------- por mes --------------------
+
+                    meses = self.Time({
+                        'op' : 'M',
+                        'dt1' : kwargs.get('date1')
+                    })
+
+                    # 2. Resumen compacto (sin crear columnas nuevas en el df principal)
+                    conteo_mes = self.df[kwargs.get('date1')].dt.month.value_counts().sort_index()
+                    
+                    # 3. Solo imprimimos el resumen
+                    print("\n--- 📊 ACTIVIDAD MENSUAL ---")
+                    for mes, total in conteo_mes.items():
+                        print(f"Mes {mes}: {total} ventas")
+
+                    #----------------- por semana -------------------------------
+
+                    dias = self.Time({
+                        'op' : 'D',
+                        'dt1' : kwargs.get('date1')
+                    })
+
+                    # Contadores fiables
+                    c_semana = sum(1 for d in dias if d < 5)
+                    c_finde = sum(1 for d in dias if d >= 5)
+
+                    print("\n--- 📊 ACTIVIDAD SEMANAL ---")
+                    print (f"Ventas en dia de semana: {c_semana} \nVentas los fines de semana: {c_finde}\n")
+                    
+                    #print(dt1.day_name[1])
+
+                case "horarios":
+                    #Formula: Extracción de la hora (.dt.hour) y uso de condicionales  
+
+                    #Realizamos operacion
+                    horas = self.Time({
+                        'op' : 'H',
+                        'dt1' : kwargs.get('date1')
+                    })
+
+                    self.df['Turno'] = [
+                        "Mañana" if 6 <= h < 12 else 
+                        "Tarde" if 12 <= h < 18 else 
+                        "Noche" if 18 <= h < 24 else 
+                        "Madrugada" 
+                        for h in horas
+                    ]
+
+                case _:
+                    print("❌ Operación no válida: no se especifico operacion")
+
+            print(f"✅ Cálculo de {tipo} completado.")
+            self.Reporte(f"OPERACION REALIZADA: {tipo} || PROCESO EXITOSO")
+        
+        except Exception as e:
+            # --- CASO GENERAL: OTROS ERRORES (ej. letras en vez de números) ---
+            print(f"❌ ERROR INESPERADO: {e}")
+            self.Reporte(f"OPERACION REALIZADA: {tipo} || ERROR: {e}")
