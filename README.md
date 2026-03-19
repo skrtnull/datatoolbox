@@ -30,7 +30,9 @@ DataToolBox es una solución robusta de ingeniería de datos diseñada para auto
 
 ```
 ├── bandeja/              # Input: Carpeta monitoreada
-├── procesados/           # Output: Archivos estandarizados
+├── original/             # Output A: Archivos originales
+├── procesados/           # Output B: Archivos estandarizados
+├── revision/             # Output C: Archivos para revision
 ├── src/
 │   ├── kit.py            # Clase principal (Motor de Limpieza)
 │   └── pipeline.py       # Punto de entrada y Orquestador
@@ -79,11 +81,10 @@ El proyecto incluye un dataset de prueba diseñado para romper cualquier script 
 
 Desarrollado por [Jonaiker Millan] - Especialista en Automatización de Datos.
 LinkedIn: [https://www.linkedin.com/in/jonaiker-dataengineer/]
-GitHub: [SkrtNull]
 
 <a name="english"></a>
 
-## Spanish Version
+## English Version
 
 DataToolBox is a robust data engineering solution designed to automate the ingestion, cleaning, and transformation of large-scale files. The system uses an event-driven architecture to process information in real time, transforming “raw” data into structured tables ready for production.
 
@@ -104,8 +105,10 @@ DataToolBox is a robust data engineering solution designed to automate the inges
 ##📁 Project Structure
 
 ```
-├── tray/              # Input: Monitored folder
-├── processed/           # Output: Standardized files
+├── tray/                 # Input: Monitored folder
+├── original/             # Output A: original files
+├── processed/            # Output B: Standardized files
+├── revision/             # Output C: files for revision
 ├── src/
 │   ├── kit.py            # Main class (Cleaning Engine)
 │   └── pipeline.py       # Entry point and Orchestrator
@@ -153,6 +156,4 @@ The project includes a test dataset designed to break any conventional script. D
 📧 Contact
 
 Developed by [Jonaiker Millan] - Data Automation Specialist.
-LinkedIn: [https://www.l
-
-Translated with DeepL.com (free version)
+LinkedIn: [https://www.linkedin.com/in/jonaiker-dataengineer/]
