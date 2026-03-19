@@ -7,6 +7,9 @@ from datetime import datetime
 from sqlalchemy import create_engine, MetaData, Table, Column, Integer, String, text
 from sqlalchemy.orm import declarative_base, sessionmaker
 import os
+import sys
+import math
+import random
 import shutil
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler, PatternMatchingEventHandler
@@ -27,7 +30,7 @@ class MyEventHandler(PatternMatchingEventHandler):
     def on_created(self, event):
         if not event.is_directory:
             print(event.src_path, f"Archivo detectado [{event.src_path}].")
-            self.kit.Autorun("bandeja")
+            self.kit.Autorun(self.kit.bandeja)
         
 
 #-----------------------------------------------------------------------------------
@@ -39,8 +42,13 @@ class DataToolBox():
 
         # 1. Definimos las variables con valores por defecto SIEMPRE al principio
         self.df = pd.DataFrame()
-        self.ruta = "" 
+        self.ruta = None
         self.engine = None
+
+        #suiche para la animacion de espera
+        self.activity = False
+        self.process = False
+        self.bandeja = None
 
         #configuraciones de automatisacion
         self.config_st = None
@@ -120,25 +128,485 @@ class DataToolBox():
     def limpiar_pantalla(self):
         os.system('cls' if os.name == 'nt' else 'clear')
 
+    #------------------------------Estetica------------------------------------------
+
+    def interface_boot(self):
+        # Colores ANSI
+        CIAN = "\033[1;36m"
+        VERDE = "\033[1;32m"
+        BLANCO = "\033[1;37m"
+        RESET = "\033[0m"
+
+        logo = [
+            " ╔════════════════════════════════════════════════════╗",
+            " ║  ██████   ██████  ██   ██                          ║",
+            " ║  ██   ██ ██    ██  ██ ██                           ║",
+            " ║  ██████  ██    ██   ███                            ║",
+            " ║  ██   ██ ██    ██  ██ ██                           ║",
+            " ║  ██████   ██████  ██   ██      >> BOX ACTIVA <<    ║",
+            " ╚════════════════════════════════════════════════════╝"
+        ]
+
+        estados = [
+            "SISTEMA ONLINE",
+            "ESTADO ESTABLE",
+            "MONITOR BANDEJA",
+            "MOTOR DE DATOS"
+        ]
+
+        # 1. Limpiar pantalla
+        os.system('cls' if os.name == 'nt' else 'clear')
+
+        # 2. Renderizar el marco del LOGO con efecto de barrido
+        print(CIAN)
+        for linea in logo:
+            print(linea)
+            time.sleep(0.08)
+        print(RESET)
+
+        # 3. Efecto de "Interfaz" cargando estados con puntos suspensivos
+        print(BLANCO + "  INICIANDO PROTOCOLOS DE LA BOX..." + RESET)
+        for estado in estados:
+            sys.stdout.write(f"  > {estado} ")
+            sys.stdout.flush()
+            
+            # Animación de puntos suspensivos
+            for _ in range(3):
+                time.sleep(0.3)
+                sys.stdout.write(".")
+                sys.stdout.flush()
+            
+            print(VERDE + " [OK]" + RESET)
+            time.sleep(0.2)
+
+        print(f"\n{CIAN}  --- TUBERÍA LISTA PARA PROCESAR ---{RESET}\n")
+
+    def logo_radar(self):
+        # El logo que elegiste (Opción 1)
+        logo = [
+            " ╔════════════════════════════════════════════════════╗",
+            " ║  ██████   ██████  ██   ██                          ║",
+            " ║  ██   ██ ██    ██  ██ ██       [ SISTEMA ]         ║",
+            " ║  ██████  ██    ██   ███        [ ACTIVO  ]         ║",
+            " ║  ██   ██ ██    ██  ██ ██                           ║",
+            " ║  ██████   ██████  ██   ██      >> BOX ACTIVA <<    ║",
+            " ╚════════════════════════════════════════════════════╝"
+        ]
+
+        # Colores
+        CIAN_OSCURO = "\033[36m"
+        CIAN_BRILLANTE = "\033[1;96m"
+        BLANCO = "\033[1;37m"
+        RESET = "\033[0m"
+
+        linea_laser = 0
+        
+        try:
+            # Ocultar cursor para que se vea más limpio
+            sys.stdout.write("\033[?25l")
+            sys.stdout.flush()
+
+            while True:
+                # En lugar de limpiar toda la pantalla (que causa parpadeo), 
+                # volvemos el cursor al inicio de la terminal.
+                sys.stdout.write("\033[H") 
+                
+                print(f"{CIAN_OSCURO}  MODO: MONITOREO DE BANDEJA EN TIEMPO REAL...{RESET}\n")
+
+                for i, linea in enumerate(logo):
+                    if i == linea_laser:
+                        # La línea donde está el "láser" brilla en blanco/cian fuerte
+                        print(f"{BLANCO}{linea}{RESET}")
+                    elif abs(i - linea_laser) == 1:
+                        # Las líneas adyacentes brillan un poco menos
+                        print(f"{CIAN_BRILLANTE}{linea}{RESET}")
+                    else:
+                        # El resto del logo está en color base
+                        print(f"{CIAN_OSCURO}{linea}{RESET}")
+
+                print(f"\n{CIAN_BRILLANTE}  [ESPERANDO ARCHIVOS...] {RESET}")
+                
+                # Mover la posición del láser
+                linea_laser = (linea_laser + 1) % len(logo)
+                
+                time.sleep(0.12) # Ajusta la velocidad aquí
+
+        except KeyboardInterrupt:
+            sys.stdout.write("\033[?25h") # Mostrar cursor al salir
+            print(f"\n{RESET}Deteniendo interfaz...")
+    
+    def logo_radar2(self, observer):
+
+        # Paleta de colores
+        C_OSC, C_BRI = "\033[36m", "\033[1;96m"
+        BLA, VER, ROJ, RES = "\033[1;37m", "\033[1;32m", "\033[1;31m", "\033[0m"
+
+        logo = [
+            " ╔════════════════════════════════════════════════════╗",
+            " ║  ██████   ██████  ██   ██                          ║",
+            " ║  ██   ██ ██    ██  ██ ██       [ SISTEMA ]         ║",
+            " ║  ██████  ██    ██   ███        [ ACTIVO  ]         ║",
+            " ║  ██   ██ ██    ██  ██ ██                           ║",
+            " ║  ██████   ██████  ██   ██      >> BOX ACTIVA <<    ║",
+            " ╚════════════════════════════════════════════════════╝"
+        ]
+
+        mensajes_falsos = ["ANALIZANDO", "VERIFICANDO", "ESTADO: OK", "CRC CHECK", "SYNC", "UPDATING"]
+        frame = 0
+
+        try:
+            # Preparación: ocultar cursor y limpiar una sola vez
+            sys.stdout.write("\033[?25l\033[2J")
+            
+            while observer.is_alive():
+
+                if not self.activity:
+                    
+                    # --- INICIO DEL BUFFER ---
+                    # Usamos \033[H para volver al inicio sin limpiar, eliminando el parpadeo
+                    buffer = "\033[H" 
+                    
+                    # Cabecera Superior
+                    buffer += f"{C_OSC}┌" + "─" * 68 + "┐\n"
+                    buffer += f"│ {VER}● {ROJ}● {C_BRI}●{C_OSC} " + f"CORE_MONITOR v2.0".center(55) + "│\n"
+                    buffer += f"├" + "─" * 68 + "┤\n"
+
+                    # Lógica de láser circular (sin saltos bruscos)
+                    linea_laser = frame % len(logo)
+
+                    # Renderizado de Logo y Telemetría
+                    for i, linea in enumerate(logo):
+                        color_logo = C_OSC
+                        if i == linea_laser: color_logo = BLA
+                        elif abs(i - linea_laser) == 1: color_logo = C_BRI
+                        
+                        addr = f"0x{random.randint(0x1000, 0xFFFF):X}"
+                        val = random.randint(10, 99)
+                        buffer += f"  {color_logo}{linea}   {C_OSC}[{addr}] {VER}{val}%{RES}\n"
+
+                    # Sección Inferior
+                    buffer += f"{C_OSC}├" + "─" * 68 + "┤\n"
+                    msj = mensajes_falsos[(frame // 15) % len(mensajes_falsos)]
+                    puntos = "." * (frame % 4)
+                    status_line = f" {C_BRI}STATUS: {msj}{puntos:<3} {C_OSC}| {VER}CORRECT STATUS {C_OSC}| VOLT: 2.4V"
+                    buffer += f"│ {status_line:<78} {C_OSC}│\n"
+
+                    # Barra de carga
+                    ancho_b = 30
+                    prog = (frame % (ancho_b + 1))
+                    barra = f"{VER}{'█' * prog}{C_OSC}{'░' * (ancho_b - prog)}"
+                    buffer += f"│ {C_OSC}PROCESANDO: [{barra}] \n"
+                    buffer += f"└" + "─" * 68 + "┘\n"
+
+                    # --- ENVÍO ÚNICO ---
+                    # Escribimos todo el bloque de una vez para una transición suave
+                    sys.stdout.write(buffer)
+                    sys.stdout.flush()
+                    
+                    frame += 1
+
+                    print("\nVigilando carpeta") 
+                    print("presione Crtl+C para finalizar script")
+
+                    time.sleep(0.06) # Ajustado para máxima fluidez
+
+                else:
+                    # Si el motor de datos está trabajando, la interfaz se detiene
+                    # para que los cálculos de Pandas se vean perfectos.
+                    time.sleep(0.06)
+                
+        except KeyboardInterrupt:
+            sys.stdout.write(f"\033[?25h\n\n{VER}[ SISTEMA APAGADO CORRECTAMENTE ]{RES}\n")
+
+    def logo_radar3(self, segundos=5):
+
+        # El diseño de alta densidad que pediste
+        PARROT_HD_FULL = [
+        [
+            "           .cc;.      ...     .;c.         ",
+            "         .,,cc:cc:lxxxl:ccc:;, .           ",
+            "         .lo;...lKKKllllookl..c0;          ",
+            "        .cl;.,:'.okl;..''.:,..';:.         ",
+            "       .:o;;dkd,.ll..,cc::,,.'.:;,.        ",
+            "       co..lKKKkokl.':lloo;''ol..;dl.      ",
+            "     .,c;.,xKKKKKKO.':llll;.'o0xl,.cl,.    ",
+            "     cNo..lKKKKKKKKO'';llll;;okKKKl..oNc   ",
+            "     cNo..lKKKKKKKko;':c:, 'lKKKKKo'.oNc   ",
+            "     cNo..lKKKKKKKl.....'dKKKKKxc,l0:      ",
+            "      .c:'.lKKKKKKKKKk;....lKKKKKKo'.oNc   ",
+            "       ,:.'oxOKKKKKKKKOxxxxOKKKKKKxc,;ol:. ",
+            "       ;c..''oookKKKKKKKKKKKKKKKKKKk:.'clc.",
+            "      ,xl'.,oxo;'';oxOKKKKKKKKKKKKKKOxxl:::",
+            "     .d0c..lKKKkoooookKKKKKKKKKKKKKKKKKKKxl",
+            "    cx,';okKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKl",
+            "    co..:dddddddddddddddddddddddddddddddl::",
+            "    co....................................."
+        ],
+        [
+            "            .cc;.      ...     .;c.        ",
+            "          .,,cc:cc:lxxxl:ccc:;, .          ",
+            "          .lo;...lKKKllllookl..c0;         ",
+            "         .cl;.,:'.okl;..''.:,..';:.        ",
+            "        .:o;;dkd,.ll..,cc::,,.'.:;,.       ",
+            "        co..lKKKkokl.':lloo;''ol..;dl.     ",
+            "      .,c;.,xKKKKKKO.':llll;.'o0xl,.cl,.   ",
+            "      cNo..lKKKKKKKKO'';llll;;okKKKl..oNc  ",
+            "      cNo..lKKKKKKKko;':c:, 'lKKKKKo'.oNc  ",
+            "      cNo..lKKKKKKKl.....'dKKKKKxc,l0:     ",
+            "       .c:'.lKKKKKKKKKk;....lKKKKKKo'.oNc  ",
+            "        ,:.'oxOKKKKKKKKOxxxxOKKKKKKxc,;ol:.",
+            "        ;c..''oookKKKKKKKKKKKKKKKKKKk:.'clc",
+            "       ,xl'.,oxo;'';oxOKKKKKKKKKKKKKKOxxl::",
+            "      .d0c..lKKKkoooookKKKKKKKKKKKKKKKKKKKx",
+            "     cx,';okKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK",
+            "     co..:dddddddddddddddddddddddddddddddl:",
+            "     co...................................."
+        ],
+        [
+            "             .cc;.      ...     .;c.       ",
+            "           .,,cc:cc:lxxxl:ccc:;, .         ",
+            "           .lo;...lKKKllllookl..c0;        ",
+            "          .cl;.,:'.okl;..''.:,..';:.       ",
+            "         .:o;;dkd,.ll..,cc::,,.'.:;,.      ",
+            "         co..lKKKkokl.':lloo;''ol..;dl.    ",
+            "       .,c;.,xKKKKKKO.':llll;.'o0xl,.cl,.  ",
+            "       cNo..lKKKKKKKKO'';llll;;okKKKl..oNc ",
+            "       cNo..lKKKKKKKko;':c:, 'lKKKKKo'.oNc ",
+            "       cNo..lKKKKKKKl.....'dKKKKKxc,l0:    ",
+            "        .c:'.lKKKKKKKKKk;....lKKKKKKo'.oNc ",
+            "         ,:.'oxOKKKKKKKKOxxxxOKKKKKKxc,;ol:",
+            "         ;c..''oookKKKKKKKKKKKKKKKKKKk:.'cl",
+            "        ,xl'.,oxo;'';oxOKKKKKKKKKKKKKKOxxl:",
+            "       .d0c..lKKKkoooookKKKKKKKKKKKKKKKKKKK",
+            "      cx,';okKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK",
+            "      co..:dddddddddddddddddddddddddddddddl",
+            "      co..................................."
+        ],
+        [
+            "            .cc;.      ...     .;c.        ",
+            "          .,,cc:cc:lxxxl:ccc:;, .          ",
+            "          .lo;...lKKKllllookl..c0;         ",
+            "         .cl;.,:'.okl;..''.:,..';:.        ",
+            "        .:o;;dkd,.ll..,cc::,,.'.:;,.       ",
+            "        co..lKKKkokl.':lloo;''ol..;dl.     ",
+            "      .,c;.,xKKKKKKO.':llll;.'o0xl,.cl,.   ",
+            "      cNo..lKKKKKKKKO'';llll;;okKKKl..oNc  ",
+            "      cNo..lKKKKKKKko;':c:, 'lKKKKKo'.oNc  ",
+            "      cNo..lKKKKKKKl.....'dKKKKKxc,l0:     ",
+            "       .c:'.lKKKKKKKKKk;....lKKKKKKo'.oNc  ",
+            "        ,:.'oxOKKKKKKKKOxxxxOKKKKKKxc,;ol:.",
+            "        ;c..''oookKKKKKKKKKKKKKKKKKKk:.'clc",
+            "       ,xl'.,oxo;'';oxOKKKKKKKKKKKKKKOxxl::",
+            "      .d0c..lKKKkoooookKKKKKKKKKKKKKKKKKKKx",
+            "     cx,';okKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK",
+            "     co..:dddddddddddddddddddddddddddddddl:",
+            "     co...................................."
+        ],
+        [
+            "           .cc;.      ...     .;c.         ",
+            "         .,,cc:cc:lxxxl:ccc:;, .           ",
+            "         .lo;...lKKKllllookl..c0;          ",
+            "        .cl;.,:'.okl;..''.:,..';:.         ",
+            "       .:o;;dkd,.ll..,cc::,,.'.:;,.        ",
+            "       co..lKKKkokl.':lloo;''ol..;dl.      ",
+            "     .,c;.,xKKKKKKO.':llll;.'o0xl,.cl,.    ",
+            "     cNo..lKKKKKKKKO'';llll;;okKKKl..oNc   ",
+            "     cNo..lKKKKKKKko;':c:, 'lKKKKKo'.oNc   ",
+            "     cNo..lKKKKKKKl.....'dKKKKKxc,l0:      ",
+            "      .c:'.lKKKKKKKKKk;....lKKKKKKo'.oNc   ",
+            "       ,:.'oxOKKKKKKKKOxxxxOKKKKKKxc,;ol:. ",
+            "       ;c..''oookKKKKKKKKKKKKKKKKKKk:.'clc.",
+            "      ,xl'.,oxo;'';oxOKKKKKKKKKKKKKKOxxl:::",
+            "     .d0c..lKKKkoooookKKKKKKKKKKKKKKKKKKKxl",
+            "    cx,';okKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKl",
+            "    co..:dddddddddddddddddddddddddddddddl::",
+            "    co....................................."
+        ],
+        [
+            "          .cc;.      ...     .;c.          ",
+            "        .,,cc:cc:lxxxl:ccc:;, .            ",
+            "        .lo;...lKKKllllookl..c0;           ",
+            "       .cl;.,:'.okl;..''.:,..';:.          ",
+            "      .:o;;dkd,.ll..,cc::,,.'.:;,.         ",
+            "      co..lKKKkokl.':lloo;''ol..;dl.       ",
+            "    .,c;.,xKKKKKKO.':llll;.'o0xl,.cl,.     ",
+            "    cNo..lKKKKKKKKO'';llll;;okKKKl..oNc    ",
+            "    cNo..lKKKKKKKko;':c:, 'lKKKKKo'.oNc    ",
+            "    cNo..lKKKKKKKl.....'dKKKKKxc,l0:       ",
+            "     .c:'.lKKKKKKKKKk;....lKKKKKKo'.oNc    ",
+            "      ,:.'oxOKKKKKKKKOxxxxOKKKKKKxc,;ol:.  ",
+            "      ;c..''oookKKKKKKKKKKKKKKKKKKk:.'clc. ",
+            "     ,xl'.,oxo;'';oxOKKKKKKKKKKKKKKOxxl::  ",
+            "    .d0c..lKKKkoooookKKKKKKKKKKKKKKKKKKKx  ",
+            "   cx,';okKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK  ",
+            "   co..:dddddddddddddddddddddddddddddddl:  ",
+            "   co...................................."
+        ],
+        [
+            "         .cc;.      ...     .;c.           ",
+            "       .,,cc:cc:lxxxl:ccc:;, .             ",
+            "       .lo;...lKKKllllookl..c0;            ",
+            "      .cl;.,:'.okl;..''.:,..';:.           ",
+            "     .:o;;dkd,.ll..,cc::,,.'.:;,.          ",
+            "     co..lKKKkokl.':lloo;''ol..;dl.        ",
+            "   .,c;.,xKKKKKKO.':llll;.'o0xl,.cl,.      ",
+            "   cNo..lKKKKKKKKO'';llll;;okKKKl..oNc     ",
+            "   cNo..lKKKKKKKko;':c:, 'lKKKKKo'.oNc     ",
+            "   cNo..lKKKKKKKl.....'dKKKKKxc,l0:        ",
+            "    .c:'.lKKKKKKKKKk;....lKKKKKKo'.oNc     ",
+            "     ,:.'oxOKKKKKKKKOxxxxOKKKKKKxc,;ol:.   ",
+            "     ;c..''oookKKKKKKKKKKKKKKKKKKk:.'clc.  ",
+            "    ,xl'.,oxo;'';oxOKKKKKKKKKKKKKKOxxl:::  ",
+            "   .d0c..lKKKkoooookKKKKKKKKKKKKKKKKKKKxl  ",
+            "  cx,';okKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKl  ",
+            "  co..:dddddddddddddddddddddddddddddddl::  ",
+            "  co....................................."
+        ],
+        [
+            "        .cc;.      ...     .;c.            ",
+            "      .,,cc:cc:lxxxl:ccc:;, .              ",
+            "      .lo;...lKKKllllookl..c0;             ",
+            "     .cl;.,:'.okl;..''.:,..';:.            ",
+            "    .:o;;dkd,.ll..,cc::,,.'.:;,.           ",
+            "    co..lKKKkokl.':lloo;''ol..;dl.         ",
+            "  .,c;.,xKKKKKKO.':llll;.'o0xl,.cl,.       ",
+            "  cNo..lKKKKKKKKO'';llll;;okKKKl..oNc      ",
+            "  cNo..lKKKKKKKko;':c:, 'lKKKKKo'.oNc      ",
+            "  cNo..lKKKKKKKl.....'dKKKKKxc,l0:         ",
+            "   .c:'.lKKKKKKKKKk;....lKKKKKKo'.oNc      ",
+            "    ,:.'oxOKKKKKKKKOxxxxOKKKKKKxc,;ol:.    ",
+            "    ;c..''oookKKKKKKKKKKKKKKKKKKk:.'clc.   ",
+            "   ,xl'.,oxo;'';oxOKKKKKKKKKKKKKKOxxl:::   ",
+            "  .d0c..lKKKkoooookKKKKKKKKKKKKKKKKKKKxl   ",
+            " cx,';okKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKl   ",
+            " co..:dddddddddddddddddddddddddddddddl::   ",
+            " co....................................."
+        ],
+        [
+            "         .cc;.      ...     .;c.           ",
+            "       .,,cc:cc:lxxxl:ccc:;, .             ",
+            "       .lo;...lKKKllllookl..c0;            ",
+            "      .cl;.,:'.okl;..''.:,..';:.           ",
+            "     .:o;;dkd,.ll..,cc::,,.'.:;,.          ",
+            "     co..lKKKkokl.':lloo;''ol..;dl.        ",
+            "   .,c;.,xKKKKKKO.':llll;.'o0xl,.cl,.      ",
+            "   cNo..lKKKKKKKKO'';llll;;okKKKl..oNc     ",
+            "   cNo..lKKKKKKKko;':c:, 'lKKKKKo'.oNc     ",
+            "   cNo..lKKKKKKKl.....'dKKKKKxc,l0:        ",
+            "    .c:'.lKKKKKKKKKk;....lKKKKKKo'.oNc     ",
+            "     ,:.'oxOKKKKKKKKOxxxxOKKKKKKxc,;ol:.   ",
+            "     ;c..''oookKKKKKKKKKKKKKKKKKKk:.'clc.  ",
+            "    ,xl'.,oxo;'';oxOKKKKKKKKKKKKKKOxxl:::  ",
+            "   .d0c..lKKKkoooookKKKKKKKKKKKKKKKKKKKxl  ",
+            "  cx,';okKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKl  ",
+            "  co..:dddddddddddddddddddddddddddddddl::  ",
+            "  co....................................."
+        ],
+        [
+            "          .cc;.      ...     .;c.          ",
+            "        .,,cc:cc:lxxxl:ccc:;, .            ",
+            "        .lo;...lKKKllllookl..c0;           ",
+            "       .cl;.,:'.okl;..''.:,..';:.          ",
+            "      .:o;;dkd,.ll..,cc::,,.'.:;,.         ",
+            "      co..lKKKkokl.':lloo;''ol..;dl.       ",
+            "    .,c;.,xKKKKKKO.':llll;.'o0xl,.cl,.     ",
+            "    cNo..lKKKKKKKKO'';llll;;okKKKl..oNc    ",
+            "    cNo..lKKKKKKKko;':c:, 'lKKKKKo'.oNc    ",
+            "    cNo..lKKKKKKKl.....'dKKKKKxc,l0:       ",
+            "     .c:'.lKKKKKKKKKk;....lKKKKKKo'.oNc    ",
+            "      ,:.'oxOKKKKKKKKOxxxxOKKKKKKxc,;ol:.  ",
+            "      ;c..''oookKKKKKKKKKKKKKKKKKKk:.'clc. ",
+            "     ,xl'.,oxo;'';oxOKKKKKKKKKKKKKKOxxl::  ",
+            "    .d0c..lKKKkoooookKKKKKKKKKKKKKKKKKKKx  ",
+            "   cx,';okKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK  ",
+            "   co..:dddddddddddddddddddddddddddddddl:  ",
+            "   co...................................."
+        ]
+    ]
+
+        """
+        Reproduce el Party Parrot HD con fidelidad total.
+        """
+        # Los 6 colores base de parrot.live
+        colores = [
+            "\033[38;5;196m", # Rojo
+            "\033[38;5;214m", # Naranja
+            "\033[38;5;226m", # Amarillo
+            "\033[38;5;46m",  # Verde
+            "\033[38;5;33m",  # Azul
+            "\033[38;5;129m"  # Púrpura
+        ]
+        
+        fin = time.time() + segundos
+        f = 0
+        
+        # Ocultar cursor y limpiar pantalla una sola vez
+        sys.stdout.write("\033[?25l\033[2J")
+        
+        try:
+            while time.time() < fin:
+                frame = PARROT_HD_FULL[f % len(PARROT_HD_FULL)]
+                color = colores[f % len(colores)]
+                
+                # Volver arriba (evita parpadeo)
+                sys.stdout.write("\033[H")
+                
+                # Imprimir el bloque completo
+                output = ""
+                for linea in frame:
+                    output += f"{color}{linea}\033[0m\n"
+                sys.stdout.write(output)
+                
+                sys.stdout.flush()
+                time.sleep(0.06) # Velocidad exacta del GIF
+                f += 1
+                
+        except KeyboardInterrupt:
+            pass
+        finally:
+            sys.stdout.write("\033[?25h\033[2J\033[H")
+
     #----------------------------Configuracion---------------------------------------
+
+    def test_file(self, ruta, intentos=5):
+        for _ in range(intentos):
+            try:
+                # Si podemos renombrar el archivo, está libre.
+                os.rename(ruta, ruta)
+                return True
+            except OSError:
+                time.sleep(1) # Espera un segundo antes de reintentar
+        return False
 
     #menu para configurar la automatizacion\
     def Menu(self):
 
         info = DataToolBox()
-        info.Configure() 
+        self.Configure() 
 
         while True:
-            info.limpiar_pantalla()
-            print("=======================================================")
-            print("             DATATOOLBOX: PANEL DE CONTROL             ")
-            print("=======================================================\n")
+            self.limpiar_pantalla()
+
+            print(
+''' ██████╗  █████╗ ████████╗ █████╗      [ VERSION: v1.0.4 ]        
+ ██╔══██╗██╔══██╗╚══██╔══╝██╔══██╗     [ STATUS:  ACTIVE ]        
+ ██║  ██║███████║   ██║   ███████║     [ AUTH:    ROOT   ]        
+ ██████╔╝██║  ██║   ██║   ██║  ██║     [ PROTOCOL: 0x42  ]        
+ ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝                                
+ ████████╗ ██████╗  ██████╗ ██╗     ██████╗  ██████╗ ██╗  ██╗     
+ ╚══██╔══╝██╔═══██╗██╔═══██╗██║     ██╔══██╗██╔═══██╗╚██╗██╔╝     
+    ██║   ██║   ██║██║   ██║██║     ██████╔╝██║   ██║ ╚███╔╝      
+    ██║   ██║   ██║██║   ██║██║     ██╔══██╗██║   ██║ ██╔██╗      
+    ██║   ╚██████╔╝╚██████╔╝███████╗██████╔╝╚██████╔╝██╔╝ ██╗     
+    ╚═╝    ╚═════╝  ╚═════╝ ╚══════╝╚═════╝  ╚═════╝ ╚═╝  ╚═╝     
+ ══════════════════════════════════════════════════════════════''')
+            
 
             # --- VISTA DE ESTADO ---
-            print(f"[1] REGLAS DE LIMPIEZA: {'✅ ' + str(len(info.config_st)) if not info.config_st.empty else '❌ Vacía'}")
-            info.View(20, True, info.config_st)
-            print(f"\n[2] OPERACIONES:        {'✅ ' + str(len(info.config_op)) if not info.config_op.empty else '❌ Vacía'}")
-            info.View(20, True, info.config_op)
+            print(f"[1] REGLAS DE LIMPIEZA: {'✅ ' + str(len(self.config_st)) if not self.config_st.empty else '❌ Vacía'}")
+            self.View(20, True, self.config_st)
+            print(f"\n[2] OPERACIONES:        {'✅ ' + str(len(self.config_op)) if not self.config_op.empty else '❌ Vacía'}")
+            self.View(20, True, self.config_op)
             print("\n=======================================================")
             print("1. GESTIONAR LIMPIEZA (Configuracion)")
             print("2. GESTIONAR OPERACIONES (Operaciones)")
@@ -152,10 +620,10 @@ class DataToolBox():
                 # --- SUBMENÚ LIMPIEZA ---
                 while True:
 
-                    info.limpiar_pantalla()
+                    self.limpiar_pantalla()
                     print(">>> GESTIÓN DE LIMPIEZA")
-                    if not info.config_st.empty:
-                        info.View(20, True, info.config_st)
+                    if not self.config_st.empty:
+                        self.View(20, True, self.config_st)
 
                     #pone si el usuario ingresa un valor que no es valido
                     try:
@@ -195,8 +663,8 @@ class DataToolBox():
                                 dig = int(input("Dígitos: ") or 0)
                                 lvl=0
                                 
-                            info.Consulta(f"INSERT INTO Configuracion (Columna, Tipo, Digitos, Lvl) VALUES ('{col}', '{tipo}', '{dig}', '{lvl}');")
-                            info.Configure() # Recarga para mostrar cambios
+                            self.Consulta(f"INSERT INTO Configuracion (Columna, Tipo, Digitos, Lvl) VALUES ('{col}', '{tipo}', '{dig}', '{lvl}');")
+                            self.Configure() # Recarga para mostrar cambios
                         
                         elif sub == 2:
 
@@ -211,8 +679,10 @@ class DataToolBox():
 
                             if tipo == 1:
                                 tipo = "id"
+                                dig = int(input("Dígitos: ") or 0)
                             elif tipo == 2:
                                 tipo = "decimal"
+                                dig = int(input("Dígitos: ") or 0)
                             elif tipo == 3:
                                 tipo = "outliers"
                             elif tipo == 4:
@@ -220,11 +690,10 @@ class DataToolBox():
                             elif tipo == 5:
                                 tipo = "extract"
                             
-                            dig = 0
                             lvl=0
 
-                            info.Consulta(f"INSERT INTO Configuracion (Columna, Tipo, Digitos, Lvl) VALUES ('{col}', '{tipo}', '{dig}', '{lvl}');")
-                            info.Configure() # Recarga para mostrar cambios
+                            self.Consulta(f"INSERT INTO Configuracion (Columna, Tipo, Digitos, Lvl) VALUES ('{col}', '{tipo}', '{dig}', '{lvl}');")
+                            self.Configure() # Recarga para mostrar cambios
 
                         elif sub == 3:
 
@@ -240,20 +709,20 @@ class DataToolBox():
                                     fill = int(input("Número de configuración a eliminar: ")) 
                                     
                                     # 2. SINCRONIZACIÓN: ExportSQL usa 'self.df', así que cargamos la configuración allí
-                                    info.df = info.config_st.copy()
+                                    self.df = self.config_st.copy()
 
                                     # 3. Borrado selectivo y reseteo de índices
-                                    if fill in info.df.index:
-                                        info.df = info.df.drop(labels=fill, axis=0).reset_index(drop=True)
+                                    if fill in self.df.index:
+                                        self.df = self.df.drop(labels=fill, axis=0).reset_index(drop=True)
                                         
                                         # Actualizamos la variable de estado para que la vista se refresque
-                                        info.config_st = info.df.copy()
+                                        self.config_st = self.df.copy()
 
                                         # 4. PERSISTENCIA: Ahora 'self.df' tiene la lista corregida, la subimos al SQL
-                                        info.ExportSQL("Configuracion", modo="replace")
+                                        self.ExportSQL("Configuracion", modo="replace")
                                         
                                         # 5. RECARGA: Volvemos a leer de SQL para asegurar integridad
-                                        info.Configure()
+                                        self.Configure()
                                         print(f"✅ Configuración {fill} eliminada correctamente.")
                                     else:
                                         print(f"⚠️ El índice {fill} no existe en la lista actual.")
@@ -265,10 +734,10 @@ class DataToolBox():
 
                             elif ops == 2:
                                 
-                                info.Consulta("DROP TABLE IF EXISTS Configuracion;")
+                                self.Consulta("DROP TABLE IF EXISTS Configuracion;")
                                 print("✅ Tabla eliminada por completo.")
                                 
-                                info.Configure()
+                                self.Configure()
                                 # Lógica igual al menú de limpieza (Reset)
                                 print("\n--- 🔄 DESHACER CAMBIOS ---")
                                 
@@ -287,10 +756,10 @@ class DataToolBox():
                 # CONFIGURAR OPERACIONES
                 while True:
 
-                    info.limpiar_pantalla()
+                    self.limpiar_pantalla()
                     print(">>> GESTIÓN DE LIMPIEZA")
-                    if not info.config_op.empty:
-                        info.View(20, True, info.config_op)
+                    if not self.config_op.empty:
+                        self.View(20, True, self.config_op)
                         
                     print("\n--- ⚙️ CONFIGURAR OPERACIONES ---")
                     print("[1] Operadores Lógicos (Básicos)")
@@ -318,8 +787,8 @@ class DataToolBox():
                                 col2 = input("Nombre de la Columna B: ")
                                 col3 = input("Nombre de la nueva columna (Opcional): ")
                                 
-                                info.Consulta(f"INSERT INTO Operaciones (Preconfig, Op, Col1, Col2, Col3) VALUES ('', '{op}', '{col1}', '{col2}', '{col3}');")
-                                info.Configure() # Recarga para mostrar cambios
+                                self.Consulta(f"INSERT INTO Operaciones (Preconfig, Op, Col1, Col2, Col3) VALUES ('', '{op}', '{col1}', '{col2}', '{col3}');")
+                                self.Configure() # Recarga para mostrar cambios
                                 
                             elif op_log == "5": continue
 
@@ -370,8 +839,8 @@ class DataToolBox():
                                 else:
                                     col3 = ""
                                 
-                                info.Consulta(f"INSERT INTO Operaciones (Preconfig, Op, Col1, Col2, Col3) VALUES ('{op}', '', '{col1}', '{col2}', '{col3}');")
-                                info.Configure() # Recarga para mostrar cambios
+                                self.Consulta(f"INSERT INTO Operaciones (Preconfig, Op, Col1, Col2, Col3) VALUES ('{op}', '', '{col1}', '{col2}', '{col3}');")
+                                self.Configure() # Recarga para mostrar cambios
 
                         elif sub_opc == "3":
 
@@ -387,20 +856,20 @@ class DataToolBox():
                                     fill = int(input("Número de Operaciones a eliminar: ")) 
                                     
                                     # 2. SINCRONIZACIÓN: ExportSQL usa 'self.df', así que cargamos la Operacion allí
-                                    info.df = info.config_op.copy()
+                                    self.df = self.config_op.copy()
 
                                     # 3. Borrado selectivo y reseteo de índices
-                                    if fill in info.df.index:
-                                        info.df = info.df.drop(labels=fill, axis=0).reset_index(drop=True)
+                                    if fill in self.df.index:
+                                        self.df = self.df.drop(labels=fill, axis=0).reset_index(drop=True)
                                         
                                         # Actualizamos la variable de estado para que la vista se refresque
-                                        info.config_op = info.df.copy()
+                                        self.config_op = self.df.copy()
 
                                         # 4. PERSISTENCIA: Ahora 'self.df' tiene la lista corregida, la subimos al SQL
-                                        info.ExportSQL("Operaciones", modo="replace")
+                                        self.ExportSQL("Operaciones", modo="replace")
                                         
                                         # 5. RECARGA: Volvemos a leer de SQL para asegurar integridad
-                                        info.Configure()
+                                        self.Configure()
                                         print(f"✅ Operaciones {fill} eliminada correctamente.")
                                     else:
                                         print(f"⚠️ El índice {fill} no existe en la lista actual.")
@@ -412,10 +881,10 @@ class DataToolBox():
 
                             elif ops == 2:
 
-                                info.Consulta("DROP TABLE IF EXISTS Operaciones;")
+                                self.Consulta("DROP TABLE IF EXISTS Operaciones;")
                                 print("✅ Tabla eliminada por completo.")
                                 
-                                info.Configure()
+                                self.Configure()
                                 # Lógica igual al menú de limpieza (Reset)
                                 print("\n--- 🔄 DESHACER CAMBIOS ---")
 
@@ -432,19 +901,67 @@ class DataToolBox():
                         print(f"❌ ERROR INESPERADO: {e}")
                     
             elif menu_principal == "3":
-                print("-------- [INICIANDO TUBERIA] -------------")
-                ruta = input("Nombre de carpeta para bigilar: ")
-                info.Autorun(ruta)
+                self.limpiar_pantalla()
+                print('''  ██ ███    ██ ██  ██████ ██  █████  ███    ██ ██████   ██████  
+  ██ ████   ██ ██ ██      ██ ██   ██ ████   ██ ██   ██ ██    ██ 
+  ██ ██ ██  ██ ██ ██      ██ ███████ ██ ██  ██ ██   ██ ██    ██ 
+  ██ ██  ██ ██ ██ ██      ██ ██   ██ ██  ██ ██ ██   ██ ██    ██ 
+  ██ ██   ████ ██  ██████ ██ ██   ██ ██   ████ ██████   ██████  
+                                                                
+          -------- [ INICIANDO TUBERIA ] --------\n''')
+                self.bandeja = input("Nombre de carpeta para vigilar: ")
+                #self.Autorun(ruta)
+
+                #limpiamos pantalla
+                self.limpiar_pantalla()
+
+                #bandeja
+                if not os.path.exists(self.bandeja): os.makedirs(self.bandeja)
+                
+                #aqui invocamos el observador de la carpeta para que cada que ingrese un archivo se dispare esta funcion
+                class_ob = MyEventHandler(self)
+                observer = Observer()
+                observer.schedule(class_ob, self.bandeja, recursive=False)
+
+                self.Autorun(self.bandeja)
+
+                try:
+                    observer.start()
+                    #animacion de espera
+                    # El bucle ahora depende de que el observer esté vivo
+                    self.logo_radar2(observer) # Tu animación ligera
+
+                except KeyboardInterrupt:
+                    sys.stdout.write("\033[?25h") # Devolver el cursor
+                    print("Proceso finalizado...")
+                
+                finally:
+                    # ESTO GARANTIZA EL CIERRE
+                    observer.stop()
+                    observer.join()
+                    print("✅ Volviendo al menú principal...")
+                    time.sleep(0.5)
+
                 break
 
             elif menu_principal == "4":
                 print("Saliendo...")
+                self.limpiar_pantalla()
                 break
+
+        #limpiamos pantalla
+        self.limpiar_pantalla()
 
     #script para escanear periodicamente la bandeja de procesameinto
     def Autorun(self, bandeja):
 
+        # 1. Escudo de entrada
+        if self.process:
+            return
+
         #--------------------Configuraciones----------------------------
+
+        self.Configure()
 
         df_st = self.config_st
         df_op = self.config_op
@@ -467,309 +984,339 @@ class DataToolBox():
             os.makedirs(f"{bandeja}/original/.", exist_ok=True)
 
         print(f"🔍 Escaneando carpeta: {bandeja}")
-        
-        for archivo in archivos:
-            # Filtramos para no leer carpetas o archivos ocultos
-            if archivo.endswith(('.csv', '.xlsx', 'xls', '.parquet', 'json')):
-                ruta_completa = os.path.join(bandeja, archivo)
-                print(f"📌 Archivo encontrado para procesar: {archivo}\n")
-                # Aquí llamarías a tu: tool.Load(ruta_completa)
 
-                self.Refresh(ruta_completa)
-                # Mover el archivo original a una carpeta de histórico
-                shutil.move(ruta_completa, os.path.join(f"{bandeja}/original/.", archivo))
-
-                #------------------Auto-Limpieza------------------ 
-
-                try:
-
-                    for regla in df_st.itertuples():
-                        
-                        columna = regla.Columna
-                        tipo = regla.Tipo
-                        lvl = regla.Lvl
-                        digitos = regla.Digitos
-                        
-                        if self.config_st.empty:
-
-                            print ("\n🔥No hay datos para limpiar") 
-                        
-                        else:
-
-                            #----------------HERRAMIENTAS----------------
-
-                            if tipo == "structure":
-                                self.Clean("structure")
-
-                    for regla in df_st.itertuples():
-                    
-                        columna = regla.Columna
-                        tipo = regla.Tipo
-                        lvl = regla.Lvl
-                        digitos = regla.Digitos
-                        
-                        if self.config_st.empty:
-
-                            print ("\n🔥No hay datos para limpiar") 
-                        
-                        else:
-
-                            #-----------------LIMPIEZA------------------
-
-                            if tipo == "int":
-                                self.Clean("numb", columna, lvl)
-                                self.Clean("decimal", columna, digitos)
-                            elif tipo == "str":
-                                self.Clean("text", columna, lvl)
-                            elif tipo == "date":
-                                self.Clean("date", columna, lvl)
-
-                    for regla in df_st.itertuples():
-                    
-                        columna = regla.Columna
-                        tipo = regla.Tipo
-                        lvl = regla.Lvl
-                        digitos = regla.Digitos
-                        
-                        if self.config_st.empty:
-
-                            print ("\n🔥No hay datos para limpiar") 
-                        
-                        else:
-
-                            #----------------HERRAMIENTAS----------------
-
-                            if tipo == "decimal":
-                                self.Clean("numb", columna, lvl)
-                                self.Clean("decimal", columna, digitos)
-                            
-                    print ("🔥Limpieza Automatica realizada\n")   
-                    
-                except Exception as e:
-                    # --- CASO GENERAL: OTROS ERRORES (ej. letras en vez de números) ---
-                    print(f"❌ ERROR INESPERADO [Auto-limpieza]: {e}")    
-                    
-                #----------------Auto-Operaciones----------------       
-                
-                try:
-                    
-                    for regla in self.config_op.itertuples():
-
-                        preconfig = regla.Preconfig
-                        opera = regla.Op
-                        #variables de calculo
-                        col1 = regla.Col1
-                        col2 = regla.Col2
-                        col3 = regla.Col3
-                        
-                        if self.config_op.empty:
-
-                            print ("\n🔥No hay operaciones para realizar") 
-                        
-                        else:
-
-                            #en caso de no existir una preconfoguracion saltamops a una operacion manual
-                            if preconfig is not None:
-
-                                match preconfig:
-
-                                    case "costo_unitario":
-                                        #Subtotal: cantidad vendida + cantidad total 
-
-                                        self.CalculadoraPlus(**{
-                                        "tipo" : "costo_unitario",
-                                        "col1" : col1,
-                                        "col2" : col2                
-                                        })
-
-                                    case "subtotal":
-                                        #Subtotal: cantidad * precio 
-
-                                        self.CalculadoraPlus(**{
-                                        "tipo" : "subtotal",
-                                        "col1" : col1,
-                                        "col2" : col2                
-                                        })
-
-                                    case "iva":
-                                        # Fórmula: Subtotal * tasa
-
-                                        #para calcular porcentaje
-                                        col2 = int(col2) / 100
-                                        
-                                        self.CalculadoraPlus(**{
-                                        "tipo" : "iva",
-                                        "col1" : col1,
-                                        "col2" : col2,              
-                                        })
-                                        
-                                    case "descuento":
-                                        # Fórmula: Precio * (1 - pct) (donde 0.10 son como 10%)
-
-                                        #para calcular porcentaje
-                                        col2 = int(col2) / 100
-
-                                        self.CalculadoraPlus(**{
-                                        "tipo" : "descuento",
-                                        "col1" : col1,              
-                                        "col2" : col2,              
-                                        })
-
-                                    case "margen_bruto":
-                                        # Fórmula: Precio de venta - Costo
-                                        
-                                        self.CalculadoraPlus(**{
-                                        "tipo" : "margen_bruto",
-                                        "col1" : col1,
-                                        "col2" : col2               
-                                        })
-                                        
-                                    case "margen_pct":
-                                        # Fórmula: (Margen / Ventas) * 100
-
-                                        self.CalculadoraPlus(**{
-                                        "tipo" : "margen_pct",
-                                        "col1" : col1,
-                                        "col2" : col2                
-                                        })
-
-                                    case "margen_porcent":
-                                        # Fórmula: (Margen / Precio de Venta) * 100.
-                                        
-                                        self.CalculadoraPlus(**{
-                                        "tipo" : "margen_porcent",
-                                        "col1" : col1,
-                                        "col2" : col2                
-                                        })
-
-                                    case "envio_KG":
-                                        # Fórmula: Peso * Tarifa_por_Kg
-                                        
-                                        self.CalculadoraPlus(**{
-                                        "tipo" : "envio_KG",
-                                        "col1" : col1,
-                                        "col2" : col2               
-                                        })
-
-                                    case "conversion_divisa":
-                                        # Fórmula: Subtotal * tasa
-                                        
-                                        self.CalculadoraPlus(**{
-                                        "tipo" : "conversion_divisa",
-                                        "col1" : col1,
-                                        "col2" : col2               
-                                        })
-
-                                    case "rango":
-
-                                        self.CalculadoraPlus(**{
-                                        "tipo" : "rango",
-                                        "col1" : col1,
-                                        "col2" : col2                
-                                        })
-
-                                    case "precio_final":
-                                        # Fórmula: Precio Final: Subtotal + Impuestos - Descuentos
-                                        
-                                        self.CalculadoraPlus({
-                                        "res" : "precio_final",
-                                        "col1" : col1,
-                                        "col2" : col2,
-                                        "col3" : col3               
-                                        })
-
-                                    case _:
-
-                                        print(f"Caso indefinido: [{preconfig}]")
-                            
-                            #la operacion manual
-                            else:
-
-                                match opera:
-
-                                    case "+":
-
-                                        #Calculamos subtotal
-                                        self.CalculadoraPlus(**{
-                                                                'tipo': 'subtotal',       # Define qué bloque del match-case entrará
-                                                                'col1': col1,          # Primera columna
-                                                                'col2': col2        # Segunda columna
-                                                            })
-                                    
-                                    case "++":
-
-                                        #Calculamos subtotal
-                                        self.CalculadoraPlus(**{
-                                                                'tipo': 'subtotal',       # Define qué bloque del match-case entrará
-                                                                'col1': col1,          # Primera columna
-                                                                'col2': col2        # Segunda columna
-                                                            })
-                                        
-                                    case "-":
-
-                                        #Calculamos subtotal
-                                        self.CalculadoraPlus(**{
-                                                                'tipo': 'subtotal',       # Define qué bloque del match-case entrará
-                                                                'col1': col1,          # Primera columna
-                                                                'col2': col2        # Segunda columna
-                                                            })
-                                        
-                                    case "/":
-
-                                        #Calculamos subtotal
-                                        self.CalculadoraPlus(**{
-                                                                'tipo': 'subtotal',       # Define qué bloque del match-case entrará
-                                                                'col1': col1,          # Primera columna
-                                                                'col2': col2        # Segunda columna
-                                                            })
-                                        
-                                    case "*":
-
-                                        #Calculamos subtotal
-                                        self.CalculadoraPlus(**{
-                                                                'tipo': 'subtotal',       # Define qué bloque del match-case entrará
-                                                                'col1': col1,          # Primera columna
-                                                                'col2': col2        # Segunda columna
-                                                            })
-
-                                    case _:
-
-                                        print(f"Caso indefinido: [{opera}]")
-
-                    print ("🔥Operaciones Automaticas realizada\n")   
-                    
-                except Exception as e:
-                    # --- CASO GENERAL: OTROS ERRORES (ej. letras en vez de números) ---
-                    print(f"❌ ERROR INESPERADO [Auto-Operaciones]: {e}")              
-
-                #-----------------------EXPORTACION----------------------
-                
-                self.Export("procesado","bandeja/procesados")
-
-        #-------------------------RESETEO--------------------------------
-        
-        print("Vigilando carpeta") 
-        print("presione Crtl+C para finalizar script")
+        # Escudo para evitar que se ejecuten dos procesos al mismo tiempo
+        if self.process:
+            return
 
         try:
 
-            class_ob = MyEventHandler(self)
+            self.activity = True
+            self.process = True
 
-            #aqui invocamos el observador de la carpeta para que cada que ingrese un archivo se dispare esta funcion
-            observer = Observer()
-            observer.schedule(class_ob, f"{bandeja}", recursive=False)
-            observer.start()
-            try:
-                while observer.is_alive():
-                    observer.join(1)
-            except KeyboardInterrupt:
-                observer.stop()
-            observer.join()
+            # Filtramos para no leer carpetas o archivos ocultos
+            for archivo in archivos:
 
+                # Tiempo legible (HH-MM-SS)
+                tiempo_hms = datetime.now().strftime("%H-%M-%S")
+                # Un identificador numérico único (puede ser un timestamp puro o un random)
+                unique_suffix = str(time.time_ns())[-6:] # Tomamos los últimos 6 dígitos para brevedad
+                # El resultado se ve así: PROCESADO [14-30-05] - [982341]
+                file_id = f"[{tiempo_hms}] - [{unique_suffix}]"
+
+                # Definimos los formatos permitidos
+                formatos = ['.csv', '.xlsx', '.xls', '.parquet', '.json']
+                _, extension = os.path.splitext(archivo)
+                extension = extension.lower()
+
+                if extension in formatos:
+                    print(f"📌 Archivo encontrado para procesar: {archivo}\n")
+                    # Aquí llamarías a tu: tool.Load(ruta_completa)
+                    
+                    ruta_completa = os.path.join(bandeja, archivo)
+                    # Ahora test_file sí lo encontrará porque tiene la dirección completa
+                    if os.path.isfile(ruta_completa) and self.test_file(ruta_completa):
+
+                        self.Refresh(ruta_completa)
+
+                        #------------------Auto-Limpieza------------------ 
+                        
+                        try:
+
+                            for regla in self.config_st.itertuples():
+                                                            
+                                columna = regla.Columna
+                                tipo = regla.Tipo
+                                lvl = regla.Lvl
+                                digitos = regla.Digitos
+                                
+                                if self.config_st.empty:
+
+                                    print ("\n🔥No hay datos para limpiar") 
+                                
+                                else:
+
+                                    #----------------HERRAMIENTAS----------------
+
+                                    if tipo == "structure":
+                                        self.Clean("structure")
+
+                            for regla in df_st.itertuples():
+                            
+                                columna = regla.Columna
+                                tipo = regla.Tipo
+                                lvl = regla.Lvl
+                                digitos = regla.Digitos
+                                
+                                if self.config_st.empty:
+
+                                    print ("\n🔥No hay datos para limpiar") 
+                                
+                                else:
+
+                                    #-----------------LIMPIEZA------------------
+
+                                    if tipo == "int":
+                                        self.Clean("numb", columna, lvl)
+                                        self.Clean("decimal", columna, digitos)
+                                    elif tipo == "str":
+                                        self.Clean("text", columna, lvl)
+                                    elif tipo == "date":
+                                        self.Clean("date", columna, lvl)
+
+                            for regla in df_st.itertuples():
+                            
+                                columna = regla.Columna
+                                tipo = regla.Tipo
+                                lvl = regla.Lvl
+                                digitos = regla.Digitos
+                                
+                                if self.config_st.empty:
+
+                                    print ("\n🔥No hay datos para limpiar") 
+                                
+                                else:
+
+                                    #----------------HERRAMIENTAS----------------
+
+                                    if tipo == "decimal":
+                                        self.Clean("numb", columna, lvl)
+                                        self.Clean("decimal", columna, digitos)
+
+                            for regla in df_st.itertuples():
+                            
+                                columna = regla.Columna
+                                tipo = regla.Tipo
+                                lvl = regla.Lvl
+                                digitos = regla.Digitos
+                                
+                                if self.config_st.empty:
+
+                                    print ("\n🔥No hay datos para limpiar") 
+                                
+                                else:
+
+                                    #----------------HERRAMIENTAS----------------
+
+                                    if tipo == "id":
+                                        self.Clean("numb", columna, lvl)
+                                        self.Clean("id", columna, lvl, digitos)
+                                    
+                            print ("🔥Limpieza Automatica realizada\n")   
+                          
+                            for regla in df_op.itertuples():
+
+                                preconfig = regla.Preconfig
+                                opera = regla.Op
+                                #variables de calculo
+                                col1 = regla.Col1
+                                col2 = regla.Col2
+                                col3 = regla.Col3
+                                
+                                if self.config_op.empty:
+
+                                    print ("\n🔥No hay operaciones para realizar") 
+                                
+                                else:
+
+                                    #en caso de no existir una preconfoguracion saltamops a una operacion manual
+                                    if preconfig is not None:
+
+                                        match preconfig:
+
+                                            case "costo_unitario":
+                                                #Subtotal: cantidad vendida + cantidad total 
+
+                                                self.CalculadoraPlus(**{
+                                                "tipo" : "costo_unitario",
+                                                "col1" : col1,
+                                                "col2" : col2                
+                                                })
+
+                                            case "subtotal":
+                                                #Subtotal: cantidad * precio 
+
+                                                self.CalculadoraPlus(**{
+                                                "tipo" : "subtotal",
+                                                "col1" : col1,
+                                                "col2" : col2                
+                                                })
+
+                                                self.Clean("decimal","Subtotal", 2)
+
+                                            case "iva":
+                                                # Fórmula: Subtotal * tasa
+
+                                                #para calcular porcentaje
+                                                col2 = int(col2) / 100
+                                                
+                                                self.CalculadoraPlus(**{
+                                                "tipo" : "iva",
+                                                "col1" : col1,
+                                                "col2" : col2,              
+                                                })
+
+                                                self.Clean("decimal","IVA", 2)
+                                                
+                                            case "descuento":
+                                                # Fórmula: Precio * (1 - pct) (donde 0.10 son como 10%)
+
+                                                #para calcular porcentaje
+                                                col2 = int(col2) / 100
+
+                                                self.CalculadoraPlus(**{
+                                                "tipo" : "descuento",
+                                                "col1" : col1,              
+                                                "col2" : col2,              
+                                                })
+
+                                                self.Clean("decimal","Descuento", 2)
+
+                                            case "margen_bruto":
+                                                # Fórmula: Precio de venta - Costo
+                                                
+                                                self.CalculadoraPlus(**{
+                                                "tipo" : "margen_bruto",
+                                                "col1" : col1,
+                                                "col2" : col2               
+                                                })
+                                                
+                                            case "margen_pct":
+                                                # Fórmula: (Margen / Ventas) * 100
+
+                                                self.CalculadoraPlus(**{
+                                                "tipo" : "margen_pct",
+                                                "col1" : col1,
+                                                "col2" : col2                
+                                                })
+
+                                            case "margen_porcent":
+                                                # Fórmula: (Margen / Precio de Venta) * 100.
+                                                
+                                                self.CalculadoraPlus(**{
+                                                "tipo" : "margen_porcent",
+                                                "col1" : col1,
+                                                "col2" : col2                
+                                                })
+
+                                            case "envio_KG":
+                                                # Fórmula: Peso * Tarifa_por_Kg
+                                                
+                                                self.CalculadoraPlus(**{
+                                                "tipo" : "envio_KG",
+                                                "col1" : col1,
+                                                "col2" : col2               
+                                                })
+
+                                            case "conversion_divisa":
+                                                # Fórmula: Subtotal * tasa
+                                                
+                                                self.CalculadoraPlus(**{
+                                                "tipo" : "conversion_divisa",
+                                                "col1" : col1,
+                                                "col2" : col2               
+                                                })
+
+                                            case "rango":
+
+                                                self.CalculadoraPlus(**{
+                                                "tipo" : "rango",
+                                                "col1" : col1,
+                                                "col2" : col2                
+                                                })
+
+                                            case "precio_final":
+                                                # Fórmula: Precio Final: Subtotal + Impuestos - Descuentos
+                                                
+                                                self.CalculadoraPlus({
+                                                "res" : "precio_final",
+                                                "col1" : col1,
+                                                "col2" : col2,
+                                                "col3" : col3               
+                                                })
+
+                                            case _:
+
+                                                print(f"Caso indefinido: [{preconfig}]")
+                                    
+                                    #la operacion manual
+                                    else:
+
+                                        match opera:
+
+                                            case "+":
+
+                                                #Calculamos subtotal
+                                                self.CalculadoraPlus(**{
+                                                                        'tipo': 'subtotal',       # Define qué bloque del match-case entrará
+                                                                        'col1': col1,          # Primera columna
+                                                                        'col2': col2        # Segunda columna
+                                                                    })
+                                            
+                                            case "++":
+
+                                                #Calculamos subtotal
+                                                self.CalculadoraPlus(**{
+                                                                        'tipo': 'subtotal',       # Define qué bloque del match-case entrará
+                                                                        'col1': col1,          # Primera columna
+                                                                        'col2': col2        # Segunda columna
+                                                                    })
+                                                
+                                            case "-":
+
+                                                #Calculamos subtotal
+                                                self.CalculadoraPlus(**{
+                                                                        'tipo': 'subtotal',       # Define qué bloque del match-case entrará
+                                                                        'col1': col1,          # Primera columna
+                                                                        'col2': col2        # Segunda columna
+                                                                    })
+                                                
+                                            case "/":
+
+                                                #Calculamos subtotal
+                                                self.CalculadoraPlus(**{
+                                                                        'tipo': 'subtotal',       # Define qué bloque del match-case entrará
+                                                                        'col1': col1,          # Primera columna
+                                                                        'col2': col2        # Segunda columna
+                                                                    })
+                                                
+                                            case "*":
+
+                                                #Calculamos subtotal
+                                                self.CalculadoraPlus(**{
+                                                                        'tipo': 'subtotal',       # Define qué bloque del match-case entrará
+                                                                        'col1': col1,          # Primera columna
+                                                                        'col2': col2        # Segunda columna
+                                                                    })
+
+                                            case _:
+
+                                                print(f"Caso indefinido: [{opera}]")
+
+                            print ("🔥Operaciones Automaticas realizada\n")   
+                            
+                            #-----------------------EXPORTACION----------------------
+
+                            # Mover el archivo original a una carpeta de histórico
+                            shutil.move(ruta_completa, os.path.join(f"{bandeja}/original", f"Original {file_id}{extension}"))
+                            #nuevo archivo
+                            self.Export(f"Procesado {file_id}",f"{bandeja}/procesados")
+
+                        except Exception as e:
+                            # --- CASO GENERAL: OTROS ERRORES (ej. letras en vez de números) ---
+                            print(f"❌ ERROR INESPERADO : {e}")              
+
+                        #-------------------------RESETEO--------------------------------
+                            
         except Exception as e:
-            # --- CASO GENERAL: OTROS ERRORES (ej. letras en vez de números) ---
-            print(f"Posiblemente sea por no haber archivos para limpiar")              
-            print(f"❌ ERROR INESPERADO [Vigilante]: {e}")              
+            print(f"\n❌ Error: {e}")
+            shutil.move(ruta_completa, os.path.join(f"{bandeja}/revision", f"Revision {file_id}{extension}"))
+        finally:
+            self.activity = False
+            self.process = False
+            #self.bandeja = None
+        
+        self.limpiar_pantalla()          
 
     #configuraciones para autoarranque
     def Configure(self):
@@ -798,30 +1345,6 @@ class DataToolBox():
                             Col2 TEXT NOT NULL,
                             Col3 TEXT NOT NULL
                         );""")
-
-        # 2. ASEGURAR TABLA (Si no, read_sql falla siempre)
-        # pd.read_sql NO crea tablas. Necesitas esto:
-        metadata = MetaData()
-
-        config_rst = Table('Configuracion', metadata,
-            Column('ID', Integer, primary_key=True, autoincrement=True),
-            Column('Columna', String),
-            Column('Tipo', String),
-            Column('Lvl', Integer),
-            Column('Digitos', Integer))
-        
-        # TABLA 2: Historial de la "Carpeta Bandeja" (Nueva)
-        config_ops = Table('Operaciones', metadata,
-            Column('ID', Integer, primary_key=True, autoincrement=True),
-            Column('Preconfig', String),
-            Column('Op', String),
-            Column('Col1', String),
-            Column('Col2', String),
-            Column('Col3', String)
-        )
-
-        # EL TRUCO MÁGICO: Esto crea TODAS las tablas que estén en el metadata        
-        metadata.create_all(self.engine) 
 
         # 3. Leer los datos
         try:
@@ -1206,20 +1729,17 @@ class DataToolBox():
 
                     #Nos aseguramos de que no este vacio del dataframe
                     if not self.df.empty:
-                                                
-                        if ops is not None:
-                            digits = ops 
-
+                                         
                         #hacemos una copia para no afectar los datos originales
                         dupli = pd.DataFrame(self.df)
                         comp = pd.DataFrame(self.df)
 
-                        if digits is not None:
+                        if ops is not None:
 
                             comp[columna] = self.df[columna].astype(str).str.len()
 
                             #ids que no cumplen con el largo
-                            malo = self.df[comp[columna] != digits]
+                            malo = self.df[comp[columna] != ops]
                 
                             #creamos el numero de ids segun el numero de filas de mala
                             ids = np.random.randint(1000, 10000, size=len(malo))
@@ -1227,7 +1747,7 @@ class DataToolBox():
                             malo.loc[:, columna] = ids
 
                             #digitos que cumplen con el largo
-                            bueno = self.df[comp[columna] == digits]
+                            bueno = self.df[comp[columna] == ops]
 
                             #unificamos
                             self.df = pd.concat([bueno, malo], ignore_index=True, axis=0)
@@ -1330,11 +1850,7 @@ class DataToolBox():
                         ##Eliminamos espacios
                         self.df[columna] = self.df[columna].astype(str).str.strip() # Quita espacios
                         # Convierte a Fecha
-                        self.df[columna] = pd.to_datetime(
-                            self.df[columna], 
-                            format='%d/%m/%Y', # <--- Aquí le dices exactamente cómo leerla
-                            errors='coerce'
-                        )
+                        self.df[columna] = pd.to_datetime(self.df[columna])
 
                         if lvl == 2:
 
@@ -1857,3 +2373,123 @@ class DataToolBox():
 
     #operaciones con fecha
     def TimePlus(self, **kwargs:Optional[str]):
+
+        try:
+
+            # --- Recorremos los casos ---
+            tipo = kwargs.get('tipo')
+
+            match tipo:
+                
+                case "lead_time":
+                    #Formula: (Fecha_Entrega - Fecha_Pedido)
+
+                    #realizamos operacion
+                    self.Time({
+                        'op' : '-',
+                        'res' : 'Lead_Time',
+                        'dt1' : kwargs.get('date1'),
+                        'dt2' : kwargs.get('date2')
+                    })
+
+                case "inventario":
+                    #Formula: (Fecha_Hoy - Fecha_archivos)
+
+                    #realizamos operacion
+                    self.Time({
+                        'op' : '-',
+                        'res' : 'Inventario',
+                        'dt1' : kwargs.get('date1'),
+                        'dt2' : kwargs.get('date2')
+                    })
+
+                case "proyecciones":
+                    #Formula: (Fecha_Compra + días)
+
+                    #realizamos operacion
+                    self.Time({
+                        'op' : '+',
+                        'res' : 'Proyecciones',
+                        'dt1' : kwargs.get('date1'),
+                        'dt2' : kwargs.get('date2')
+                    })
+
+                case "estacionalidad":
+                    #Formula: extraccion (.dt.month, .dt.year, .dt.day_name())
+
+                    #realizamos operacion
+                    #------------------por year ----------------------
+
+                    print("\n--- 📊 RESUMEN DE ESTACIONALIDAD ---")
+
+                    year = self.Time({
+                        'op' : 'Y',
+                        'dt1' : kwargs.get('date1')
+                    })
+
+                    # 2. Resumen compacto (sin crear columnas nuevas en el df principal)
+                    conteo_year = self.df[kwargs.get('date1')].dt.year.value_counts().sort_index()
+                    
+                    # 3. Solo imprimimos el resumen
+                    print("\n--- 📊 ACTIVIDAD ANUAL ---")
+                    for year, total in conteo_year.items():
+                        print(f"Year {int(year)}: {total} ventas")
+
+                    #----------------- por mes --------------------
+
+                    meses = self.Time({
+                        'op' : 'M',
+                        'dt1' : kwargs.get('date1')
+                    })
+
+                    # 2. Resumen compacto (sin crear columnas nuevas en el df principal)
+                    conteo_mes = self.df[kwargs.get('date1')].dt.month.value_counts().sort_index()
+                    
+                    # 3. Solo imprimimos el resumen
+                    print("\n--- 📊 ACTIVIDAD MENSUAL ---")
+                    for mes, total in conteo_mes.items():
+                        print(f"Mes {mes}: {total} ventas")
+
+                    #----------------- por semana -------------------------------
+
+                    dias = self.Time({
+                        'op' : 'D',
+                        'dt1' : kwargs.get('date1')
+                    })
+
+                    # Contadores fiables
+                    c_semana = sum(1 for d in dias if d < 5)
+                    c_finde = sum(1 for d in dias if d >= 5)
+
+                    print("\n--- 📊 ACTIVIDAD SEMANAL ---")
+                    print (f"Ventas en dia de semana: {c_semana} \nVentas los fines de semana: {c_finde}\n")
+                    
+                    #print(dt1.day_name[1])
+
+                case "horarios":
+                    #Formula: Extracción de la hora (.dt.hour) y uso de condicionales  
+
+                    #Realizamos operacion
+                    horas = self.Time({
+                        'op' : 'H',
+                        'dt1' : kwargs.get('date1')
+                    })
+
+                    self.df['Turno'] = [
+                        "Mañana" if 6 <= h < 12 else 
+                        "Tarde" if 12 <= h < 18 else 
+                        "Noche" if 18 <= h < 24 else 
+                        "Madrugada" 
+                        for h in horas
+                    ]
+
+                case _:
+                    print("❌ Operación no válida: no se especifico operacion")
+
+            print(f"✅ Cálculo de {tipo} completado.")
+            self.Reporte(f"OPERACION REALIZADA: {tipo} || PROCESO EXITOSO")
+        
+        except Exception as e:
+            # --- CASO GENERAL: OTROS ERRORES (ej. letras en vez de números) ---
+            print(f"❌ ERROR INESPERADO: {e}")
+            self.Reporte(f"OPERACION REALIZADA: {tipo} || ERROR: {e}")
