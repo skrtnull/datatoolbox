@@ -909,7 +909,8 @@ class DataToolBox():
   ██ ██   ████ ██  ██████ ██ ██   ██ ██   ████ ██████   ██████  
                                                                 
           -------- [ INICIANDO TUBERIA ] --------\n''')
-                self.bandeja = input("Nombre de carpeta para vigilar: ")
+                #self.bandeja = input("Nombre de carpeta para vigilar: ")
+                self.bandeja = "bandeja"
                 #self.Autorun(ruta)
 
                 #limpiamos pantalla
